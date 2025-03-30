@@ -209,7 +209,7 @@
 		"blurb": "my bachelor thesis, a presentation of a novel system of arithmetic on orthomodular lattices based on the free orthomodular lattice with two generators. (title page purged of identifying information about my university.)",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/foml.pdf" },
-			{ "a": "source", "href": "https://github.com/lucillablessing/lucillablessing.github.io/blob/main/writing/tex/foml.zip" }
+			{ "a": "source", "href": "writing/tex/foml.zip" }
 		],
 		"tags": [ "papers", "major" ],
 		"writingTags": [ "math" ]
@@ -243,7 +243,7 @@
 		"blurb": "a paper about a novel merge-based sorting algorithm surprisingly connected to the Fibonacci sequence.",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/fibonacci_sort.pdf" },
-			{ "a": "source", "href": "https://github.com/lucillablessing/lucillablessing.github.io/blob/main/writing/tex/fibonacci_sort.zip" }
+			{ "a": "source", "href": "writing/tex/fibonacci_sort.zip" }
 		],
 		"tags": [ "papers", "major" ],
 		"writingTags": [ "math" ]
@@ -282,7 +282,7 @@
 		"blurb": "much like both NAND and NOR are sufficient to construct any n-ary two-valued function, a single operation is also enough for three-valued logic.",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/ternary_logic.pdf" },
-			{ "a": "source", "href": "https://github.com/lucillablessing/lucillablessing.github.io/blob/main/writing/tex/ternary_logic.zip" }
+			{ "a": "source", "href": "writing/tex/ternary_logic.zip" }
 		],
 		"tags": [ "papers", "minor", "hidden" ],
 		"writingTags": [ "math", "hidden" ]
@@ -353,7 +353,7 @@
 		"blurb": "it's a childishly easy statement to prove on its own, but what if you can't use induction? &hellip;it turns out to still be quite easy.",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/even_odd.pdf" },
-			{ "a": "source", "href": "https://github.com/lucillablessing/lucillablessing.github.io/blob/main/writing/tex/even_odd.zip" }
+			{ "a": "source", "href": "writing/tex/even_odd.zip" }
 		],
 		"tags": [ "papers", "minor", "hidden" ],
 		"writingTags": [ "math", "hidden" ]
@@ -364,7 +364,7 @@
 		"blurb": "a joke linguistics paper proposing a common ancestry of all logical languages.",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/bangu.pdf" },
-			{ "a": "source", "href": "https://github.com/lucillablessing/lucillablessing.github.io/blob/main/writing/tex/bangu.zip" }
+			{ "a": "source", "href": "writing/tex/bangu.zip" }
 		],
 		"tags": [ "papers", "minor", "hidden" ],
 		"writingTags": [ "misc", "hidden" ]
