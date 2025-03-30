@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="Content-Security-Policy" content="form-action 'self'">
 		<meta name="author" content="Lucilla Blessing">
 		<meta name="color-scheme" content="light dark">
 		<meta name="description" content="Embrace the spark of creation. Make art. Spread joy. Repeat.">
@@ -36,7 +37,7 @@
 					<input id="form-field-email" type="email" name="email">
 					<label for="form-field-message">message <i>(required)</i></label>
 					<textarea id="form-field-message" name="message" rows="10" cols="50" spellcheck="false" required></textarea>
-					<input id="form-field-no-bots" type="checkbox" name="no-bots">
+					<input id="form-field-no-bots" type="checkbox" name="botcheck">
 					<label for="form-field-no-bots">I'm a spambot <i>(leave this unchecked!)</i><span id="leave-unchecked"> please uncheck this! I won't get your message otherwise.</span></label>
 					<button type="submit">send</button>
 				</form>
