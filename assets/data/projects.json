@@ -1,0 +1,492 @@
+[
+	{
+		"title": "mahpiohanzia",
+		"titleHyphenated": "mah^pio^han^zia",
+		"blurb": "instructions how to dream.",
+		"thumbnail": null,
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "COTTAGECORERAVE",
+		"titleHyphenated": "COTTAGE^CORE^RAVE",
+		"blurb": "something weird is going on inside that house.",
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "Codex Candidus",
+		"blurb": "tempering can take many forms.",
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "Cubic Memories",
+		"blurb": "songs celebrating a bygone era.",
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "Stories From The Monsters",
+		"blurb": "they just want to be heard.",
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "Lucilla's Theme",
+		"blurb": "a shy attempt at telling the world who I am through music.",
+		"tags": [ "music", "wishlist" ]
+	},
+	{
+		"title": "Five",
+		"blurb": "music from Five.",
+		"tags": [ "music", "wishlist", "hidden" ]
+	},
+	{
+		"title": "Chemical Algebra",
+		"blurb": "a mental arithmetic system for atoms and bonds.",
+		"tags": [ "papers", "wishlist" ]
+	},
+	{
+		"title": "The Music Trachtenberg System",
+		"blurb": "a cheat sheet for doing math on notes and intervals with minimal memorization.",
+		"tags": [ "papers", "wishlist" ]
+	},
+	{
+		"title": "MOS Theory",
+		"blurb": "exploring the mathematical properties of MOS scales.",
+		"tags": [ "papers", "wishlist" ]
+	},
+	{
+		"title": "Unit Spaces",
+		"blurb": "can I axiomatize spaces of quantities with units, similarly to vector spaces?",
+		"tags": [ "papers", "wishlist" ]
+	},
+	{
+		"title": "Tuning Algebra",
+		"blurb": "a compendium of everything there is to know about the mathematics of tuning.",
+		"tags": [ "papers", "wishlist", "hidden" ]
+	},
+	{
+		"title": "Familiar 3",
+		"blurb": "play your favourite microtonal melodies using a mouse or keyboard! highly customizable and scriptable.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "Convex 3",
+		"blurb": "the last convex mirror you'll ever need.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "sugarbox",
+		"blurb": "a microtonal tracker-DAW in the style of FamiTracker, natively supporting arbitrary tunings.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "Syzygy",
+		"blurb": "a 2D esoteric programming language where everything is parallel processing, using ANSI art as source code.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "Fëa",
+		"blurb": "a little simple imperative programming language, designed purely to have Lucilla vibes.",
+		"tags": [ "code", "wishlist", "hidden" ]
+	},
+	{
+		"title": "basen",
+		"blurb": "a Nim library for converting to and from different bases.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "nimterval",
+		"blurb": "a Nim library for doing arithmetic on MOS-based musical interval naming frameworks, such as our heptatonic system.",
+		"tags": [ "code", "wishlist" ]
+	},
+	{
+		"title": "sugarcube",
+		"blurb": "a fantasy console? maybe? (s)omeday?",
+		"tags": [ "code", "wishlist", "hidden" ]
+	},
+	{
+		"title": "the best way to index",
+		"blurb": "the spiritual successor to <i>the best way to count</i>.",
+		"tags": [ "videos", "wishlist" ]
+	},
+	{
+		"title": "Chemical Algebra (video)",
+		"blurb": "a mental arithmetic system for atoms and bonds. (video)",
+		"tags": [ "videos", "wishlist" ]
+	},
+	{
+		"title": "The Music Trachtenberg System (video)",
+		"blurb": "a cheat sheet for doing math on notes and intervals with minimal memorization. (video)",
+		"tags": [ "videos", "wishlist" ]
+	},
+	{
+		"title": "Yoda Math",
+		"blurb": "math without PEMDAS? here's how.",
+		"tags": [ "videos", "wishlist" ]
+	},
+	{
+		"title": "Little Tiles",
+		"blurb": "a virtual canvas for top-down worlds.",
+		"tags": [ "other", "wishlist" ]
+	},
+	{
+		"title": "Close Your Eyen",
+		"blurb": "solve puzzles on an enigmatic island riddled with magical books.",
+		"tags": [ "other", "wishlist" ]	
+	},
+	{
+		"title": "Izzi and the Rainbow Cube",
+		"blurb": "Izzi loses her bearings in a mysterious forest.",
+		"tags": [ "other", "wishlist" ]
+	},
+	{
+		"title": "DCM",
+		"blurb": "solve tests using a quantum manipulator that lets you save and restore the past.",
+		"tags": [ "other", "wishlist" ]
+	},
+	{
+		"title": "Garden of Memories",
+		"blurb": "an unusual world tour.",
+		"tags": [ "other", "wishlist" ]
+	},
+	{
+		"title": "Hexadecimal Valley",
+		"blurb": "follow exiled Ada's journey to build an Analytical Engine.",
+		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"title": "Mechaformica",
+		"blurb": "a conlang spoken by robot ants by secreting chemicals in a fictional alchemy system.",
+		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"title": "Letters to L",
+		"blurb": "the future is obscure, and the past hazy.",
+		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"title": "Fairies Only Live One Day",
+		"blurb": "if I could write a novel, this would be it.",
+		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"date": [ 2025, 3, 31 ],
+		"title": "The Power Of Five",
+		"blurb": "it's this website! yep, it's definitely a big enough undertaking for me to consider it a project in its own right.",
+		"links": [
+			{ "a": "recursion!", "href": "index.html" },
+			{ "a": "github", "href": "https://github.com/lucillablessing/lucillablessing.github.io" }
+		],
+		"thumbnail": "tpof.jpg",
+		"thumbnailLabel": "it's this website itself!",
+		"tags": [ "other", "major" ]
+	},
+	{
+		"date": [ 2025, 2, 28 ],
+		"title": "Teapot",
+		"blurb": "an extreme musical lipogram, a song using only octaves of a single note.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=xDH6HwbZUEI" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/teapot" }
+		],
+		"thumbnail": "teapot.jpg",
+		"tags": [ "music", "major" ]
+	},
+	{
+		"date": [ 2025, 2, 14 ],
+		"title": "NecroPony OST",
+		"titleFull": "Crypt of the NecroPony: original soundtrack",
+		"blurb": "the soundtrack to the complete overhaul mod for <i>Crypt of the NecroDancer</i> by Thea Vanherst and Sipher Nil.",
+		"links": [
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/crypt-of-the-necropony-ost" }
+		],
+		"thumbnail": "necropony.jpg",
+		"thumbnailLabel": "NecroPony soundtrack on bandcamp",
+		"tags": [ "music", "minor" ]
+	},
+	{
+		"date": [ 2025, 1, 31 ],
+		"title": "Free OML with Two Generators",
+		"titleFull": "Describing the Free Orthomodular Lattice with Two Generators",
+		"blurb": "my bachelor thesis, a presentation of a novel system of arithmetic on orthomodular lattices based on the free orthomodular lattice with two generators. (title page purged of identifying information about my university.)",
+		"links": [
+			{ "a": "pdf", "href": "writing/pdf/foml.pdf" },
+			{ "a": "source", "href": "writing/tex/foml.zip" }
+		],
+		"tags": [ "papers", "major" ],
+		"writingTags": [ "math" ]
+	},
+	{
+		"date": [ 2024, 12, 9 ],
+		"title": "Bolt's Bits",
+		"blurb": "chiptune remixes for <i>Crypt of the NecroDancer</i>. ripe with flairs.",
+		"links": [
+			{ "a": "youtube (vol A)", "href": "https://www.youtube.com/watch?v=2nUdAtWAcp4" },
+			{ "a": "bandcamp (vol A)", "href": "https://lucilla.bandcamp.com/album/bolts-bits-volume-a" }
+		],
+		"thumbnail": "bolts_bits.jpg",
+		"thumbnailLabel": "Bolt's Bits: Volume A on youtube",
+		"tags": [ "music", "major" ]
+	},
+	{
+		"date": [ 2024, 7, 17 ],
+		"title": "Missa sēsquialtera",
+		"blurb": "a mass in a split-Pythagorean tuning with lyrics in Lojban.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=nN7Aw7G0gvQ" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/missa-sesquialtera" }
+		],
+		"thumbnail": "missa_sesquialtera.jpg",
+		"tags": [ "music", "major" ]
+	},
+	{
+		"date": [ 2024, 7, 5 ],
+		"title": "Fibonacci Sort",
+		"blurb": "a paper about a novel merge-based sorting algorithm surprisingly connected to the Fibonacci sequence.",
+		"links": [
+			{ "a": "pdf", "href": "writing/pdf/fibonacci_sort.pdf" },
+			{ "a": "source", "href": "writing/tex/fibonacci_sort.zip" }
+		],
+		"tags": [ "papers", "major" ],
+		"writingTags": [ "math" ]
+	},
+	{
+		"date": [ 2024, 3, 31 ],
+		"title": "Hexachord Fantasia",
+		"writingQualifier": "score",
+		"blurb": "a tribute to J. P. Sweelinck, my own neo-Renaissance polyphonic take on the hexachord. in 5-limit&nbsp;JI.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=zmWgaabiKHw" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/hexachord-fantasia" }
+		],
+		"writingLinks": [
+			{ "a": "pdf", "href": "writing/pdf/hexachord_fantasia_score.pdf" }
+		],
+		"thumbnail": "hexachord_fantasia.jpg",
+		"tags": [ "music", "major" ],
+		"writingTags": [ "music" ]
+	},
+	{
+		"date": [ 2024, 3, 31 ],
+		"title": "hexachord",
+		"blurb": "a simple program controlling the M section and the scrolling score of <i>Hexachord Fantasia</i>.",
+		"links": [
+			{ "a": "github", "href": "https://github.com/lucillablessing/hexachord" },
+			{ "a": "itch.io", "href": "https://lucillablessing.itch.io/hexachord" }
+		],
+		"thumbnail": "hexachord.jpg",
+		"tags": [ "code", "minor" ]
+	},
+	{
+		"date": [ 2024, 2, 17 ],
+		"title": "Ternary Logic from One Operation",
+		"titleFull": "Generating Ternary Logic from One Binary Operation",
+		"blurb": "much like both NAND and NOR are sufficient to construct any n-ary two-valued function, a single operation is also enough for three-valued logic.",
+		"links": [
+			{ "a": "pdf", "href": "writing/pdf/ternary_logic.pdf" },
+			{ "a": "source", "href": "writing/tex/ternary_logic.zip" }
+		],
+		"tags": [ "papers", "minor", "hidden" ],
+		"writingTags": [ "math", "hidden" ]
+	},
+	{
+		"date": [ 2023, 12, 16 ],
+		"title": "TBWTC OST",
+		"titleFull": "the best way to count: original soundtrack",
+		"writingQualifier": "liner notes",
+		"blurb": "eight little songs woven out of math itself, accompanying the behemoth video essay <i>the best way to count</i>.",
+		"writingBlurb": "my assorted thoughts on how the songs in <i>the best way to count</i> came to be.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=MI4xSjRBa_o" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/the-best-way-to-count-ost" }
+		],
+		"writingLinks": [
+			{ "a": "github (pdf)", "href": "https://github.com/lucillablessing/thebestwaytocount/blob/main/liner.pdf" },
+			{ "a": "github (source)", "href": "https://github.com/lucillablessing/thebestwaytocount" }
+		],
+		"thumbnail": "tbwtc_ost.jpg",
+		"thumbnailLabel": "the best way to count soundtrack on youtube",
+		"tags": [ "music", "major" ],
+		"writingTags": [ "music" ]
+	},
+	{
+		"date": [ 2023, 12, 16 ],
+		"title": "magic sequences",
+		"blurb": "an addendum to <i>the best way to count</i>, proving the claims made in the video about magic sequences.",
+		"links": [
+			{ "a": "github (pdf)", "href": "https://github.com/lucillablessing/thebestwaytocount/blob/main/magic.pdf" },
+			{ "a": "github (source)", "href": "https://github.com/lucillablessing/thebestwaytocount" }
+		],
+		"tags": [ "papers", "minor", "hidden" ],
+		"writingTags": [ "math" ]
+	},
+	{
+		"date": [ 2023, 12, 16 ],
+		"title": "binary animations",
+		"blurb": "a simple player for the animations in the music video to <i>the best way to count</i>'s soundtrack.",
+		"links": [
+			{ "a": "github", "href": "https://github.com/lucillablessing/binary-animations" },
+			{ "a": "itch.io", "href": "https://lucillablessing.itch.io/binary-animations" }
+		],
+		"thumbnail": "binary_animations.jpg",
+		"tags": [ "code", "minor" ]
+	},
+	{
+		"date": [ 2023, 12, 16 ],
+		"title": "the best way to count",
+		"blurb": "is it really base six? get ready for over an hour of intense mathematical truthmaking to answer just that. narrated by kepe and Addy, written by me.",
+		"writingBlurb": "is it really base six? get ready for over an hour of intense mathematical truthmaking to answer just that.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=rDDaEVcwIJM" },
+			{ "a": "github", "href": "https://github.com/lucillablessing/thebestwaytocount" }
+		],
+		"writingLinks": [
+			{ "a": "github (script pdf)", "href": "https://github.com/lucillablessing/thebestwaytocount/blob/main/best.pdf" },
+			{ "a": "github (footnotes pdf)", "href": "https://github.com/lucillablessing/thebestwaytocount/blob/main/footnotes.pdf" },
+			{ "a": "github (source)", "href": "https://github.com/lucillablessing/thebestwaytocount" }
+		],
+		"thumbnail": "tbwtc.jpg",
+		"tags": [ "videos", "major" ],
+		"writingTags": [ "math" ]
+	},
+	{
+		"date": [ 2023, 12, 1 ],
+		"title": "Every Integer Is Either Even Or Odd",
+		"blurb": "it's a childishly easy statement to prove on its own, but what if you can't use induction? &hellip;it turns out to still be quite easy.",
+		"links": [
+			{ "a": "pdf", "href": "writing/pdf/even_odd.pdf" },
+			{ "a": "source", "href": "writing/tex/even_odd.zip" }
+		],
+		"tags": [ "papers", "minor", "hidden" ],
+		"writingTags": [ "math", "hidden" ]
+	},
+	{
+		"date": [ 2023, 10, 3 ],
+		"title": "The Ubiquitous bangu",
+		"blurb": "a joke linguistics paper proposing a common ancestry of all logical languages.",
+		"links": [
+			{ "a": "pdf", "href": "writing/pdf/bangu.pdf" },
+			{ "a": "source", "href": "writing/tex/bangu.zip" }
+		],
+		"tags": [ "papers", "minor", "hidden" ],
+		"writingTags": [ "misc", "hidden" ]
+	},
+	{
+		"date": [ 2023, 7, 16 ],
+		"title": "Ultrajoy",
+		"writingQualifier": "score",
+		"blurb": "a chiptune song in 31edo, whose music video was played back entirely using a custom homebrew program.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=clHJY7exVec" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/ultrajoy" }
+		],
+		"writingLinks": [
+			{ "a": "pdf", "href": "writing/pdf/ultrajoy_score.pdf" }
+		],
+		"thumbnail": "ultrajoy.jpg",
+		"tags": [ "music", "major" ],
+		"writingTags": [ "music" ]
+	},
+	{
+		"date": [ 2023, 7, 16 ],
+		"title": "LuciTracker",
+		"blurb": "a homebrew microtonal chiptune music video player, made to play the song <i>Ultrajoy</i>.",
+		"links": [
+			{ "a": "github", "href": "https://github.com/lucillablessing/lucitracker" },
+			{ "a": "itch.io", "href": "https://lucillablessing.itch.io/lucitracker" }
+		],
+		"thumbnail": "lucitracker.jpg",
+		"tags": [ "code", "major" ]
+	},
+	{
+		"date": [ 2023, 3, 31 ],
+		"title": "edo variations: book two",
+		"writingQualifier": "liner notes",
+		"blurb": "twelve different takes on the same main theme, each in a different equal division of the octave.",
+		"writingBlurb": "some lore about what secrets hide within each of the twelve edo variations.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=qNBuSCS8aLw" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/edo-variations" }
+		],
+		"writingLinks": [
+			{ "a": "pdf", "href": "writing/pdf/edo_variations_liner_notes.pdf" }
+		],
+		"thumbnail": "edo_variations.jpg",
+		"tags": [ "music", "major" ],
+		"writingTags": [ "music" ]
+	},
+	{
+		"date": [ 2023, 2, 13 ],
+		"title": "mcfunction assembler",
+		"blurb": "a tool that automatically builds function directories for Minecraft data packs.",
+		"links": [
+			{ "a": "github", "href": "https://github.com/lucillablessing/mcfunction-assembler" }
+		],
+		"tags": [ "code", "minor" ]
+	},
+	{
+		"date": [ 2022, 9, 29 ],
+		"title": "Lucilla's Level Pack 0",
+		"blurb": "seven simple and quick custom levels for PlatinumQuest. also my first venture into Torque Constructor.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=voHpQZC1AxM" }
+		],
+		"thumbnail": "pq_levels.jpg",
+		"tags": [ "other", "ancient" ]
+	},
+	{
+		"date": [ 2021, 9, 30 ],
+		"title": "edo variations: book one",
+		"writingQualifier": "score",
+		"blurb": "a compositional joke, the little-known prequel to 2023's <i>edo variations</i>.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=j1h_1iygqIY" },
+			{ "a": "youtube (score)", "href": "https://www.youtube.com/watch?v=uCYRcfKUdHQ" },
+			{ "a": "notes", "href": "https://docs.google.com/document/d/1T23FuVxomozW01Y7mVNC7np8O7XwTaHm4NOHy0nPxqo/edit?usp=sharing" }
+		],
+		"writingLinks": [
+			{ "a": "pdf", "href": "writing/pdf/edo_variations_1_score.pdf" }
+		],
+		"thumbnail": "edo_variations_original.jpg",
+		"tags": [ "music", "ancient" ],
+		"writingTags": [ "music" ]
+	},
+	{
+		"date": [ 2021, 8, 21 ],
+		"title": "Triad",
+		"blurb": "a classic solitaire game with a musical twist: you can only remove cards in groups of three that form major or minor triads.",
+		"links": [
+			{ "a": "itch.io", "href": "https://oivadev.itch.io/triad" }
+		],
+		"thumbnail": "triad.jpg",
+		"tags": [ "other", "ancient" ]
+	},
+	{
+		"date": [ 2021, 7, 26 ],
+		"title": "Randgris 2",
+		"blurb": "a multi-purpose MVP assistant for the MMORPG <i>Ragnarök Online</i>. it was never publicly released.",
+		"links": [
+			{ "a": "itch.io", "href": "https://oivadev.itch.io/randgris" }
+		],
+		"thumbnail": "randgris.jpg",
+		"tags": [ "code", "ancient" ]
+	},
+	{
+		"date": [ 2020, 5, 12 ],
+		"title": "Familiar",
+		"blurb": "a virtual microtonal keyboard instrument playable using an ordinary computer keyboard. it was never publicly released.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=BFMQPQGZtH0" }
+		],
+		"thumbnail": "familiar.jpg",
+		"tags": [ "code", "ancient" ]
+	},
+	{
+		"date": [ 0, 0, 0 ],
+		"title": "Test",
+		"blurb": "Test, test, this is a test!",
+		"links": [
+			{ "a": "test", "href": "#" }
+		],
+		"thumbnail": null,
+		"tags": [ "other", "ancient", "hidden" ]
+	}
+]
