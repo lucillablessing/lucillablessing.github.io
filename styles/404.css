@@ -1,0 +1,125 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--pigeon-height: 64px;
+	--pigeon-padding-top: 8px;
+}
+
+
+
+/* The 404 //
+// ======= */
+
+#the-404-box {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	#the-404-box {
+		width: 1792px;
+	}
+}
+
+@media (max-width: 1152px) {
+	#the-404-box {
+		width: 768px;
+	}
+}
+
+@media (max-width: 800px) {
+	#the-404-box {
+		width: 608px;
+	}
+}
+
+@media (max-width: 640px) {
+	#the-404-box {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+		width: 100vw;
+	}
+}
+
+#the-404-box h1 {
+	font-size: 144px;
+	line-height: 144px;
+}
+
+#the-404-box p, #the-404-box code {
+	font-size: 24px;
+	line-height: 36px;
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	#the-404-box h1 {
+		font-size: 288px;
+		line-height: 288px;
+	}
+
+	#the-404-box p {
+		font-size: 40px;
+		line-height: 64px;
+	}
+}
+
+@media (max-width: 800px) {
+	#the-404-box p {
+		font-size: 20px;
+		line-height: 32px;
+	}
+}
+
+@media (max-width: 640px) {
+	#the-404-box h1 {
+		font-size: 96px;
+		line-height: 96px;
+	}
+
+	#the-404-box p {
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
+
+
+
+/* Pigeon //
+// ====== */
+
+#pigeon {
+	transform: scale(2);
+	transform-origin: top;
+}
+
+@media (min-width: 640px) {
+	#pigeon {
+		transform: scale(3);
+	}
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	#pigeon {
+		transform: scale(6);
+	}
+}
+
+#pigeon-container {
+	height: calc(2 * var(--pigeon-height));
+	padding-top: var(--pigeon-padding-top);
+}
+
+@media (min-width: 640px) {
+	#pigeon-container {
+		height: calc(3 * var(--pigeon-height));
+	}
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	#pigeon-container {
+		height: calc(6 * var(--pigeon-height));
+	}
+}

@@ -1,0 +1,1210 @@
+/* Global variables //
+// ================ */
+
+:root {
+	/* grayness */
+	--ultra-dark-grayness:  calc(1 * 17 / 255);         /* 0x11 */
+	--super-dark-grayness:  calc(2 * 17 / 255);         /* 0x22 */
+	--dark-grayness:        calc(4 * 17 / 255);         /* 0x44 */
+	--light-grayness:       calc((255 - 4 * 17) / 255); /* 0xbb */
+	--super-light-grayness: calc((255 - 2 * 17) / 255); /* 0xdd */
+	--ultra-light-grayness: calc((255 - 1 * 17) / 255); /* 0xee */
+
+	/* colors! */
+	--luci-pink:        #ffeaf2;
+	--ultra-dark-gray:  hsl(0 0 calc(100 * var(--ultra-dark-grayness)));
+	--super-dark-gray:  hsl(0 0 calc(100 * var(--super-dark-grayness)));
+	--dark-gray:        hsl(0 0 calc(100 * var(--dark-grayness)));
+	--light-gray:       hsl(0 0 calc(100 * var(--light-grayness)));
+	--super-light-gray: hsl(0 0 calc(100 * var(--super-light-grayness)));
+	--ultra-light-gray: hsl(0 0 calc(100 * var(--ultra-light-grayness)));
+
+	/* color pairs */
+	--super-positive: light-dark(var(--super-light-gray), var(--super-dark-gray));
+	--ultra-positive: light-dark(var(--ultra-light-gray), var(--ultra-dark-gray));
+	--bright-positive: light-dark(var(--super-light-gray), var(--dark-gray));
+	--very-bright-positive: light-dark(white, var(--dark-gray));
+	--negative: light-dark(var(--dark-gray), var(--light-gray));
+	--super-negative: light-dark(var(--super-dark-gray), var(--super-light-gray));
+	--ultra-negative: light-dark(var(--ultra-dark-gray), var(--ultra-light-gray));
+	--bright-negative: light-dark(var(--dark-gray), var(--super-light-gray));
+	--very-bright-negative: light-dark(var(--dark-gray), white);
+	
+	/* measurements */
+	--main-padding-top: 24px;
+	--main-padding-bottom: 8px;
+	--padding-vertical: 8px;
+	--padding-horizontal: 16px;
+	--h1-padding-vertical: 64px;
+	--summary-margin-bottom: 12px;
+	--box-padding-horizontal: 16px;
+	--box-h1-padding-vertical: 24px;
+	--box-p-margin-bottom: 24px;
+	--wide-width: 1024px;
+	--very-wide-width: 1536px;
+	--narrow-width: 720px;
+	--narrow-margin-bottom: 8px;
+	--narrow-padding-bottom: 16px;
+	--pixel-figure-padding-bottom: 24px;
+	--square-image-padding-vertical: 32px;
+	--nav-padding-vertical: 16px;
+	--nav-padding-horizontal: 16px;
+	--nav-padding-title-vertical: 12px;
+	--nav-padding-title-horizontal: 16px;
+	--footer-height: 24px;
+	--footer-padding-horizontal: 12px;
+	--meta-height-diff: 192px;
+	--meta-h2-padding-top: 16px;
+
+	/* dynamic font sizes: [at 1920px]-[at 640px] */
+	--16px-12px: calc(10px + 0.3125vw);
+	--18px-16px: calc(15px + 0.15625vw);
+	--20px-16px: calc(14px + 0.3125vw);
+	--24px-16px: calc(12px + 0.625vw);
+	--28px-22px: calc(19px + 0.46875vw);
+	--32px-24px: calc(20px + 0.625vw);
+	--48px-40px: calc(36px + 0.625vw);
+
+	/* javascript variables; fallback values */
+	--body-background-light: none;
+	--body-background-dark: none;
+	--nav-height: 56px;
+	--nav-height-mobile-open: 50vh;
+	--transition-length: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-length: 0;
+	}
+}
+
+
+
+/* CSS Reset //
+// ========= */
+
+/* https://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+:focus {
+	outline: 0;
+}
+
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+}
+
+blockquote, q {
+	quotes: "" "";
+}
+
+
+
+/* Basic styles //
+// ============ */
+
+* {
+	font-family: "Livvic", Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	transition:
+	background-color var(--transition-length),
+	background-image var(--transition-length),
+	color var(--transition-length),
+	fill var(--transition-length),
+	r var(--transition-length),
+	stroke-width var(--transition-length),
+	text-shadow var(--transition-length);
+}
+
+html {
+	color-scheme: light dark;
+	height: 100%;
+}
+
+body {
+	background-attachment: fixed;
+	background-color: light-dark(var(--luci-pink), black);
+	background-image: var(--body-background-light);
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: repeat;
+	background-size: 1024px 1024px;
+	color: light-dark(var(--ultra-dark-gray), var(--ultra-light-gray));
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 350;
+	height: 100%;
+	image-rendering: smooth;
+}
+
+.dark-mode body {
+	/* stars! */
+	background-image: var(--body-background-dark);
+	background-size: 512px 1024px;
+	image-rendering: pixelated;
+}
+
+@media (max-width: 640px) {
+	.dark-mode body {
+		/* to see more stars */
+		background-position-y: center;
+	}
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	body {
+		background-size: 2048px 2048px;
+	}
+	
+	.dark-mode body {
+		background-size: 1024px 2048px;
+	}
+}
+
+main {
+	background-image: linear-gradient(
+		to right,
+		/* using luci pink transparent instead of (black) transparent */
+		/* in case some browsers render the gradient wrong */
+		rgb(from light-dark(var(--luci-pink), black) r g b / 0%),
+		rgb(from light-dark(var(--luci-pink), black) r g b / 70%) 10% 90%,
+		rgb(from light-dark(var(--luci-pink), black) r g b / 0%)
+	);
+	min-height: calc(
+		100vh -
+		var(--nav-height) -
+		var(--footer-height) -
+		var(--main-padding-top) -
+		var(--main-padding-bottom)
+	);
+	padding-top: var(--main-padding-top);
+	padding-bottom: var(--main-padding-bottom);
+}
+
+@media (max-width: 640px) {
+	.nav-open main {
+		min-height: calc(
+			100vh -
+			var(--nav-height-mobile-open) -
+			var(--footer-height) -
+			var(--main-padding-top) -
+			var(--main-padding-bottom)
+		);
+	}
+}
+
+.dark-mode main {
+	/* specified separately rather than through light-dark */
+	/* in case I want to change the gradient stop positions */
+	/* check it out: I did! */
+	/* there still is a light-dark fallback in case javascript is disabled though */
+	background-image: linear-gradient(
+		to right,
+		rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 0% 5%,
+		light-dark(var(--luci-pink), black) 15% 85%,
+		rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 95% 100%
+	);
+}
+
+@media (max-width: 640px) {
+	.dark-mode main {
+		background-image: linear-gradient(
+			to bottom,
+			light-dark(var(--luci-pink), black) 0% 60%,
+			rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 60% 100%
+		);
+	}
+}
+
+button, label, p, ul {
+	font-weight: 350;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+h1, h2, p, a {
+	color: var(--super-negative);
+}
+
+h2, p {
+	padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+h1 {
+	font-size: var(--48px-40px);
+	font-weight: 400;
+	line-height: 48px;
+	padding: var(--h1-padding-vertical) 0;
+}
+
+h2 {
+	font-size: var(--32px-24px);
+	font-weight: 450;
+	line-height: var(--32px-24px);
+}
+
+p, ul, code {
+	font-size: var(--18px-16px);
+	line-height: var(--28px-22px);
+}
+
+p.small, ul.small, code.small {
+	font-size: var(--16px-12px);
+	line-height: var(--24px-16px);
+}
+
+p.small {
+	color: var(--negative);
+	font-style: italic;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:hover {
+	text-shadow: 0 0 1px var(--very-bright-negative);
+}
+
+strong, b {
+	font-weight: 600;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
+em, i {
+	font-style: italic;
+}
+
+code {
+	background-color: light-dark(
+		rgb(from var(--light-gray) r g b / 50%),
+		rgb(from var(--dark-gray) r g b / 50%)
+	);
+	border: 1px solid light-dark(
+		rgb(from var(--dark-gray) r g b / 25%),
+		rgb(from var(--light-gray) r g b / 25%)
+	);
+	border-radius: 4px;
+	color: var(--super-negative);
+	font-family: "Reddit Mono", "Courier New", Courier, monospace;
+	font-weight: 400;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 2px;
+}
+
+summary {
+	font-weight: 600;
+	margin-bottom: var(--summary-margin-bottom);
+	text-align: center;
+}
+
+summary:hover {
+	text-decoration: underline;
+}
+
+iframe {
+	border: none;
+	display: block;
+}
+
+
+
+/* Common classes //
+// ============== */
+
+:focus {
+	outline: 2px dashed var(--super-negative);
+}
+
+.visua11y-hidden {
+	clip: rect(0 0 0 0); 
+	clip-path: inset(50%);
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap; 
+	width: 1px;
+	height: 1px;
+}
+
+.box {
+	background-color: light-dark(
+		rgb(from white r g b / 50%),
+		/* color-mix instead of half-opaque color to hide stars behind it */
+		color-mix(in srgb, var(--super-dark-gray), black)
+	);
+	background-image: linear-gradient(
+		to bottom,
+		transparent,
+		light-dark(
+			rgb(from white r g b / 75%),
+			transparent
+		)
+	);
+	border-radius: 16px;
+	box-shadow: 0 0 4px light-dark(white, black);
+	padding-left: var(--box-padding-horizontal);
+	padding-right: var(--box-padding-horizontal);
+}
+
+.box.inline {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.box h1 {
+	padding-top: var(--box-h1-padding-vertical);
+	padding-bottom: var(--box-h1-padding-vertical);
+}
+
+.box p, .box ul {
+	margin-bottom: var(--box-p-margin-bottom);
+	padding: 0 10%;
+}
+
+.wide, .very-wide {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wide {
+	width: var(--wide-width);
+}
+
+.very-wide {
+	width: var(--very-wide-width);
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	.very-wide {
+		margin-left: 20%;
+		margin-right: 20%;
+		width: calc(60% - 2 * var(--box-padding-horizontal));
+	}
+}
+
+@media (max-width: 1600px) {
+	.very-wide {
+		margin-left: 5%;
+		margin-right: 5%;
+		width: calc(90% - 2 * var(--box-padding-horizontal));
+	}
+}
+
+@media (max-width: 1152px) {
+	.wide {
+		margin-left: 10%;
+		margin-right: 10%;
+		width: auto;
+	}
+}
+
+@media (max-width: 640px) {
+	.wide, .very-wide {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+		width: 100%;
+	}
+}
+
+.narrow {
+	margin-bottom: var(--narrow-margin-bottom);
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--narrow-width);
+	padding-bottom: var(--narrow-padding-bottom);
+	width: 90%;
+}
+
+@media (min-width: 800px) {
+	.narrow {
+		width: var(--narrow-width);
+	}
+}
+
+.narrow h1 {
+	margin-bottom: 8px;
+}
+
+.narrow h2 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.narrow p {
+	font-size: 16px;
+	line-height: 22px;
+	margin-bottom: 22px;
+	padding-left: 8%;
+	padding-right: 8%;
+}
+
+.vertically-centered {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.pixel-figure {
+	margin: 0 0;
+	padding-bottom: var(--pixel-figure-padding-bottom);
+	width: 100%;
+}
+
+.pixel-image {
+	display: block;
+	image-rendering: pixelated;
+	margin: 0 auto;
+	transform-origin: top;
+}
+
+@media (min-width: 640px) {
+	.pixel-image {
+		transform: scale(2);
+	}
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	.pixel-image {
+		transform: scale(4);
+	}
+}
+
+.square-image-container {
+	padding-top: var(--square-image-padding-vertical);
+	padding-bottom: var(--square-image-padding-vertical);
+}
+
+.center {
+	text-align: center;
+}
+
+.justify {
+	text-align: justify;
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	.small {
+		font-size: 32px;
+		line-height: 48px;
+	}
+}
+
+.links {
+	display: block;
+	font-size: 0;
+	list-style-type: none;
+}
+
+.links.inline {
+	display: inline;
+}
+
+.links li {
+	display: inline;
+	font-size: initial;
+}
+
+.links li:not(:first-child)::before {
+	content: "–";
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.zo-a11y {
+	/* fix bad kerning in the word "a11y" */
+	letter-spacing: -1px;
+}
+
+
+
+/* Bubbles //
+// ======= */
+
+#bubble-space {
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.bubble {
+	pointer-events: auto;
+	position: absolute;
+	transform-origin: center;
+}
+
+.bubble.popped {
+	pointer-events: none;
+}
+
+@media (max-width: 1600px) {
+	.bubble {
+		display: none;
+	}
+}
+
+.bubble circle {
+	cx: 50%;
+	cy: 50%;
+	fill: transparent;
+	r: 20%;
+	stroke: light-dark(rgb(from white r g b / 75%), transparent);
+	stroke-width: 40%;
+}
+
+.bubble:hover circle {
+	r: 25%;
+	stroke-width: 50%;
+}
+
+.bubble.popped circle {
+	r: 50%;
+	stroke-width: 0;
+}
+
+
+
+/* Navigation bar //
+// ============== */
+
+#skip-to-main {
+	background-color: var(--super-negative);
+	border-radius: 12px;
+	color: var(--super-positive);
+	font-size: 16px;
+	margin-top: 8px;
+	margin-left: 8px;
+	overflow: hidden;
+	padding: 8px 8px;
+	position: absolute;
+	left: 0;
+	top: var(--nav-height);
+}
+
+body[data-luci-page="home"] #skip-to-main {
+	top: 0;
+}
+
+#skip-to-main:not(:focus) {
+	/* .visua11y-hidden */
+	clip: rect(0 0 0 0); 
+	clip-path: inset(50%);
+	white-space: nowrap; 
+	width: 1px;
+	height: 1px;
+}
+
+#header-i {
+	width: 100%;
+	height: var(--nav-height);
+}
+
+@media (max-width: 640px) {
+	.nav-open #header-i {
+		height: var(--nav-height-mobile-open);
+	}
+}
+
+#the-header {
+	background-color: transparent;
+	background-image: none;
+}
+
+nav {
+	background-color: light-dark(
+		color-mix(in srgb, var(--luci-pink), white),
+		var(--super-dark-gray)
+		);
+	font-size: 0;
+	overflow: hidden;
+	text-align: center;
+	width: 100%;
+}
+
+#topnav-title {
+	display: block;
+	float: left;
+	font-weight: 100;
+	font-size: 24px;
+	height: calc(var(--nav-height) - 2 * var(--nav-padding-title-vertical));
+	line-height: 30px;
+	padding: var(--nav-padding-title-vertical) var(--nav-padding-title-horizontal);
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+html[data-luci-page="home"] #topnav-title {
+	display: none;
+}
+
+@media (max-width: 1280px) {
+	#topnav-title {
+		display: none;
+	}
+}
+
+nav menu {
+	display: block;
+	height: 100%;
+	list-style-type: none;
+	text-align: center;
+}
+
+nav li {
+	float: left;
+}
+
+nav a, nav button {
+	background: none;
+	border: none;
+	color: var(--bright-negative);
+	display: block;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	padding: var(--nav-padding-vertical) var(--nav-padding-horizontal);
+	text-align: center;
+	text-decoration: none;
+}
+
+nav a {
+	/* the <a>'s have padding, but the buttons don't? */
+	height: calc(var(--nav-height) - 2 * var(--nav-padding-vertical));
+}
+
+nav button {
+	height: var(--nav-height);
+}
+
+nav img {
+	filter: brightness(var(--dark-grayness));
+}
+
+.dark-mode nav img {
+	filter: brightness(var(--super-light-grayness));
+}
+
+nav a:hover, nav button:hover {
+	background-color: var(--bright-positive);
+	color: var(--very-bright-negative);
+	text-shadow: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+}
+
+nav a.active {
+	background-color: var(--super-negative);
+	color: var(--super-positive);
+}
+
+@media (max-width: 640px) {
+	.nav-open nav {
+		position: relative;
+	}
+
+	.nav-open[data-luci-page="home"] nav button {
+		/* if home is active, then */
+		/* the background of the home button obscures some toggles */
+		color: var(--super-positive);
+	}
+
+	.nav-open[data-luci-page="home"] nav button:hover {
+		color: var(--very-bright-negative);
+	}
+
+	.nav-open[data-luci-page="home"] nav img {
+		/* trick to manipulate the color of an embedded svg */
+		filter: brightness(var(--super-light-grayness));
+	}
+
+	.dark-mode.nav-open[data-luci-page="home"] nav img {
+		filter: brightness(var(--super-dark-grayness));
+	}
+
+	.nav-open[data-luci-page="home"] nav button:hover img {
+		filter: brightness(var(--dark-grayness));
+	}
+
+	.dark-mode.nav-open[data-luci-page="home"] nav button:hover img {
+		filter: brightness(1);
+	}
+
+	.nav-open #topnav-links li {
+		float: none;
+	}
+
+	.nav-open #topnav-links a {
+		display: block;
+		text-align: left;
+	}
+
+	html:not(.nav-open) #topnav-links a:not(.home) {
+		/* hide all links except for the first one */
+		/* replace them with vertical dropdown list from menu button */
+		/* .visua11y-hidden */
+		clip: rect(0 0 0 0); 
+		clip-path: inset(50%);
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap; 
+		width: 1px;
+		height: 1px;
+	}
+}
+
+@media (min-width: 1281px) {
+	#topnav-links {
+		/* when *not* on mobile (+ extra space), center the navigation bar */
+		position: absolute;
+		top: 0;
+		left: 50vw;
+		transform: translate(-50%, 0);
+	}
+}
+
+#topnav-settings {
+	display: block;
+	float: right;
+	height: var(--nav-height);
+}
+
+@media (max-width: 640px) {
+	#topnav-settings {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+#animation-button {
+	display: none;
+}
+
+#bubble-button {
+	display: none;
+}
+
+@media (min-width: 801px) {
+	.dark-mode #animation-button {
+		/* show animation pause button only in dark mode */
+		/* because light mode never displays animations */
+		/* and only non-mobile otherwise there's not enough space */
+		/* (bubbles are the biggest concern, and they're not visible in mobile anyway) */
+		display: block;
+	}
+}
+
+
+@media (min-width: 1537px) {
+	html:not(.dark-mode) #bubble-button {
+		/* similarly, show bubble button only in light mode and wide screens */
+		display: block;
+	}
+}
+
+#topnav-bar-button {
+	display: none;
+}
+
+@media (max-width: 640px) {
+	#topnav-bar-button {
+		display: block;
+		float: right;
+	}
+}
+
+
+
+/* Footer //
+// ====== */
+
+footer {
+	height: var(--footer-height);
+}
+
+#footer-settings {
+	display: block;
+	float: right;
+	height: var(--footer-height);
+}
+
+#footer-i {
+	width: 100%;
+	height: var(--footer-height);
+}
+
+#the-footer {
+	background-color: light-dark(
+		/* color-mix instead of half-opaque color */
+		/* so that it doesn't clash with gradient and bg image */
+		color-mix(in srgb, var(--luci-pink), white), 
+		color-mix(in srgb, var(--ultra-dark-gray), black)
+	);
+	background-image: none;
+	color: var(--super-negative);
+	font-size: 16px;
+	text-align: center;
+}
+
+@media (max-width: 640px) {
+	#the-footer {
+		font-size: 14px;
+		padding-left: var(--footer-padding-horizontal);
+		text-align: left;
+	}
+}
+
+#footer-links {
+	line-height: 22px;
+	list-style-type: none;
+}
+
+@media (min-width: 641px) {
+	#footer-links {
+		position: absolute;
+		left: 50vw;
+		transform: translate(-50%, 0);
+	}
+}
+
+#footer-links li {
+	float: left;
+}
+
+@media (min-width: 641px) {
+	#meta-link-mobile {
+		display: none;
+	}
+}
+
+@media (max-width: 640px) {
+	#meta-link-nonmobile {
+		display: none;
+	}
+}
+
+#footer-settings {
+	display: block;
+	height: 100%;
+	list-style-type: none;
+	text-align: center;
+}
+
+#footer-settings li {
+	float: left;
+}
+
+#footer-settings button {
+	background: none;
+	border: none;
+	color: var(--bright-negative);
+	display: block;
+	font-size: 16px;
+	height: var(--footer-height);
+	padding: 0 var(--footer-padding-horizontal);
+	text-align: center;
+	text-decoration: none;
+}
+
+#footer-settings button:hover {
+	background-color: var(--bright-positive);
+	color: var(--very-bright-negative);
+	text-decoration: underline;
+	text-shadow: none;
+}
+
+@media (max-width: 640px) {
+	#footer-settings button {
+		font-size: 14px;
+	}
+}
+
+
+
+/* Meta //
+// ==== */
+
+#meta-i {
+	width: 100%;
+	min-height: 25vh;
+	height: calc(
+		100vh -
+		var(--nav-height) -
+		var(--footer-height) -
+		var(--main-padding-top) -
+		var(--main-padding-bottom) -
+		var(--meta-height-diff)
+	);
+}
+
+#the-meta {
+	background-color: transparent;
+}
+
+#the-meta h2 {
+	font-size: var(--18px-16px);
+	font-weight: 600;
+	line-height: var(--28px-22px);
+	padding-top: var(--meta-h2-padding-top);
+}
+
+#the-meta p {
+	margin-left: 4%;
+	margin-right: 4%;
+}
+
+
+
+/* Sitemap //
+// ======= */
+
+#sitemap-container {
+	background-color: light-dark(
+		rgb(from white r g b / 50%),
+		color-mix(in srgb, var(--super-dark-gray), black)
+	);
+}
+
+#sitemap {
+	display: flex;
+	justify-content: center;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding-bottom: var(--h1-padding-vertical);
+}
+
+#sitemap div {
+	width: 320px;
+}
+
+#sitemap code {
+	background: none;
+	border: none;
+	font-size: var(--16px-12px);
+	margin: 0;
+}
+
+
+
+/* Font face declarations //
+// ====================== */
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/100.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/100i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/200.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/200i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/300.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/300i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/400.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/400i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/500.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/500i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/600.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/600i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/700.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/700i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/900.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Livvic";
+	src: url("../fonts/Livvic/900i.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/200.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/300.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/400.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/500.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/600.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/700.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/800.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "Reddit Mono";
+	src: url("../fonts/Reddit Mono/900.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 900;
+}

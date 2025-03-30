@@ -1,0 +1,73 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--contact-input-margin-top: 6px;
+	--contact-input-margin-bottom: 16px;
+	--contact-button-margin-top: 16px;
+	--contact-button-padding-vertical: 8px;
+	--contact-button-padding-horizontal: 16px;
+}
+
+
+
+/* Contact //
+// ======= */
+
+#contact-form {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+#contact-form input:not([type="checkbox"]),
+#contact-form textarea,
+#contact-form button {
+	display: block;
+	margin-bottom: var(--contact-input-margin-bottom);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contact-form input:not([type="checkbox"]),
+#contact-form textarea {
+	font-family: "Reddit Mono", "Courier New", Courier, monospace;
+	font-size: 14px;
+	margin-top: var(--contact-input-margin-top);
+	width: 100%;
+}
+
+#contact-form input[type="checkbox"] {
+	accent-color: var(--negative);
+}
+
+#contact-form button {
+	background-color: var(--very-bright-positive);
+	border: 1px solid var(--negative);
+	border-radius: 12px;
+	color: var(--ultra-negative);
+	font-size: 16px;
+	margin-top: var(--contact-button-margin-top);
+	padding:
+	var(--contact-button-padding-vertical)
+	var(--contact-button-padding-horizontal);
+	text-align: center;
+}
+
+#contact-form button:hover {
+	background-color: var(--bright-positive);
+	text-decoration: underline;
+}
+
+#contact-form label i {
+	color: var(--negative);
+}
+
+#leave-unchecked {
+	font-weight: 600;
+}
+
+#contact-form input[type="checkbox"]:not(:checked) + label #leave-unchecked {
+	display: none;
+}

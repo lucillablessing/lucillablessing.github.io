@@ -1,0 +1,109 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--writing-intro-padding-bottom: 16px;
+	--writing-intro-button-margin-top: 4px;
+	--writing-gallery-box-margin-top: 128px;
+	--writing-gallery-box-margin-bottom: 96px;
+	--writing-gallery-padding-bottom: 32px;
+	--writing-gallery-h2-margin-top: 40px;
+	--writing-gallery-h2-margin-bottom: 8px;
+	--writing-gallery-h3-padding-top: 8px;
+	--writing-gallery-h3-padding-right: 6px;
+	--writing-gallery-p-padding-top: 4px;
+	--writing-gallery-links-margin-bottom: 16px;
+}
+
+
+
+/* Writing gallery //
+// =============== */
+
+#writing-intro {
+	padding-bottom: var(--writing-intro-padding-bottom);
+}
+
+#writing-intro-desc {
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 0;
+}
+
+#writing-intro button {
+	background: none;
+	border: none;
+	font-size: 16px;
+	margin-top: var(--writing-intro-button-margin-top);
+	text-decoration: underline;
+	width: 100%;
+}
+
+#writing-intro button:hover {
+	text-shadow: 0 0 1px light-dark(var(--dark-gray), white);
+}
+
+#writing-gallery-box {
+	margin-top: var(--writing-gallery-box-margin-top);
+	margin-bottom: var(--writing-gallery-box-margin-bottom);
+}
+
+.writing-section {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.writing-gallery:not(:empty) {
+	padding-bottom: var(--writing-gallery-padding-bottom);
+}
+
+.writing-gallery summary {
+	background-color: var(--ultra-negative);
+	color: var(--ultra-positive);
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 32px;
+	margin-top: var(--writing-gallery-h2-margin-top);
+	margin-bottom: var(--writing-gallery-h2-margin-bottom);
+	padding-top: 0;
+	padding-bottom: 0;
+	text-align: center;
+}
+
+.writing-gallery summary:hover {
+	text-decoration: underline;
+}
+
+.writing-gallery h2 {
+	display: inline-block;
+	font-size: 22px;
+	font-weight: 450;
+	line-height: 28px;
+	padding-top: var(--writing-gallery-h3-padding-top);
+	padding-bottom: 0;
+	padding-left: 0;
+	padding-right: var(--writing-gallery-h3-padding-right);
+	text-align: left;
+}
+
+.writing-gallery p, .writing-gallery ul {
+	font-size: 16px;
+	line-height: 22px;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-top: var(--writing-gallery-p-padding-top);
+}
+
+.writing-gallery small {
+	font-size: 12px;
+}
+
+@media (max-width: 960px) {
+	.writing-gallery small {
+		font-size: 0;
+	}
+}
+
+.writing-gallery .links {
+	margin-bottom: var(--writing-gallery-links-margin-bottom);
+}

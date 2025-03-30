@@ -1,0 +1,136 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--banner-image-height: 160px;
+	--intro-box-padding-vertical: 8px;
+	--intro-box-padding-horizontal: 32px;
+	--intro-box-p-margin-top: 8px;
+	--intro-box-p-margin-bottom: 10px;
+	--intro-box-small-margin-top: 8px;
+}
+
+
+
+/* Intro box //
+// ========= */
+
+h1 {
+	font-weight: 200;
+}
+
+#intro-box {
+	margin: 0 10%;
+	padding:
+	var(--intro-box-padding-vertical)
+	var(--intro-box-padding-horizontal);
+}
+
+@media (min-width: 1601px) {
+	#intro-box {
+		margin: 0 20%;
+	}
+}
+
+@media (max-width: 640px) {
+	#intro-box {
+		margin: 0 0;
+		padding: 0 4%;
+	}
+}
+
+#intro-box p, #intro-box li {
+	font-size: var(--20px-16px);
+	line-height: var(--32px-24px);
+}
+
+#intro-box p, #intro-box ul {
+	margin-top: var(--intro-box-p-margin-top);
+	padding: 0;
+}
+
+#intro-box p {
+	margin-bottom: var(--intro-box-p-margin-bottom);
+}
+
+#intro-box ul {
+	margin-bottom: 0;
+}
+
+#intro-box code {
+	font-size: var(--16px-12px);
+	line-height: var(--24px-16px);
+}
+
+#intro-box p.small {
+	font-size: var(--16px-12px);
+	line-height: var(--24px-16px);
+	margin-top: var(--intro-box-small-margin-top);
+}
+
+#hello-paragraph {
+	text-align: center;
+}
+
+@media (max-width: 800px) {
+	#hello-paragraph {
+		text-align: left;
+	}
+}
+
+@media (max-width: 400px) {
+	#hello-paragraph br {
+		display: none;
+	}
+}
+
+
+/* Banner //
+// ====== */
+
+#banner-container {
+	height: var(--banner-image-height);
+}
+
+#banner {
+	transform: scale(1);
+}
+
+@media (min-width: 800px) and (min-height: 820px) {
+	#banner-container {
+		height: calc(2 * var(--banner-image-height));
+	}
+
+	#banner {
+		transform: scale(2);
+	}
+}
+
+@media (min-width: 2048px) and (min-height: 1536px) {
+	#banner-container {
+		height: calc(4 * var(--banner-image-height));
+	}
+
+	#banner {
+		transform: scale(4);
+	}
+}
+
+@media (max-width: 512px) {
+	#banner-container {
+		height: 0;
+		padding: 0;
+	}
+}
+
+@media (max-width: 512px) {
+	#banner {
+		display: none;
+	}
+}
+
+@media (min-width: 513px) {
+	h1 {
+		display: none;
+	}
+}

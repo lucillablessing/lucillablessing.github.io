@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Lucilla Blessing">
+		<meta name="color-scheme" content="light dark">
+		<meta name="description" content="Embrace the spark of creation. Make art. Spread joy. Repeat.">
+		<meta name="theme-color" content="#ffeaf2">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>The Power Of Five / contact</title>
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" media="all" href="styles/luci.css">
+		<link rel="stylesheet" type="text/css" media="all" href="styles/contact.css">
+		<script type="module" src="scripts/js/@luci.js"></script>
+	</head>
+	<body data-luci-page="contact">
+		<header>
+			<a id="skip-to-main" href="#main">skip to main content</a>
+			<iframe id="header-i" title="Navigation bar" src="__header.html"></iframe>
+		</header>
+		<main id="main" class="vertically-centered">
+			<div id="bubble-space" aria-hidden="true" data-luci-size="15"></div>
+			<section class="box narrow">
+				<h1>Contact</h1>
+				<p>
+					Hi! If you made it all the way here, then clearly you're <em>really</em> into what I do; that's awesome! Folks like you are the reason I make art, and my heart swells every time someone sends kind words my way.
+				</p>
+				<p>
+					If you come with good intentions, you're <em>more</em> than welcome to reach out to me about anything: accessibility issues, requests for project files, praise, or hate! Feel free to contact me through any medium you can find, whether listed here or otherwise &ndash; though unless you're an adept practitioner of telepathy, electronic mail is probably a safe bet, for which you can use the handy contact form down below. Read the <a href="meta.html">privacy statement</a> if you're unsure.
+				</p>
+				<form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+					<input type="hidden" name="access_key" value="fa3767ca-b62e-4252-bdef-9b3f0c6ac53e">
+					<label for="form-field-name">your name <i>(optional)</i></label>
+					<input id="form-field-name" type="text" name="name">
+					<label for="form-field-email">email <i>(optional; I only need this if you want a response)</i></label>
+					<input id="form-field-email" type="email" name="email">
+					<label for="form-field-message">message <i>(required)</i></label>
+					<textarea id="form-field-message" name="message" rows="10" cols="50" spellcheck="false" required></textarea>
+					<input id="form-field-no-bots" type="checkbox" name="no-bots">
+					<label for="form-field-no-bots">I'm a spambot <i>(leave this unchecked!)</i><span id="leave-unchecked"> please uncheck this! I won't get your message otherwise.</span></label>
+					<button type="submit">send</button>
+				</form>
+			</section>
+		</main>
+		<footer>
+			<iframe id="footer-i" title="Footer" src="__footer.html"></iframe>
+		</footer>
+	</body>
+</html>

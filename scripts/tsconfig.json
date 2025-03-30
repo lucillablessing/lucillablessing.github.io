@@ -1,0 +1,16 @@
+{
+	"include": ["ts/**/*"],
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "node",
+		"newLine": "crlf",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"outDir": "js",
+		"removeComments": true,
+		"rewriteRelativeImportExtensions": true,
+		"rootDir": "ts",
+		"strict": true,
+		"target": "es2016"
+	}
+}
