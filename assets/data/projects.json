@@ -63,11 +63,6 @@
 		"tags": [ "papers", "wishlist", "hidden" ]
 	},
 	{
-		"title": "Familiar 3",
-		"blurb": "play your favourite microtonal melodies using a mouse or keyboard! highly customizable and scriptable.",
-		"tags": [ "code", "wishlist" ]
-	},
-	{
 		"title": "Convex 3",
 		"blurb": "the last convex mirror you'll ever need.",
 		"tags": [ "code", "wishlist" ]
@@ -166,6 +161,28 @@
 		"title": "Fairies Only Live One Day",
 		"blurb": "if I could write a novel, this would be it.",
 		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"date": [ 2025, 5, 11 ],
+		"title": "Familiar Sounds: Vol. A♭",
+		"titleFull": "Familiar Sounds: Volume A♭",
+		"blurb": "seven little improvisations recorded for the first demo of Familiar 3. do not expect the music to blow your mind.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=OVcsclFe0ms" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/familiar-sounds-volume-a-flat" }
+		],
+		"thumbnail": "familiar_sounds.jpg",
+		"tags": [ "music", "minor" ]
+	},
+	{
+		"date": [ 2025, 5, 11 ],
+		"title": "Familiar 3",
+		"blurb": "play your favourite microtonal melodies using a mouse or keyboard! highly customizable and scriptable. currently in development.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=OVcsclFe0ms" }
+		],
+		"thumbnail": "familiar3.jpg",
+		"tags": [ "code", "major" ]
 	},
 	{
 		"date": [ 2025, 3, 31 ],
