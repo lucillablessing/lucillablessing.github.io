@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Lucilla Blessing">
+		<meta name="color-scheme" content="light dark">
+		<meta name="description" content="Embrace the spark of creation. Make art. Spread joy. Repeat.">
+		<meta name="theme-color" content="#ffeaf2">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>The Power Of Five / blög</title>
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" media="all" href="styles/luci.css">
+		<link rel="stylesheet" type="text/css" media="all" href="styles/blog.css">
+		<script type="module" src="scripts/js/@luci.js"></script>
+	</head>
+	<body data-luci-page="blog">
+		<header>
+			<a id="skip-to-main" href="#main">skip to main content</a>
+			<iframe id="header-i" title="Navigation bar" src="__header.html"></iframe>
+		</header>
+		<main id="main">
+			<div id="bubble-space" aria-hidden="true" data-luci-size="15"></div>
+			<div id="blog-box" class="box narrow">
+				<section id="blog-intro">
+					<h1>Luci's Web Lög</h1>
+					<p class="center">
+						Read the musings of an internet stranger. Perhaps you'll find some of them insightful.
+					</p>
+				<section id="blog-controls">
+					<fieldset id="calendar-selection" style="display: none;">
+						<legend>calendar:</legend>
+						<input id="calendar-gregorian" class="blog-radio-first" type="radio" name="calendar-selection" data-luci-calendar="gregorian" checked>
+						<label for="calendar-gregorian">Gregorian</label>
+						<input id="calendar-blessing" class="blog-radio-last" type="radio" name="calendar-selection" data-luci-calendar="blessing">
+						<label for="calendar-blessing">Blessing</label>
+					</fieldset>
+				</section>
+				<section id="blog-history">
+				<article>
+						<small class="date-published">
+							<time class="date-gregorian" datetime="2024-10-11">October 11<sup>th</sup>, 2024</time>
+							<time class="date-blessing" style="display: none;" datetime="2024-10-11">11<sup>th</sup> of Love's Dawn, b2024</time>
+						</small>
+						<h2><a href="blog/hyperbola.html">Anatomy of a Hyperbola</a></h2>
+					</article>
+				</section>
+			</div>
+		</main>
+		<footer>
+			<iframe id="footer-i" title="Footer" src="__footer.html"></iframe>
+		</footer>
+	</body>
+</html>

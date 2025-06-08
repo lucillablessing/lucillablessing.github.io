@@ -1,4 +1,4 @@
-import { imgPath, svgPath, svgNS, navHeight, transitionLength, just, executeOnLoad, getSessionBool, setSessionBool, randomIntInRange, toggleElement, } from "./utils.js";
+import { imgPath, svgPath, svgNS, navHeight, transitionLength, calendars, isCalendar, executeOnLoad, getSessionBool, getSessionCalendar, just, randomIntInRange, setSessionBool, setSessionCalendar, toggleElement, } from "./utils.js";
 let html;
 let body;
 let banner;
@@ -6,6 +6,7 @@ let pigeon;
 let header;
 let footer;
 let bubbleSpace;
+let calendarFieldset;
 let headerRoot;
 let footerRoot;
 let headerHtml;
@@ -21,6 +22,20 @@ let isDark;
 let isAnimated;
 let isVerbal;
 let isTopnavOpen = false;
+let activeCalendar;
+function getCalendar() {
+    var _a;
+    activeCalendar = (_a = getSessionCalendar("calendar")) !== null && _a !== void 0 ? _a : "gregorian";
+    if (calendarFieldset) {
+        toggleElement(calendarFieldset, true);
+        for (const control of calendarFieldset.children) {
+            if (control instanceof HTMLInputElement) {
+                const calendar = control.getAttribute("data-luci-calendar");
+                control.checked = calendar === activeCalendar;
+            }
+        }
+    }
+}
 function getOptions() {
     var _a, _b, _c, _d;
     isDark = ((_a = getSessionBool("isDark")) !== null && _a !== void 0 ? _a : window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -28,30 +43,27 @@ function getOptions() {
     isBubbled = (_c = getSessionBool("isBubbled")) !== null && _c !== void 0 ? _c : true;
     isVerbal = (_d = getSessionBool("isVerbal")) !== null && _d !== void 0 ? _d : false;
 }
-function makeBubble(bubbleSpaceSize, direction) {
-    if (bubbleSpace) {
-        const bubbleSize = randomIntInRange(32, 192);
-        const svg = document.createElementNS(svgNS, "svg");
-        const circle = document.createElementNS(svgNS, "circle");
-        svg.appendChild(circle);
-        svg.classList.add("bubble");
-        svg.setAttribute("width", bubbleSize.toString());
-        svg.setAttribute("height", bubbleSize.toString());
-        svg.onclick = () => { popBubble(svg); };
-        svg.ariaHidden = "true";
-        if (!isBubbled)
-            svg.style.display = "none";
-        const xPos = `${randomIntInRange(2, bubbleSpaceSize)}%`;
-        const yPos = `${randomIntInRange(10, 80)}%`;
-        svg.style.top = yPos;
-        if (direction === "right") {
-            svg.style.right = xPos;
-        }
-        else {
-            svg.style.left = xPos;
-        }
-        bubbleSpace.appendChild(svg);
+function makeBubble(bubbleSpace, bubbleSpaceSize, direction) {
+    const svg = document.createElementNS(svgNS, "svg");
+    const circle = document.createElementNS(svgNS, "circle");
+    svg.appendChild(circle);
+    svg.classList.add("bubble");
+    const bubbleSize = randomIntInRange(32, 192);
+    svg.setAttribute("width", bubbleSize.toString());
+    svg.setAttribute("height", bubbleSize.toString());
+    svg.onclick = () => { popBubble(svg); };
+    if (!isBubbled)
+        svg.style.display = "none";
+    const xPos = `${randomIntInRange(2, bubbleSpaceSize)}%`;
+    const yPos = `${randomIntInRange(10, 80)}%`;
+    svg.style.top = yPos;
+    if (direction === "right") {
+        svg.style.right = xPos;
     }
+    else {
+        svg.style.left = xPos;
+    }
+    bubbleSpace.appendChild(svg);
 }
 function makeBubbles() {
     var _a;
@@ -60,10 +72,10 @@ function makeBubbles() {
         const numberOfRightBubbles = randomIntInRange(1, 5);
         const bubbleSpaceSize = Number((_a = bubbleSpace.getAttribute("data-luci-size")) !== null && _a !== void 0 ? _a : 10);
         for (let i = 0; i < numberOfLeftBubbles; i++) {
-            makeBubble(bubbleSpaceSize, "left");
+            makeBubble(bubbleSpace, bubbleSpaceSize, "left");
         }
         for (let i = 0; i < numberOfRightBubbles; i++) {
-            makeBubble(bubbleSpaceSize, "right");
+            makeBubble(bubbleSpace, bubbleSpaceSize, "right");
         }
     }
 }
@@ -88,6 +100,15 @@ function makeButtonsVisible() {
     ]) {
         if (button)
             toggleElement(button, to);
+    }
+}
+function makeCalendarWidgetListeners() {
+    if (calendarFieldset) {
+        for (const control of calendarFieldset.children) {
+            if (control instanceof HTMLInputElement) {
+                control.addEventListener("change", setCalendar);
+            }
+        }
     }
 }
 function makeVerbal(button, text) {
@@ -123,7 +144,7 @@ function setActiveLink() {
             for (const link of topnavLinks.querySelectorAll("a")) {
                 if (link.getAttribute("data-luci-link") === currentPage) {
                     link.classList.add("active");
-                    break;
+                    return;
                 }
             }
         }
@@ -142,6 +163,27 @@ function setBannerAndPigeon() {
             banner.src = `${imgPath}five.png`;
         if (pigeon)
             pigeon.src = `${imgPath}pigeon.png`;
+    }
+}
+function setCalendar() {
+    if (calendarFieldset) {
+        for (const control of calendarFieldset.children) {
+            if (control instanceof HTMLInputElement && control.checked) {
+                const calendar = control.getAttribute("data-luci-calendar");
+                if (calendar && isCalendar(calendar)) {
+                    activeCalendar = calendar;
+                    setSessionCalendar("calendar", activeCalendar);
+                    break;
+                }
+            }
+        }
+    }
+    for (const calendar of calendars) {
+        for (const date of body.querySelectorAll(`.date-${calendar}`)) {
+            if (date instanceof HTMLElement) {
+                toggleElement(date, calendar === activeCalendar);
+            }
+        }
     }
 }
 function setLightBackground() {
@@ -267,29 +309,34 @@ function watchTheme() {
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => { toggleTheme(e.matches ? "dark" : "light"); });
 }
 function main() {
-    var _a, _b;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
     html = just(document.querySelector("html"));
     body = just(document.querySelector("body"));
-    banner = document.getElementById("banner");
-    pigeon = document.getElementById("pigeon");
-    header = document.getElementById("header-i");
-    footer = document.getElementById("footer-i");
+    let _;
     bubbleSpace = document.getElementById("bubble-space");
-    headerRoot = (_a = header === null || header === void 0 ? void 0 : header.contentWindow) === null || _a === void 0 ? void 0 : _a.document;
-    footerRoot = (_b = footer === null || footer === void 0 ? void 0 : footer.contentWindow) === null || _b === void 0 ? void 0 : _b.document;
-    headerHtml = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.querySelector("html");
-    topnavLinks = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("topnav-links");
-    animationButton = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("animation-button");
-    bubbleButton = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("bubble-button");
-    lightDarkButton = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("light-dark-button");
-    topnavBarButton = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("topnav-bar-button");
-    footerHtml = footerRoot === null || footerRoot === void 0 ? void 0 : footerRoot.querySelector("html");
-    verbalButton = footerRoot === null || footerRoot === void 0 ? void 0 : footerRoot.getElementById("verbal-button");
+    banner = (_ = document.getElementById("banner")) instanceof HTMLImageElement ? _ : null;
+    pigeon = (_ = document.getElementById("pigeon")) instanceof HTMLImageElement ? _ : null;
+    header = (_ = document.getElementById("header-i")) instanceof HTMLIFrameElement ? _ : null;
+    footer = (_ = document.getElementById("footer-i")) instanceof HTMLIFrameElement ? _ : null;
+    calendarFieldset = (_ = document.getElementById("calendar-selection")) instanceof HTMLFieldSetElement ? _ : null;
+    headerRoot = (_b = (_a = header === null || header === void 0 ? void 0 : header.contentWindow) === null || _a === void 0 ? void 0 : _a.document) !== null && _b !== void 0 ? _b : null;
+    footerRoot = (_d = (_c = footer === null || footer === void 0 ? void 0 : footer.contentWindow) === null || _c === void 0 ? void 0 : _c.document) !== null && _d !== void 0 ? _d : null;
+    headerHtml = (_e = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.querySelector("html")) !== null && _e !== void 0 ? _e : null;
+    topnavLinks = (_f = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("topnav-links")) !== null && _f !== void 0 ? _f : null;
+    animationButton = (_g = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("animation-button")) !== null && _g !== void 0 ? _g : null;
+    bubbleButton = (_h = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("bubble-button")) !== null && _h !== void 0 ? _h : null;
+    lightDarkButton = (_j = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("light-dark-button")) !== null && _j !== void 0 ? _j : null;
+    topnavBarButton = (_k = headerRoot === null || headerRoot === void 0 ? void 0 : headerRoot.getElementById("topnav-bar-button")) !== null && _k !== void 0 ? _k : null;
+    footerHtml = (_l = footerRoot === null || footerRoot === void 0 ? void 0 : footerRoot.querySelector("html")) !== null && _l !== void 0 ? _l : null;
+    verbalButton = (_m = footerRoot === null || footerRoot === void 0 ? void 0 : footerRoot.getElementById("verbal-button")) !== null && _m !== void 0 ? _m : null;
+    getCalendar();
     getOptions();
     makeBubbles();
     makeButtonListeners();
     makeButtonsVisible();
+    makeCalendarWidgetListeners();
     setActiveLink();
+    setCalendar();
     setLightBackground();
     setNavHeights();
     toggleAnimations(isAnimated);

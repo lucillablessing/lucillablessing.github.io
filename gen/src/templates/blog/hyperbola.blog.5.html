@@ -1,0 +1,515 @@
+<!--%{note}-->
+I originally wrote this post for a friend's <a href="https://github.com/ThatOtherAndrew/revisiontime/blob/main/content/MT1002/Anatomy%20of%20a%20Hyperbola.md">Obsidian vault</a> of university study notes. It renders math using <a href="https://katex.org">KaTeX</a>, and as such needs JavaScript for best results. See <a href="../meta.html">the meta page</a> for details.
+<!---->
+
+
+<!--%{heading.always-has-been}-->
+Always Has Been
+<!--%{heading.derivatives-all-the-way-down}-->
+Derivatives all the way down
+<!--%{heading.eulers-formula}-->
+Euler's Formula
+<!--%{heading.exponents-all-along}-->
+Exponents All Along?
+<!--%{heading.iiods-slightly-less-outlandish-cousins}-->
+IIOD's Slightly Less Outlandish Cousins
+<!--%{heading.is-its-own-derivative}-->
+Is Its Own Derivative
+<!--%{heading.not-really-about-hyperbolae}-->
+Not Really About Hyperbolae
+<!--%{heading.the-mirrors-of-eulers-formula}-->
+The Mirrors of Euler's Formula
+<!---->
+
+
+<!--%{footnote.abuse-of-notation}-->
+Heck, this only gets worse: the same abuse of notation is used to take <a href="https://en.wikipedia.org/wiki/Matrix_exponential">matrix exponents</a> and even <a href="https://youtu.be/VI6ZlnkuxuA">exponential derivatives</a>.
+<!--%{footnote.complex-numbers}-->
+I'm omitting some details here again; we'd need to prove that all our arguments so far are also valid when extending from the real numbers into the complex numbers. In particular, the notion of derivative is kinda tricky in the complex world, so this is by no means trivial.
+<!--%{footnote.convergence}-->
+This sum does indeed converge for every \(x\), so this function is indeed well-defined for all real numbers. There's probably several ways to verify this: here's one I came up with. First, I gotta spoil that those denominators are factorials: the summands are \(\frac{x^n}{n!}\) for \(n\) from 0 to infinity. (The factorials come from repeatedly applying the power rule; you multiply by \(n\) but lower the exponent to \(n - 1\), so next time you'll multiply by \(n - 1\), and so on.) Note that \(n!\), being \(1 \cdot 2 \cdot 3 \cdot \ldots \cdot n\), is the same as the geometric mean of all the numbers from 1 to \(n\), raised to the power \(n\). As \(n\) increases, that geometric mean increases without bound; in particular, it always eventually exceeds any fixed \(x\). In fact, it even eventually exceeds \(2x\); from that point onwards, \(\frac{x^n}{n!}\) is always less than \(\frac{x^n}{(2x)^n} = \left( \frac{1}{2} \right)^n\), so the rest of the terms from that point onwards are bounded from above by a geometric series with common ratio \(\frac{1}{2}\). And we know that that series converges, so our original series also does. For large \(x\) it can converge to something very big; after all, all we know is that <em>eventually</em> it'll turn to something smaller than a geometric series, and that “eventually” could take a very long time. But it will always be finite: the part before the Eventually will always have finitely many terms, and the part after the Eventually is always bounded by a geometric series.
+<!--%{footnote.hilberts-hotel}-->
+Wikipedia: <a href="https://en.wikipedia.org/wiki/Hilbert%27s_paradox_of_the_Grand_Hotel">Hilbert's paradox of the Grand Hotel</a>.
+<!--%{footnote.hyperbolic-motion}-->
+So maybe motion in which acceleration is proportional to displacement with a <em>positive</em> proportionality factor should be called “hyperbolic motion”.
+<!--%{footnote.just-for-fun}-->
+I like calling them “coshine” and “shine”. Just for fun.
+<!--%{footnote.limits}-->
+Plus the operation of taking a limit, technically.
+<!--%{footnote.power-series}-->
+I still did a little handwaving for the sake of simplicity; technically, we've only proven that our function is the only <em>power series</em> function which is its own derivative and takes the value 1 at 0 &ndash; we haven't excluded the possibility that there exist other such functions which can't be represented by an infinite polynomial. But resolving this gap is beyond the scope of this post.
+<!--%{footnote.prosthaphaeresis}-->
+Wikipedia: <a href="https://en.wikipedia.org/wiki/Prosthaphaeresis">Prosthaphaeresis</a>.
+<!--%{footnote.real-exponents}-->
+Exponentiation with a rational number can be defined relatively simply as \(x^{p/q} = \sqrt[q]{x^p}\). Exponentiation with arbitrary <em>real</em> numbers, on the other hand, is a lot trickier to define. It basically requires proving that exponentiation is a continuous function (at every point except \((0, 0)\)), and then “filling in the gaps”. Illustratively, if for, say, \(\sqrt{2}\), we pick some sequence \(q_n\) of rational numbers that converges to it (say, 1, 1.4, 1.41, 1.414, &hellip;), then the sequence \(2^{q_n}\) will always converge to the same value \(r\) no matter which sequence \(q_n\) we picked: we define \(2^{\sqrt{2}}\) to be this \(r\).
+<!--%{footnote.scaling-and-stretching}-->
+You could prove this by either repeating the argument from above with these generalizations, or with a neat succinct indirect proof: suppose there existed another function \(f\) whose derivative was \(\lambda\) times itself and which took the value \(C\) at 0; then \(\frac{1}{C} f(x/\lambda)\) would be a function other than \(\text{IIOD}\) equal to its own derivative and taking the value 1 at 0, a contradiction.
+<!--%{footnote.second-derivative}-->
+I don't have a handy, easy-to-understand proof for this, sadly; you'll have to take my word for it or look it up yourself if you feel up to it.
+<!--%{footnote.unit-circle}-->
+Once again, I swept some details under the rug. Technically, acceleration negatively proportional to displacement isn't <em>always</em> circular motion; after all, a spring oscillating under Hooke's law doesn't move in a circle. But it's still <em>almost</em> circular motion; the circle is just “squashed” into one dimension. As long as the motion really is two-dimensional, it's circular. More interestingly, even if it follows a circle, it's not necessarily the <em>unit</em> circle, and nobody said it moves around the circle with the same speed as \(\cos\) and \(\sin\) &ndash; that is, with period \(2\pi\). These are all fascinating details, and ones I sadly won't go into. I'll just leave the interested readers with a hint that \(2\pi\) is the “natural” period of \(\cos\) and \(\sin\) at which their slopes achieve a maximum inclination of exactly \(\pm 1\).
+<!---->
+
+
+<!--%{body}-->
+<p>
+	Okay, so you know the definitions of the hyperbolic functions and that they're supposed to relate to hyperbolae in the same way that trigonometric functions do to circles.
+</p>
+<p>
+	But how exactly? And where did they come from? Who thought they were a good idea? And why are they defined with these silly equations involving \(e^x\) rather than some cool geometric diagram?
+</p>
+<p>
+	“Well,” you might answer, “just as parametrically plotting \((\cos t, \sin t)\) gives a circle, so does plotting \((\cosh t, \sinh t)\) give a hyperbola. Well, only the right half of it, but you get the idea.”
+</p>
+<p>
+	But so what? The unit hyperbola is the set of points \((x, y)\) satisfying \(x^2 - y^2 = 1\). So <em>any</em> pair of functions \((C(t), S(t))\) such that \(S(t)\) spans the whole real line and \(C(t)^2 - S(t)^2 = 1\) will <em>also</em> give a parameterization of the unit hyperbola. For example, \((\sec t, \tan t)\). Or even \((\sqrt{t^2 + 1}, t)\)!
+</p>
+<figure>
+	<img src="../assets/images/blog/hyperbola/parameterizations.svg" alt="Hyperbola parameterized by three different pairs of functions">
+	<figcaption>Many different ways to parameterize a hyperbola (<a href="https://www.desmos.com/calculator/qbn6nxjhib">view Desmos graph</a>)</figcaption>
+</figure>
+<p>
+	Okay, okay. Parameterizations are too open-ended. But there's another analogy we can draw. \((\cos t, \sin t)\) are the coordinates of a point that has traveled from \((1, 0)\) counterclockwise along the unit circle by an angle of \(t\) radians. Perhaps if we just switch out the word “circle” for “hyperbola” there, we'll get the hyperbolic functions?
+</p>
+<p>
+	Well, not quite. The unit hyperbola never really goes beyond 45 degrees: it's actually asymptotic to both the lines \(y = x\) and \(y = -x\). So if that was a defining property of the hyperbolic functions, then the graphs of \(y = \cosh x\) and \(y = \sinh x\) would need to have a vertical asymptote at the \(\frac{1}{8} \cdot 2\pi\) mark. Not only that, but there's no point on the hyperbola at all that is 60 or 90 or 120 degrees counterclockwise from \((1, 0)\): there'd be blank space on the graph until \(\frac{3}{8} \cdot 2\pi\), when the graph enters back into view from another vertical asymptote. And, anyway, such graphs would need to repeat every \(2\pi\) units. That's not at all what the graphs of \(\cosh\) and \(\sinh\) look like, so that can't be it.
+</p>
+<p>
+	Fortunately, that analogy is <em>almost</em> true. We just have to use a slightly different starting point: instead of characterizing \((\cos t, \sin t)\) as the point you reach when the angle you've traveled is \(t\), characterize it as the point you reach when the <em>area</em> of the subtended sector is \(t/2\). <em>Now</em> the shift to the hyperbolic world works just as you'd expect:
+</p>
+<figure>
+	<img src="../assets/images/blog/hyperbola/areas.svg" alt="Hyperbola parameterized by the hyperbolic functions subtends a sector whose area is half of the parameter">
+	<figcaption>The hyperbolic functions measure areas of sectors of a hyperbola (<a href="https://www.desmos.com/calculator/8e8rdud6sb">view Desmos graph</a>)</figcaption>
+</figure>
+<p>
+	But why does that even work? Why would defining something with a weird combination of exponentials give you a function that tracks areas subtended by a hyperbola?
+</p>
+<p>
+	The path to explaining this is a long one, and it'll lead us to a bunch of pretty discoveries along the way as we get to the bottom of What Hyperbolic Functions Truly Are. And to start, let's go back to the very beginning: the exponential function.
+</p>
+<!--${heading.derivatives-all-the-way-down}-->
+<p>
+	Think back in time to when you first learned how to differentiate. You probably recall the <i>power rule</i>, which, along with the fact that derivatives play nicely with sums and scalar multiples, lets you differentiate any polynomial. But now you want to spice it up a little. You're asking yourself a neat interesting question: is there a function which is <em>its own</em> derivative?
+</p>
+<p>
+	Well, the simplest function we can probably imagine is the constant zero function, which just takes the value 0 everywhere. That's a constant function, so its derivative is 0 everywhere, which is equal to the function itself, voilà!
+</p>
+<p>
+	But that's hardly interesting; we want a function with some really funky behavior that still manages to be equal to its own derivative everywhere. Let's say that in order to explicitly exclude the constant zero function, we'll additionally require our target function to take the value 1 at 0. So we're looking for a function \(f\) that satisfies \(f' = f\) and \(f(0) = 1\).
+</p>
+<p>
+	Okay, what's the simplest function we can imagine that takes the value 1 at 0? The constant 1 function! Alright, that one doesn't work; being constant, its derivative is still 0, which this time isn't equal to the function itself. We need its derivative to be 1.
+</p>
+<p>
+	Let's not give up. We can fix the discrepancy by adding a linear term, \(ax\) for some constant \(a\): this term would vanish at 0, so it wouldn't break \(f(0) = 1\); and it's non-constant, so it could help us set the derivative at 0 to be 1. Since \(ax\) differentiates to \(a\), this means \(a\) needs to be 1; so now \(f(x) = 1 + x\) and its derivative is 1.
+</p>
+<p>
+	But wait! While we worked on fixing the discrepancy, the goalposts themselves moved by one step! Now we need the derivative to be \(1 + x\), not just 1. We can keep going and add a quadratic term whose derivative is \(x\); that's \(\frac{1}{2} x^2\), if you remember your calculus, so now \(f(x) = 1 + x + \frac{1}{2} x^2\) and its derivative is \(1 + x\). Agh, but now \(f\) itself is again one step ahead, now we need the derivative to have that \(\frac{1}{2} x^2\) term! And it'll keep doing that forever, because every time we want to add a term to fix \(f'\), that same term will move the goalposts away by one step.
+</p>
+<p>
+	But not all hope is lost. Maybe if we do this for <em>infinitely many</em> steps, then we will indeed get a function whose derivative is itself: when differentiating, the constant 1 term would vanish, and the \((n + 1)\)-th power term would turn into the \(n\)-th power term; ordinarily that would leave a gap at the end, but since with infinity there <em>is</em> no end, everything works out perfectly, Hilbert's Hotel<!--${footnote.hilberts-hotel}--> style.
+</p>
+<p>
+	\[
+		\begin{array}{rrcrcrcrcrcrcl}
+			f(x) = & & & 1 & &
+			+\ x & &
+			+\ \frac{1}{2} x^2 & &
+			+\ \frac{1}{6} x^3 & &
+			+\ \frac{1}{24} x^4 & &
+			+\ \ldots \\
+			& &
+			\swarrow & &
+			\swarrow & &
+			\swarrow & &
+			\swarrow & &
+			\swarrow & &
+			\swarrow \\
+			f'(x) = & 0 & &
+			+\ 1 & &
+			+\ x & &
+			+\ \frac{1}{2} x^2 & &
+			+\ \frac{1}{6} x^3 & &
+			+\ \frac{1}{24} x^4 & &
+			+\ \ldots
+		\end{array}
+	\]
+</p>
+<blockquote>
+	<p>
+		(Question: What is the sequence of denominators here? In other words, if the \(n\)-th power term of \(f\) is \(\frac{x^n}{a_n}\), what is \(a_n\)?)
+	</p>
+</blockquote>
+<p>
+	Nice, so if we put aside the question of whether this sum converges,<!--${footnote.convergence}--> we actually did find a function \(f\) which takes the value 1 at 0 and equals its own derivative! And clearly it's doing something funkier than just constant zero.
+</p>
+<!--${heading.is-its-own-derivative}-->
+<p>
+	So, we found a function equal to its own derivative which takes the value 1 at 0. Big deal, right? There's probably thousands of such functions.
+</p>
+<p>
+	Well, the interesting thing is, no, actually! The function we constructed, by constantly “moving the goalposts”, is the <em>only</em> one.
+</p>
+<p>
+	Let's think about it again. The constant term couldn't have been anything other than 1, since all the higher terms will vanish at zero, and we want \(f(0) = 1\). Now because \(f' = f\), we also need \(f'(0) = 1\); but the constant term obviously has zero derivative, and the quadratic and all higher terms will differentiate to at least linear terms, which, again, will vanish at zero. So the <em>only</em> term capable of controlling the value of the derivative at zero is the linear term: so that one also <em>has</em> to be \(1x\).
+</p>
+<p>
+	The same argument can keep going: the value of the \(n\)-th derivative at 0 can be controlled <em>only</em> by the \(n\)-th power term, since all lower ones will have zero \(n\)-th derivative everywhere, and all higher ones will differentiate to at least something linear, and so will have zero \(n\)-th derivative at 0. And so, because we've specified the value of <em>every</em> order derivative at 0 (namely, all of them must be 1), we've uniquely determined the value of every power term.<!--${footnote.power-series}-->
+</p>
+<p>
+	This means our silly infinite polynomial is actually quite an important function indeed! Let's name it \(\text{IIOD}(x)\), for “Is Its Own Derivative (and, at 0, takes the value 1)”. Again, <strong>it's the <em>unique</em> function with those two properties</strong>.
+</p>
+<p>
+	Now the interesting thing is that we can generalize this a little. Since derivatives play along nicely with scalar multiplication, the derivative of \(C \cdot \text{IIOD}(x)\) is also \(C \cdot \text{IIOD}(x)\) for any real number \(C\); and clearly such a function would take the value \(C\) at 0. Also, by the chain rule, the derivative of \(\text{IIOD}(\lambda \cdot x)\) is \(\lambda \cdot \text{IIOD}(\lambda \cdot x)\); so such a function has the property that its derivative is \(\lambda\) times itself. And in the same fashion as before, it turns out that \(C \cdot \text{IIOD}(\lambda \cdot x)\) is the <em>unique</em> function whose derivative is \(\lambda\) times itself and which takes the value \(C\) at 0.<!--${footnote.scaling-and-stretching}-->
+</p>
+<p>
+	Keep this in mind. I'm gonna repeat it again for importance's sake:
+</p>
+<blockquote>
+	<p>
+		<strong>The <em>only</em> function whose derivative is \(\lambda\) times itself and which takes the value \(C\) at 0 is \(f(x) = C \cdot \text{IIOD}(\lambda \cdot x)\)</strong>.
+	</p>
+</blockquote>
+<p>
+	With that in mind, we can try to figure out more about this mysterious function.
+</p>
+<!--${heading.exponents-all-along}-->
+<p>
+	Let's see just how much more we can find out about \(\text{IIOD}\) just from its characteristic property of being equal to its own derivative.
+</p>
+<p>
+	We know the product rule says that the derivative of \(f(x) \cdot g(x)\) is \(f'(x) \cdot g(x) + f(x) \cdot g'(x)\). Let's see what happens when we apply the product rule to two differently scaled versions of \(\text{IIOD}\):
+</p>
+<p>
+	\[
+		\begin{array}{cl}
+			& \big( \text{IIOD}(Ax) \cdot \text{IIOD}(Bx) \big)' \\[1ex]
+			= & \text{IIOD}(Ax)' \cdot \text{IIOD}(Bx) + \text{IIOD}(Ax) \cdot \text{IIOD}(Bx)' \\[1ex]
+			= & A \cdot \text{IIOD}(Ax) \cdot \text{IIOD}(Bx) + \text{IIOD}(Ax) \cdot B \cdot \text{IIOD}(Bx) \\[1ex]
+			= & (A + B) \cdot (\text{IIOD}(Ax) \cdot \text{IIOD}(Bx))
+		\end{array}
+	\]
+</p>
+<p>
+	Huh! So \(\text{IIOD}(Ax) \cdot \text{IIOD}(Bx)\) has a derivative equal to \(A + B\) times itself, and clearly its value at 0 is \(1 \cdot 1 = 1\). But wait! We deduced earlier that the <em>only</em> such function is \(\text{IIOD}((A + B)x)\). So they must be equal! Specifically, setting \(x = 1\), we get:
+</p>
+<p>
+	\[\text{IIOD}(A + B) = \text{IIOD}(A) \cdot \text{IIOD}(B).\]
+</p>
+<p>
+	How peculiar! This \(\text{IIOD}\) function has a property reminiscent of exponents.
+</p>
+<p>
+	What about the power rule? What if we try differentiating \(\text{IIOD}(x)^n\)?
+</p>
+<p>
+	\[
+		\begin{array}{cl}
+			& \big( \text{IIOD}(x)^n \big)' \\[1ex]
+			= & n \cdot \text{IIOD}(x)^{n - 1} \cdot \text{IIOD}(x)' \\[1ex]
+			= & n \cdot \text{IIOD}(x)^{n - 1} \cdot \text{IIOD}(x) \\[1ex]
+			= & n \cdot \text{IIOD}(x)^n
+		\end{array}
+	\]
+</p>
+<p>
+	So \(\text{IIOD}(x)^n\) is a function whose derivative is \(n\) times itself! And it also has the value \(1^n = 1\) at 0, so once again, we know the <em>only</em> such function is \(\text{IIOD}(n \cdot x)\). Thus:
+</p>
+<p>
+	\[\text{IIOD}(x)^n = \text{IIOD}(n \cdot x).\]
+</p>
+<p>
+	Again, just like exponents!
+</p>
+<p>
+	Perhaps you even know that the power rule works for all real exponents, not just natural-number ones. But if you don't, we can still extend that second property of \(\text{IIOD}\) to at least all <em>rational</em> exponents.<!--${footnote.real-exponents}--> The property \(\text{IIOD}(0) = 1\) plays along very nicely with all this; it implies the identity works for negative integers, since \(1 = \text{IIOD}(0)\), which is \(\text{IIOD}(n - n) = \text{IIOD}(n) \cdot \text{IIOD}(-n)\), so that \(\text{IIOD}(-n)\) must be the reciprocal of \(\text{IIOD}(n)\). And \(\text{IIOD}(p/q)\) must be the \(q\)-th root of \(\text{IIOD}(p)\), since \(\text{IIOD}(p) = \text{IIOD}(p/q \cdot q) = \text{IIOD}(p/q)^q\).
+</p>
+<!--${heading.always-has-been}-->
+<p>
+	Indeed, in this identity we can set \(x = 1\) as well, and get the following:
+</p>
+<p>
+	\[\text{IIOD}(\alpha) = \text{IIOD}(1)^{\alpha}.\]
+</p>
+<p>
+	Aha! So it <em>was</em> exponents all along! Amazingly, starting from just the requirement of being its own derivative, we found that \(\text{IIOD}(\alpha)\) is secretly just the operation of raising \(\text{IIOD}(1)\) to the power of \(\alpha\).
+</p>
+<p>
+	So whatever this \(\text{IIOD}(1)\) is, it must be a really important number! Let's try to find out how big it is.
+</p>
+<p>
+	Since we know the infinite polynomial that defines \(\text{IIOD}\), let's just plug in 1 and see what we get:
+</p>
+<p>
+	\[\text{IIOD}(1) = 1 + 1 + \frac{1}{2} + \frac{1}{6} + \frac{1}{24} + \ldots\]
+</p>
+<p>
+	\[
+		\begin{array}{rrrrrl}
+			1 & & & & & = 1 \\[1ex]
+			1 & +\ 1 & & & & = 2 \\[1ex]
+			1 & +\ 1 & +\ \frac{1}{2} & & & = 2.5 \\[1ex]
+			1 & +\ 1 & +\ \frac{1}{2} & +\ \frac{1}{6} & & = 2.666\ldots \\[1ex]
+			1 & +\ 1 & +\ \frac{1}{2} & +\ \frac{1}{6} & +\ \frac{1}{24} & = 2.708333\ldots
+		\end{array}
+	\]
+</p>
+<p>
+	So it's some number between 2 and 3, somewhere around 2.7.
+</p>
+<p>
+	By this point you're probably screaming at me. “Of course it's \(e\)! We knew it all along! We knew \(e^x\) was its own derivative! We knew \(\text{IIOD}\) was just \(e^x\) all along!”
+</p>
+<p>
+	Yes, I admit, I made it excessively cryptic on purpose. I did that to drive the point home: <em>This</em> is what the place of \(e\) in calculus is all about. \(e\) is not about compound interest, or the limit of \((1 + \frac{1}{n})^n\), or, heck, even a raw dry definition of \(e\) as that sum \(1 + 1 + \frac{1}{2} + \frac{1}{6} + \ldots\) doesn't fully do it justice. <strong>The true meaning of \(e\) is that it is the value of \(\text{IIOD}(1)\).</strong> We were able to find the function equal to its own derivative without knowing about \(e\) at all; \(e\) derives from \(\text{IIOD}\), not the other way around.
+</p>
+<!--${heading.eulers-formula}-->
+<p>
+	Remember that \(\text{IIOD}\) is just a funky polynomial. An infinite one, true, but still just a function that involves only the four elementary operations.<!--${footnote.limits}-->
+</p>
+<p>
+	And, hey, we know how to do the four elementary operations on complex numbers, too! There should be no harm in, say, plugging in \(i\):
+</p>
+<p>
+	\[
+		\begin{array}{rrrrrrr}
+			\text{IIOD}(i) & = 1 &
+			+\ i &
+			+\ \frac{i^2}{2} &
+			+\ \frac{i^3}{6} &
+			+\ \frac{i^4}{24} &
+			+\ \ldots \\[1ex]
+			& = 1 &
+			+\ i &
+			-\ \frac{1}{2} &
+			-\ \frac{i}{6} &
+			+\ \frac{1}{24} &
+			+\ \ldots
+		\end{array}
+	\]
+</p>
+<p>
+	So the end result would be something like:
+</p>
+<p>
+	\[
+		\begin{array}{rl}
+			\text{IIOD}(i) & =
+			\left( 1 - \frac{1}{2} + \frac{1}{24} - \ldots \right) +
+			\left( 1 - \frac{1}{6} + \frac{1}{120} - \ldots \right) \cdot i \\[1ex]
+			& = 0.540302\ldots + 0.841471\ldots i
+		\end{array}
+	\]
+</p>
+<p>
+	The numbers are unusual, but the principle itself isn't strange: we're just plugging in complex numbers into a polynomial.
+</p>
+<p>
+	Here's something entirely different, for a change: what's the derivative of \(\cos x + i \sin x\)?
+</p>
+<p>
+	\[
+		\begin{array}{rl}
+			& \big( \cos x + i \sin x \big)' \\[1ex]
+			= & (\cos x)' + i (\sin x)' \\[1ex]
+			= & -\sin x + i \cos x \\[1ex]
+			= & i^2 \sin x + i \cos x \\[1ex]
+			= & i \cdot \big( \cos x + i \sin x \big)
+		\end{array}
+	\]
+</p>
+<p>
+	Aha! It's \(i\) times itself! But what do we know about such functions? They're secretly just scaled and stretched copies of \(\text{IIOD}\), aren't they?<!--${footnote.complex-numbers}--> And because \(\cos x = 1\) and \(\sin x = 0\), this function already has the value 1 at 0, so no scaling is necessary. So in conclusion:
+</p>
+<p>
+	\[\text{IIOD}(ix) = \cos x + i \sin x.\]
+</p>
+<p>
+	You've more than likely come across <em>this</em> formula at some point in your math-curiosity-filled life:
+</p>
+<p>
+	\[e^{ix} = \cos x + i \sin x.\]
+</p>
+<p>
+	It's the same formula.
+</p>
+<!--${heading.the-mirrors-of-eulers-formula}-->
+<p>
+	Perhaps you remember from physics that circular motion has the property that the acceleration vector is proportional to the displacement vector with a negative proportionality factor. That makes sense: in a circle, acceleration always points towards the center, whereas displacement is, well, away from the center. The cool thing is that this property also <em>characterizes</em> circular motion: as long as both the horizontal and vertical velocities are nonzero, such motion will <em>always</em> follow a circle.
+</p>
+<p>
+	And, hey, circles! Sine and cosine! Maybe there's a connection there!
+</p>
+<p>
+	The displacement in circular motion follows \((\cos t, \sin t)\), where \(t\) is time. But what if we tried to find out what functions describe circular motion not through a geometric approach, but through a differential one? What if we tried to analyze circular motion through this idea of acceleration being negatively proportional to displacement?
+</p>
+<p>
+	So we have a new wishlist: we want functions \((x, y) = (C(t), S(t))\) such that
+</p>
+<ul>
+	<li>\(C(0) = 1\), \(C'(0) = 0\), and \(C''(x) = -C(x)\);</li>
+	<li>\(S(0) = 0\), \(S'(0) = 1\), and \(S''(x) = -S(x)\).</li>
+</ul>
+<p>
+	In other words, we're specifying how we want our circular motion to start (namely, one unit to the right from the origin, and with a derivative pointing upwards), and having the characteristic property: their second derivative (acceleration) is equal to the displacement with a negative sign.
+</p>
+<p>
+	How can the <em>second</em> derivative of a function be equal to \(\lambda\) times itself? Well, one easy way is for its <em>first</em> derivative to be \(\sqrt{\lambda}\) times itself; then differentiating it twice will give us \(\lambda\) back. Naturally, another way is \(-\sqrt{\lambda}\), since every number has two square roots. Also, any sum of such functions will still have a second derivative equal to \(\lambda\) times itself, and any scalar multiple still will.
+</p>
+<p>
+	And in fact, the theory of differential equations tells us that <em>that's all of them</em>. <strong>The <em>only</em> functions whose second derivative is \(\lambda\) times itself are functions of the form \(A \cdot f(x) + B \cdot g(x)\), where \(A\) and \(B\) are constants, and \(f\) and \(g\) are functions whose derivative is \(\sqrt{\lambda}\) and \(-\sqrt{\lambda}\) times itself, respectively.</strong><!--${footnote.second-derivative}-->
+</p>
+<p>
+	And we <em>already know</em> a function that differentiates to \(\pm \sqrt{\lambda}\) times itself: \(\text{IIOD}(\pm \sqrt{\lambda} \cdot x)\)! And in our case, \(\lambda\) was \(-1\), so \(\pm \sqrt{\lambda}\) is \(\pm i\). So both \(C(x)\) and \(S(x)\) are some combination of scalar multiples of \(\text{IIOD}(ix)\) and \(\text{IIOD}(-ix)\).
+</p>
+<p>
+	If \(C(x) = A \cdot \text{IIOD}(ix) + B \cdot \text{IIOD}(-ix)\), all that's left is to solve for \(A\) and \(B\). We want
+</p>
+<p>
+	\[
+		\begin{array}{rlll}
+			1 & = C(0) & =
+			A \cdot \text{IIOD}(i \cdot 0) + B \cdot \text{IIOD}(-i \cdot 0) & =
+			A + B; \\[1ex]
+			0 & = C'(0) & =
+			A \cdot i \cdot \text{IIOD}(i \cdot 0) - B \cdot i \cdot \text{IIOD}(-i \cdot 0) & =
+			(A - B) \cdot i.
+		\end{array}
+	\]
+</p>
+<p>
+	So \(A + B = 1\) and \(A - B = 0\), giving \(A = \frac{1}{2}\) and \(B = \frac{1}{2}\), so that:
+</p>
+<p>
+	\[C(x) = \frac{\text{IIOD}(ix) + \text{IIOD}(-ix)}{2}.\]
+</p>
+<p>
+	Repeating this with \(S(x)\), we get \(A + B = 0\) and \((A - B) \cdot i = 1\), so \(A = \frac{1}{2i}\) and \(B = -\frac{1}{2i}\), and we get:
+</p>
+<p>
+	\[S(x) = \frac{\text{IIOD}(ix) - \text{IIOD}(-ix)}{2i}.\]
+</p>
+<p>
+	And, of course, I cleverly picked the initial conditions so that the circular motion functions \(C(x)\) and \(S(x)\) are just \(\cos x\) and \(\sin x\): at time 0, a point tracing out \((\cos t, \sin t)\) would be one unit to the right of the origin and its velocity would be upwards. Switching out \(\text{IIOD}\) for that scary, scary \(e^x\) notation gives us the “mirrors” of Euler's Formula:
+</p>
+<p>
+	\[\cos x = \frac{e^{ix} + e^{-ix}}{2}; \qquad \sin x = \frac{e^{ix} - e^{-ix}}{2i}.\]
+</p>
+<p>
+	This usual notation of \(\text{IIOD}\) as \(e^x\), even when its argument is a complex number, can be crazy confusing if not outright intimidating: what's it even <em>mean</em> to raise a number to an imaginary power? The answer: this isn't <em>about</em> raising anything to a power at all! It's an <a href="https://en.wikipedia.org/wiki/Abuse_of_notation">abuse of notation</a>; what we <em>mean</em> by \(e^{ix}\) is \(\text{IIOD}(ix)\).<!--${footnote.abuse-of-notation}-->
+</p>
+<p>
+	Knowing this, we're not far from really <a href="https://en.wiktionary.org/wiki/grok">grokking</a> Euler's Formula. Most proofs I've heard from my high school teachers invoked Taylor series, and even the one I just gave in the previous section probably felt more like a magic trick than anything; but now we can demystify it. \(e^{ix}\) (that is, \(\text{IIOD}(ix)\)) has a derivative equal to \(i\) times itself; so its <em>second</em> derivative is \(-1\) times itself &ndash; circular motion! &ndash; meaning that as \(x\) ranges from \(0\) across the positive real numbers, \(\text{IIOD}(ix)\) traces out a unit circle in the complex plane. The horizontal and vertical components of this circle &ndash; \(\cos\) and \(\sin\) &ndash; are exactly the real and imaginary components of \(\text{IIOD}(ix)\) respectively. Bam: Euler's Formula.<!--${footnote.unit-circle}-->
+</p>
+<p>
+	So sine and cosine can be characterized by their geometric meaning just as well as their property that their second derivatives are equal to their own negation, and the connection between the two approaches lies in how circular motion works. This means sine and cosine are not-so-distant cousins of exponentials! In fact, for a brief time before the discovery of logarithms, people used sines and cosines to turn multiplication into addition: <em>sines and cosines were makeshift logarithms</em>.<!--${footnote.prosthaphaeresis}-->
+</p>
+<p>
+	And, hey, bring up those formulae above one more time:
+</p>
+<p>
+	\[\cos x = \frac{e^{ix} + e^{-ix}}{2}; \qquad \sin x = \frac{e^{ix} - e^{-ix}}{2i}.\]
+</p>
+<p>
+	Doesn't this look a whole lot like the definition of \(\cosh\) and \(\sinh\)?
+</p>
+<!--${heading.iiods-slightly-less-outlandish-cousins}-->
+<p>
+	What if we go back to the defining characteristic of circular motion, but get rid of that pesky negative sign this time? Instead of looking for functions whose second derivative equals <em>minus</em> themselves; let's look for some whose second derivative equals&hellip; themselves, period.
+</p>
+<p>
+	Obviously, \(\text{IIOD}(x)\) is such a function. So is \(\text{IIOD}(-x)\), since differentiating it once negates it, and differentiating it a second time negates <em>that</em>, landing us back at the beginning. And since 1 and −1 are the only two square roots of 1, by the same reasoning as above, <strong><em>all</em> such functions are sums and scalar multiples of \(\text{IIOD}(x)\) and \(\text{IIOD}(-x)\).</strong>
+</p>
+<p>
+	Just for fun, let's give them the same starting conditions as we did above: \(C(x) = 1, C'(x) = 0, S(x) = 0, S'(x) = 1\); and give the resulting functions \(C\) and \(S\) the names \(\cosh\) and \(\sinh\). Just for fun.<!--${footnote.just-for-fun}--> Then we get slightly less outlandish counterparts of the mirrors of Euler's Formula:
+</p>
+<p>
+	\[\cosh x = \frac{e^x + e^{-x}}{2}; \qquad \sinh x = \frac{e^x - e^{-x}}{2}.\]
+</p>
+<p>
+	And, by adding them, a slightly less outlandish counterpart of Euler's Formula itself:
+</p>
+<p>
+	\[e^x = \cosh x + \sinh x.\]
+</p>
+<p>
+	That's right, \(\cosh\) and \(\sinh\) are the <a href="https://en.wikipedia.org/wiki/Even_and_odd_functions#Even%E2%80%93odd_decomposition">even part and odd part</a> of \(e^x\), respectively.
+</p>
+<p>
+	And by the way, with those definitions, it's easy to verify that \(\cosh^2 x - \sinh^2 x = 1\); and because the unit hyperbola includes the point \((1, 0)\) and is tangent to a vertical line at that point, that means \((\cosh t, \sinh t)\) traces out (half of) the unit hyperbola, just like \((\cos t, \sin t)\) traces out the unit circle.<!--${footnote.hyperbolic-motion}--> But this isn't what \(\cosh\) and \(\sinh\) are <em>about</em>: that's just a consequence of the fact that they satisfy \(\cosh^2 x - \sinh^2 x = 1\). Their real significance is in their differential properties. Ironically, their names are kind of a misnomer: they really aren't all that much about hyperbolae. Like, sure, the connection is there, but it sorta distracts from the more important stuff about them, you know?
+</p>
+<!--${heading.not-really-about-hyperbolae}-->
+<p>
+	Let's go back all the way to the beginning, to how we characterized the hyperbolic functions through their connection to spanning areas in hyperbolae. Here's that diagram again, for reference:
+</p>
+<figure>
+	<img src="../assets/images/blog/hyperbola/areas.svg" alt="Hyperbola parameterized by the hyperbolic functions subtends a sector whose area is half of the parameter">
+	<figcaption>Now we can understand why this works! (<a href="https://www.desmos.com/calculator/8e8rdud6sb">view Desmos graph</a>)</figcaption>
+</figure>
+<p>
+	Now we have everything we need to actually show that this is true.
+</p>
+<p>
+	We want to find a parameterization of the unit hyperbola with a function \(f(t)\), which will serve as the vertical coordinate (so the horizontal coordinate will be \(\sqrt{f(t)^2 + 1}\)), such that when the vertical coordinate is \(f(t)\), the area of the subtended sector will be \(t/2\). Our task is to determine what \(f\) is.
+</p>
+<p>
+	We can find the area of this sector using calculus, if we rotate this diagram by 90 degrees:
+</p>
+<figure>
+	<img src="../assets/images/blog/hyperbola/integral.svg" alt="Hyperbola rotated by 90 degrees, reinterpreted as a function of x">
+	<figcaption>Solving for the area of a hyperbolic sector (<a href="https://www.desmos.com/calculator/ydmgrha5e7">view Desmos graph</a>)</figcaption>
+</figure>
+<p>
+	It basically amounts to finding the integral \(\displaystyle \int \sqrt{x^2 + 1} \ dx\) &ndash; and then subtracting off a right triangle.
+</p>
+<p>
+	This integral isn't easy! Right off the bat, if we substituted \(u = x^2 + 1\) or something, there'd be no good way to get \(dx\) to turn into \(du\). The answer will probably not just be a simple polynomial.
+</p>
+<p>
+	Let's try to put our hyperbolic functions (the ones with the exponential definitions) to the rescue. Since \(\cosh^2 \theta - \sinh^2 \theta = 1\), let's try to substitute \(x = \sinh \theta\). Doing so will give us \(dx = \cosh \theta \ d\theta\) and \(\sqrt{x^2 + 1} = \cosh \theta\), so the integral becomes \(\displaystyle \int \cosh^2 \theta \ d\theta\).
+</p>
+<p>
+	To continue, we can rewrite \(\cosh^2 \theta\) as \(\dfrac{\cosh(2\theta) + 1}{2}\) (which is pretty much just the first binomial formula, quite neatly). This gives us
+</p>
+<p>
+	\[\int \frac{\cosh(2\theta) + 1}{2} \ d\theta = \frac{\sinh(2\theta)}{4} + \frac{\theta}{2}.\]
+</p>
+<p>
+	(Plus \(C\), but shush, we'll want a definite integral in the end.)
+</p>
+<p>
+	Okay, but we're not quite there yet; we can't convert back anymore. We started with \(x = \sinh(\theta)\), and now we have \(\sinh(2\theta)\). That's okay though; we can use a similar identity to go back: \(\sinh(2\theta) = 2 \cdot \sinh(\theta) \cdot \cosh(\theta)\). (Pretty much just the <em>third</em> binomial formula.) Then \(\sinh(\theta)\) becomes \(x\), and \(\cosh(\theta)\) becomes \(\sqrt{x^2 + 1}\), and we get our final answer:
+</p>
+<p>
+	\[\int \sqrt{x^2 + 1} \ dx = \frac{x \cdot \sqrt{x^2 + 1}}{2} + \frac{\sinh^{-1}(x)}{2}.\]
+</p>
+<p>
+	What a funky integral indeed! Who would've thought that the integral of \(\sqrt{x^2 + 1}\) would have <em>inverse hyperbolic sine</em> in it.
+</p>
+<p>
+	So that's the area between the unit hyperbola and the \(y\)-axis. To get our desired sector, we need to subtract the bit subtended by a straight line directly from \((0, 0)\) to a point on the hyperbola, namely \((\sqrt{f(t)^2 + 1}, f(t))\). That's just a right triangle, and the area of a triangle is half base times height, where the base is the \(y\)-coordinate, \(f(t)\), and the height is the \(x\)-coordinate, \(\sqrt{f(t)^2 + 1}\). Putting it all together:
+</p>
+<p>
+	\[
+		\begin{array}{l}
+			\text{area of arc} \\[1ex]
+			= \text{area under hyperbola} - \text{area of triangle} \\[1ex]
+			= \displaystyle \int \sqrt{x^2 + 1} \ dx \Bigg|_0^{f(t)} \ -
+			\frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} \\[4ex]
+			= \displaystyle \frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} +
+			\frac{\sinh^{-1}(f(t))}{2} -
+			\frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} \\[4ex]
+			= \displaystyle \frac{\sinh^{-1}(f(t))}{2}.
+		\end{array}
+	\]
+</p>
+<p>
+	And since we want it to be equal to \(t/2\), that means our \(f\) must be \(\sinh\). That is, \(\displaystyle \frac{e^x - e^{-x}}{2}\).
+</p>
+<p>
+	So, yes, the “hyperbolic” functions with those weird combinations of \(e^x\) and \(e^{-x}\) do really characterize a hyperbola. But the fact that they do is little more than an exercise in calculus as a consequence of their real significance: that they're their own second derivatives.
+</p>
+<p>
+	Thank you for reading.
+</p>
+<!---->

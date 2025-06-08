@@ -1,0 +1,41 @@
+[
+	{
+		"name":        "home",
+		"code":        "index",
+		"noRender":    true
+	},
+	{
+		"name":        "“404 not found” page",
+		"code":        "404",
+		"noRender":    true
+	},
+	{
+		"name":        "blög",
+		"code":        "blog",
+		"stylePaths":  ["styles/blog.css"],
+		"scriptPaths": []
+	},
+	{
+		"code":        "contact",
+		"noRender":    true
+	},
+	{
+		"code":        "meta",
+		"noRender":    true
+	},
+	{
+		"code":        "projects",
+		"stylePaths":  ["styles/projects.css"],
+		"scriptPaths": ["scripts/js/@projects.js"]
+	},
+	{
+		"code":        "sitemap",
+		"stylePaths":  ["styles/sitemap.css"],
+		"scriptPaths": []
+	},
+	{
+		"code":        "writing",
+		"stylePaths":  ["styles/writing.css"],
+		"scriptPaths": ["scripts/js/@writing.js"]
+	}
+]

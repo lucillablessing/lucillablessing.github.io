@@ -5,31 +5,49 @@
 	/* grayness */
 	--ultra-dark-grayness:  calc(1 * 17 / 255);         /* 0x11 */
 	--super-dark-grayness:  calc(2 * 17 / 255);         /* 0x22 */
+	--very-dark-grayness:   calc(3 * 17 / 255);         /* 0x33 */
 	--dark-grayness:        calc(4 * 17 / 255);         /* 0x44 */
 	--light-grayness:       calc((255 - 4 * 17) / 255); /* 0xbb */
+	--very-light-grayness:  calc((255 - 3 * 17) / 255); /* 0xcc */
 	--super-light-grayness: calc((255 - 2 * 17) / 255); /* 0xdd */
 	--ultra-light-grayness: calc((255 - 1 * 17) / 255); /* 0xee */
 
 	/* colors! */
 	--luci-pink:        #ffeaf2;
+	--half-luci-pink:   color-mix(in srgb, var(--luci-pink), white);
 	--ultra-dark-gray:  hsl(0 0 calc(100 * var(--ultra-dark-grayness)));
 	--super-dark-gray:  hsl(0 0 calc(100 * var(--super-dark-grayness)));
+	--very-dark-gray:   hsl(0 0 calc(100 * var(--very-dark-grayness)));
 	--dark-gray:        hsl(0 0 calc(100 * var(--dark-grayness)));
 	--light-gray:       hsl(0 0 calc(100 * var(--light-grayness)));
+	--very-light-gray:  hsl(0 0 calc(100 * var(--very-light-grayness)));
 	--super-light-gray: hsl(0 0 calc(100 * var(--super-light-grayness)));
 	--ultra-light-gray: hsl(0 0 calc(100 * var(--ultra-light-grayness)));
+	--shadow-light:     rgb(from black r g b / 20%);
+	--shadow-dark:      rgb(from white r g b / 20%);
 
-	/* color pairs */
-	--super-positive: light-dark(var(--super-light-gray), var(--super-dark-gray));
-	--ultra-positive: light-dark(var(--ultra-light-gray), var(--ultra-dark-gray));
-	--bright-positive: light-dark(var(--super-light-gray), var(--dark-gray));
+	/* color pairs -- positive */
+	--polar-positive:       light-dark(white, black);
+	--positive:             light-dark(var(--light-gray), var(--dark-gray));
+	--super-positive:       light-dark(var(--super-light-gray), var(--super-dark-gray));
+	--ultra-positive:       light-dark(var(--ultra-light-gray), var(--ultra-dark-gray));
+	--bright-positive:      light-dark(var(--super-light-gray), var(--dark-gray));
 	--very-bright-positive: light-dark(white, var(--dark-gray));
-	--negative: light-dark(var(--dark-gray), var(--light-gray));
-	--super-negative: light-dark(var(--super-dark-gray), var(--super-light-gray));
-	--ultra-negative: light-dark(var(--ultra-dark-gray), var(--ultra-light-gray));
-	--bright-negative: light-dark(var(--dark-gray), var(--super-light-gray));
+	--page-positive:        light-dark(var(--luci-pink), black);
+	--nav-positive:         light-dark(var(--half-luci-pink), var(--super-dark-gray));
+	--box-positive:         light-dark(var(--half-luci-pink), var(--ultra-dark-gray));
+	--footer-positive:      light-dark(var(--half-luci-pink), color-mix(in srgb, var(--ultra-dark-gray), black));
+
+	/* color pairs -- negative */
+	--polar-negative:       light-dark(black, white);
+	--negative:             light-dark(var(--dark-gray), var(--light-gray));
+	--super-negative:       light-dark(var(--super-dark-gray), var(--super-light-gray));
+	--ultra-negative:       light-dark(var(--ultra-dark-gray), var(--ultra-light-gray));
+	--bright-negative:      light-dark(var(--dark-gray), var(--super-light-gray));
 	--very-bright-negative: light-dark(var(--dark-gray), white);
-	
+	--shadow-negative:      light-dark(var(--shadow-light), var(--shadow-dark));
+	--figure-negative:      light-dark(var(--ultra-dark-gray), var(--dark-gray));
+
 	/* measurements */
 	--main-padding-top: 24px;
 	--main-padding-bottom: 8px;
@@ -45,16 +63,16 @@
 	--narrow-width: 720px;
 	--narrow-margin-bottom: 8px;
 	--narrow-padding-bottom: 16px;
+	--narrow-p-margin-bottom: 22px;
 	--pixel-figure-padding-bottom: 24px;
 	--square-image-padding-vertical: 32px;
 	--nav-padding-vertical: 16px;
 	--nav-padding-horizontal: 16px;
 	--nav-padding-title-vertical: 12px;
 	--nav-padding-title-horizontal: 16px;
+	--nav-height: 56px;
 	--footer-height: 24px;
 	--footer-padding-horizontal: 12px;
-	--meta-height-diff: 192px;
-	--meta-h2-padding-top: 16px;
 
 	/* dynamic font sizes: [at 1920px]-[at 640px] */
 	--16px-12px: calc(10px + 0.3125vw);
@@ -63,12 +81,12 @@
 	--24px-16px: calc(12px + 0.625vw);
 	--28px-22px: calc(19px + 0.46875vw);
 	--32px-24px: calc(20px + 0.625vw);
+	--36px-28px: calc(24px + 0.625vw);
 	--48px-40px: calc(36px + 0.625vw);
 
 	/* javascript variables; fallback values */
 	--body-background-light: none;
 	--body-background-dark: none;
-	--nav-height: 56px;
 	--nav-height-mobile-open: 50vh;
 	--transition-length: 200ms;
 }
@@ -84,24 +102,58 @@
 /* CSS Reset //
 // ========= */
 
-/* https://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+/*
+	https://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+	https://meyerweb.com/eric/tools/css/reset/
+	https://www.joshwcomeau.com/css/custom-css-reset/
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
+del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
+	font: inherit;
 	font-size: 100%;
+	margin: 0;
+	outline: 0;
+	padding: 0;
 	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+img, picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+}
+
+input, button, textarea, select {
+	font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: break-word;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-wrap: balance;
 }
 
 :focus {
@@ -110,8 +162,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body {
 	line-height: 1;
-	color: black;
-	background: white;
 }
 
 ol, ul {
@@ -124,12 +174,13 @@ table {
 }
 
 caption, th, td {
-	text-align: left;
 	font-weight: normal;
+	text-align: left;
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
 	content: "";
+	content: none;
 }
 
 blockquote, q {
@@ -141,8 +192,12 @@ blockquote, q {
 /* Basic styles //
 // ============ */
 
-* {
+:root {
 	font-family: "Livvic", Verdana, sans-serif;
+	outline-color: var(--super-negative);
+}
+
+* {
 	margin: 0;
 	padding: 0;
 	transition:
@@ -158,21 +213,23 @@ blockquote, q {
 html {
 	color-scheme: light dark;
 	height: 100%;
+	scroll-behavior: smooth;
 }
 
 body {
 	background-attachment: fixed;
-	background-color: light-dark(var(--luci-pink), black);
+	background-color: var(--page-positive);
 	background-image: var(--body-background-light);
 	background-position-x: center;
 	background-position-y: top;
 	background-repeat: repeat;
 	background-size: 1024px 1024px;
-	color: light-dark(var(--ultra-dark-gray), var(--ultra-light-gray));
+	color: var(--ultra-negative);
 	font-optical-sizing: auto;
 	font-style: normal;
 	font-weight: 350;
 	height: 100%;
+	/* for the background tiles to not appear pixelly */
 	image-rendering: smooth;
 }
 
@@ -205,9 +262,9 @@ main {
 		to right,
 		/* using luci pink transparent instead of (black) transparent */
 		/* in case some browsers render the gradient wrong */
-		rgb(from light-dark(var(--luci-pink), black) r g b / 0%),
-		rgb(from light-dark(var(--luci-pink), black) r g b / 70%) 10% 90%,
-		rgb(from light-dark(var(--luci-pink), black) r g b / 0%)
+		rgb(from var(--page-positive) r g b / 0%),
+		rgb(from var(--page-positive) r g b / 70%) 10% 90%,
+		rgb(from var(--page-positive) r g b / 0%)
 	);
 	min-height: calc(
 		100vh -
@@ -218,6 +275,7 @@ main {
 	);
 	padding-top: var(--main-padding-top);
 	padding-bottom: var(--main-padding-bottom);
+	position: relative;
 }
 
 @media (max-width: 640px) {
@@ -239,9 +297,9 @@ main {
 	/* there still is a light-dark fallback in case javascript is disabled though */
 	background-image: linear-gradient(
 		to right,
-		rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 0% 5%,
-		light-dark(var(--luci-pink), black) 15% 85%,
-		rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 95% 100%
+		rgb(from var(--page-positive) r g b / 50%) 0% 5%,
+		var(--page-positive) 15% 85%,
+		rgb(from var(--page-positive) r g b / 50%) 95% 100%
 	);
 }
 
@@ -249,8 +307,8 @@ main {
 	.dark-mode main {
 		background-image: linear-gradient(
 			to bottom,
-			light-dark(var(--luci-pink), black) 0% 60%,
-			rgb(from light-dark(var(--luci-pink), black) r g b / 50%) 60% 100%
+			var(--page-positive) 0% 60%,
+			rgb(from var(--page-positive) r g b / 50%) 60% 100%
 		);
 	}
 }
@@ -320,10 +378,10 @@ em, i {
 code {
 	background-color: light-dark(
 		rgb(from var(--light-gray) r g b / 50%),
-		rgb(from var(--dark-gray) r g b / 50%)
+		rgb(from var(--dark-gray)  r g b / 50%)
 	);
 	border: 1px solid light-dark(
-		rgb(from var(--dark-gray) r g b / 25%),
+		rgb(from var(--dark-gray)  r g b / 25%),
 		rgb(from var(--light-gray) r g b / 25%)
 	);
 	border-radius: 4px;
@@ -359,6 +417,29 @@ iframe {
 	outline: 2px dashed var(--super-negative);
 }
 
+:target {
+	/* looks weird, but it makes the outline fade out after 1.5s! */
+	outline: 2px dashed transparent;
+	transition-delay: 1.5s;
+	transition-duration: 0.5s;
+	transition-property: outline-color;
+}
+
+main:target {
+	outline-width: 0;
+}
+
+::selection {
+	/* not all browsers support this, but that's okay! */
+	background-color: var(--super-negative);
+	color: var(--super-positive);
+}
+
+.negative-text::selection {
+	background-color: var(--super-positive);
+	color: var(--super-negative);
+}
+
 .visua11y-hidden {
 	clip: rect(0 0 0 0); 
 	clip-path: inset(50%);
@@ -370,11 +451,8 @@ iframe {
 }
 
 .box {
-	background-color: light-dark(
-		rgb(from white r g b / 50%),
-		/* color-mix instead of half-opaque color to hide stars behind it */
-		color-mix(in srgb, var(--super-dark-gray), black)
-	);
+	/* color-mix instead of half-opaque color to hide stars behind it */
+	background-color: var(--box-positive);
 	background-image: linear-gradient(
 		to bottom,
 		transparent,
@@ -384,7 +462,7 @@ iframe {
 		)
 	);
 	border-radius: 16px;
-	box-shadow: 0 0 4px light-dark(white, black);
+	box-shadow: 0 0 4px var(--polar-positive);
 	padding-left: var(--box-padding-horizontal);
 	padding-right: var(--box-padding-horizontal);
 }
@@ -456,9 +534,9 @@ iframe {
 	margin-bottom: var(--narrow-margin-bottom);
 	margin-left: auto;
 	margin-right: auto;
-	max-width: var(--narrow-width);
 	padding-bottom: var(--narrow-padding-bottom);
 	width: 90%;
+	max-width: var(--narrow-width);
 }
 
 @media (min-width: 800px) {
@@ -476,18 +554,54 @@ iframe {
 	font-weight: 700;
 }
 
-.narrow p {
+.narrow p, .narrow li {
 	font-size: 16px;
 	line-height: 22px;
-	margin-bottom: 22px;
-	padding-left: 8%;
-	padding-right: 8%;
+}
+
+.narrow .small {
+	font-size: 14px;
+}
+
+.narrow p, .narrow ul {
+	margin-bottom: var(--narrow-p-margin-bottom);
+}
+
+.narrow ul {
+	padding-left: 4%;
+	padding-right: 0;
 }
 
 .vertically-centered {
 	align-items: center;
 	display: flex;
 	justify-content: center;
+}
+
+.scroll-shadows {
+	/* https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
+	background:
+		linear-gradient(
+			var(--box-positive) 30%,
+			transparent
+		) center top,
+		linear-gradient(
+			transparent,
+			var(--box-positive) 70%
+		) center bottom,
+		radial-gradient(
+			farthest-side at 50% 0,
+			var(--shadow-negative),
+			transparent
+		) center top,
+		radial-gradient(
+			farthest-side at 50% 100%,
+			var(--shadow-negative),
+			transparent
+		) center bottom;
+	background-attachment: local, local, scroll, scroll;
+	background-repeat: no-repeat;
+	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
 }
 
 .pixel-figure {
@@ -597,7 +711,10 @@ iframe {
 	cy: 50%;
 	fill: transparent;
 	r: 20%;
-	stroke: light-dark(rgb(from white r g b / 75%), transparent);
+	stroke: light-dark(
+		rgb(from white r g b / 75%),
+		transparent
+	);
 	stroke-width: 40%;
 }
 
@@ -628,6 +745,7 @@ iframe {
 	position: absolute;
 	left: 0;
 	top: var(--nav-height);
+	z-index: 1;
 }
 
 body[data-luci-page="home"] #skip-to-main {
@@ -660,10 +778,7 @@ body[data-luci-page="home"] #skip-to-main {
 }
 
 nav {
-	background-color: light-dark(
-		color-mix(in srgb, var(--luci-pink), white),
-		var(--super-dark-gray)
-		);
+	background-color: var(--nav-positive);
 	font-size: 0;
 	overflow: hidden;
 	text-align: center;
@@ -755,8 +870,7 @@ nav a.active {
 	}
 
 	.nav-open[data-luci-page="home"] nav button {
-		/* if home is active, then */
-		/* the background of the home button obscures some toggles */
+		/* if home is active, then the background of the home button obscures some toggles */
 		color: var(--super-positive);
 	}
 
@@ -886,12 +1000,9 @@ footer {
 }
 
 #the-footer {
-	background-color: light-dark(
-		/* color-mix instead of half-opaque color */
-		/* so that it doesn't clash with gradient and bg image */
-		color-mix(in srgb, var(--luci-pink), white), 
-		color-mix(in srgb, var(--ultra-dark-gray), black)
-	);
+	/* color-mix instead of half-opaque color */
+	/* so that it doesn't clash with gradient and bg image */
+	background-color: var(--footer-positive);
 	background-image: none;
 	color: var(--super-negative);
 	font-size: 16px;
@@ -969,71 +1080,6 @@ footer {
 	#footer-settings button {
 		font-size: 14px;
 	}
-}
-
-
-
-/* Meta //
-// ==== */
-
-#meta-i {
-	width: 100%;
-	min-height: 25vh;
-	height: calc(
-		100vh -
-		var(--nav-height) -
-		var(--footer-height) -
-		var(--main-padding-top) -
-		var(--main-padding-bottom) -
-		var(--meta-height-diff)
-	);
-}
-
-#the-meta {
-	background-color: transparent;
-}
-
-#the-meta h2 {
-	font-size: var(--18px-16px);
-	font-weight: 600;
-	line-height: var(--28px-22px);
-	padding-top: var(--meta-h2-padding-top);
-}
-
-#the-meta p {
-	margin-left: 4%;
-	margin-right: 4%;
-}
-
-
-
-/* Sitemap //
-// ======= */
-
-#sitemap-container {
-	background-color: light-dark(
-		rgb(from white r g b / 50%),
-		color-mix(in srgb, var(--super-dark-gray), black)
-	);
-}
-
-#sitemap {
-	display: flex;
-	justify-content: center;
-	margin-left: 5%;
-	margin-right: 5%;
-	padding-bottom: var(--h1-padding-vertical);
-}
-
-#sitemap div {
-	width: 320px;
-}
-
-#sitemap code {
-	background: none;
-	border: none;
-	font-size: var(--16px-12px);
-	margin: 0;
 }
 
 
@@ -1207,4 +1253,10 @@ footer {
 	src: url("../fonts/Reddit Mono/900.ttf") format("truetype");
 	font-style: normal;
 	font-weight: 900;
+}
+
+@font-face {
+	font-family: "New Computer Modern";
+	src: url("../fonts/New Computer Modern/math.woff2") format("woff2");
+	font-style: normal;
 }

@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Lucilla Blessing">
+		<meta name="color-scheme" content="light dark">
+		<meta name="description" content="Embrace the spark of creation. Make art. Spread joy. Repeat.">
+		<meta name="theme-color" content="#ffeaf2">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Anatomy of a Hyperbola ~ The Power Of Five / blög</title>
+		<link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" media="all" href="../styles/luci.css">
+		<link rel="stylesheet" type="text/css" media="all" href="../styles/luci-blogposts.css">
+		<link rel="stylesheet" type="text/css" media="all" href="../extern/katex/katex.min.css">
+		<script type="module" src="../scripts/js/@luci.js"></script>
+		<script type="module" src="../scripts/js/@luci-blogposts.js"></script>
+		<script type="module" src="../extern/katex/copy-tex.js"></script>
+	</head>
+	<body data-luci-page="blog">
+		<header>
+			<a id="skip-to-main" href="#main">skip to main content</a>
+			<iframe id="header-i" title="Navigation bar" src="../__header.html"></iframe>
+		</header>
+		<main id="main" data-luci-math>
+			<div class="box wide blog-post">
+				<section id="blog-post-intro">
+					<h1 id="title">Anatomy of a Hyperbola</h1>
+					<p class="date">Posted on <time class="date-gregorian" datetime="2024-10-11">October 11<sup>th</sup>, 2024</time><time class="date-blessing" style="display: none;" datetime="2024-10-11">the 11<sup>th</sup> of Love's Dawn, b2024</time></p>
+					<p class="note">I originally wrote this post for a friend's <a href="https://github.com/ThatOtherAndrew/revisiontime/blob/main/content/MT1002/Anatomy%20of%20a%20Hyperbola.md">Obsidian vault</a> of university study notes. It renders math using <a href="https://katex.org">KaTeX</a>, and as such needs JavaScript for best results. See <a href="../meta.html">the meta page</a> for details.</p>
+					<p class="back-to-blog"><a href="../blog.html">(back to blög)</a></p>
+				</section>
+				<hr>
+				<aside id="blog-post-contents">
+					<div id="contents-container">
+						<h2>Contents</h2>
+						<ul>
+							<li><a href="#">(home)</a></li>
+							<li><a href="#derivatives-all-the-way-down">Derivatives all the way down</a></li>
+							<li><a href="#is-its-own-derivative">Is Its Own Derivative</a></li>
+							<li><a href="#exponents-all-along">Exponents All Along?</a></li>
+							<li><a href="#always-has-been">Always Has Been</a></li>
+							<li><a href="#eulers-formula">Euler's Formula</a></li>
+							<li><a href="#the-mirrors-of-eulers-formula">The Mirrors of Euler's Formula</a></li>
+							<li><a href="#iiods-slightly-less-outlandish-cousins">IIOD's Slightly Less Outlandish Cousins</a></li>
+							<li><a href="#not-really-about-hyperbolae">Not Really About Hyperbolae</a></li>
+							<li><a href="#footnotes">(footnotes)</a></li>
+						</ul>
+					</div>
+				</aside>
+				<section id="blog-post-body">
+					<p>
+						Okay, so you know the definitions of the hyperbolic functions and that they're supposed to relate to hyperbolae in the same way that trigonometric functions do to circles.
+					</p>
+					<p>
+						But how exactly? And where did they come from? Who thought they were a good idea? And why are they defined with these silly equations involving <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math> rather than some cool geometric diagram?
+					</p>
+					<p>
+						“Well,” you might answer, “just as parametrically plotting <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> gives a circle, so does plotting <span class="m">\((\cosh t, \sinh t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cosh</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sinh</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> give a hyperbola. Well, only the right half of it, but you get the idea.”
+					</p>
+					<p>
+						But so what? The unit hyperbola is the set of points <span class="m">\((x, y)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></semantics></math> satisfying <span class="m">\(x^2 - y^2 = 1\)</span><math><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn></mrow></semantics></math>. So <em>any</em> pair of functions <span class="m">\((C(t), S(t))\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>S</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></semantics></math> such that <span class="m">\(S(t)\)</span><math><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> spans the whole real line and <span class="m">\(C(t)^2 - S(t)^2 = 1\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>−</mo><mi>S</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>=</mo><mn>1</mn></mrow></semantics></math> will <em>also</em> give a parameterization of the unit hyperbola. For example, <span class="m">\((\sec t, \tan t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>sec</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>tan</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>. Or even <span class="m">\((\sqrt{t^2 + 1}, t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><msqrt><mrow><msup><mi>t</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>!
+					</p>
+					<figure>
+						<img src="../assets/images/blog/hyperbola/parameterizations.svg" alt="Hyperbola parameterized by three different pairs of functions">
+						<figcaption>Many different ways to parameterize a hyperbola (<a href="https://www.desmos.com/calculator/qbn6nxjhib">view Desmos graph</a>)</figcaption>
+					</figure>
+					<p>
+						Okay, okay. Parameterizations are too open-ended. But there's another analogy we can draw. <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> are the coordinates of a point that has traveled from <span class="m">\((1, 0)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math> counterclockwise along the unit circle by an angle of <span class="m">\(t\)</span><math><semantics><mrow><mi>t</mi></mrow></semantics></math> radians. Perhaps if we just switch out the word “circle” for “hyperbola” there, we'll get the hyperbolic functions?
+					</p>
+					<p>
+						Well, not quite. The unit hyperbola never really goes beyond 45 degrees: it's actually asymptotic to both the lines <span class="m">\(y = x\)</span><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi></mrow></semantics></math> and <span class="m">\(y = -x\)</span><math><semantics><mrow><mi>y</mi><mo>=</mo><mo>−</mo><mi>x</mi></mrow></semantics></math>. So if that was a defining property of the hyperbolic functions, then the graphs of <span class="m">\(y = \cosh x\)</span><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>cosh</mi><mo>⁡</mo><mi>x</mi></mrow></semantics></math> and <span class="m">\(y = \sinh x\)</span><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>sinh</mi><mo>⁡</mo><mi>x</mi></mrow></semantics></math> would need to have a vertical asymptote at the <span class="m">\(\frac{1}{8} \cdot 2\pi\)</span><math><semantics><mrow><mfrac><mn>1</mn><mn>8</mn></mfrac><mo>⋅</mo><mn>2</mn><mi>π</mi></mrow></semantics></math> mark. Not only that, but there's no point on the hyperbola at all that is 60 or 90 or 120 degrees counterclockwise from <span class="m">\((1, 0)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math>: there'd be blank space on the graph until <span class="m">\(\frac{3}{8} \cdot 2\pi\)</span><math><semantics><mrow><mfrac><mn>3</mn><mn>8</mn></mfrac><mo>⋅</mo><mn>2</mn><mi>π</mi></mrow></semantics></math>, when the graph enters back into view from another vertical asymptote. And, anyway, such graphs would need to repeat every <span class="m">\(2\pi\)</span><math><semantics><mrow><mn>2</mn><mi>π</mi></mrow></semantics></math> units. That's not at all what the graphs of <span class="m">\(\cosh\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math> look like, so that can't be it.
+					</p>
+					<p>
+						Fortunately, that analogy is <em>almost</em> true. We just have to use a slightly different starting point: instead of characterizing <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> as the point you reach when the angle you've traveled is <span class="m">\(t\)</span><math><semantics><mrow><mi>t</mi></mrow></semantics></math>, characterize it as the point you reach when the <em>area</em> of the subtended sector is <span class="m">\(t/2\)</span><math><semantics><mrow><mi>t</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></semantics></math>. <em>Now</em> the shift to the hyperbolic world works just as you'd expect:
+					</p>
+					<figure>
+						<img src="../assets/images/blog/hyperbola/areas.svg" alt="Hyperbola parameterized by the hyperbolic functions subtends a sector whose area is half of the parameter">
+						<figcaption>The hyperbolic functions measure areas of sectors of a hyperbola (<a href="https://www.desmos.com/calculator/8e8rdud6sb">view Desmos graph</a>)</figcaption>
+					</figure>
+					<p>
+						But why does that even work? Why would defining something with a weird combination of exponentials give you a function that tracks areas subtended by a hyperbola?
+					</p>
+					<p>
+						The path to explaining this is a long one, and it'll lead us to a bunch of pretty discoveries along the way as we get to the bottom of What Hyperbolic Functions Truly Are. And to start, let's go back to the very beginning: the exponential function.
+					</p>
+					<h2 id="derivatives-all-the-way-down">Derivatives all the way down <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Think back in time to when you first learned how to differentiate. You probably recall the <i>power rule</i>, which, along with the fact that derivatives play nicely with sums and scalar multiples, lets you differentiate any polynomial. But now you want to spice it up a little. You're asking yourself a neat interesting question: is there a function which is <em>its own</em> derivative?
+					</p>
+					<p>
+						Well, the simplest function we can probably imagine is the constant zero function, which just takes the value 0 everywhere. That's a constant function, so its derivative is 0 everywhere, which is equal to the function itself, voilà!
+					</p>
+					<p>
+						But that's hardly interesting; we want a function with some really funky behavior that still manages to be equal to its own derivative everywhere. Let's say that in order to explicitly exclude the constant zero function, we'll additionally require our target function to take the value 1 at 0. So we're looking for a function <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> that satisfies <span class="m">\(f' = f\)</span><math><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>f</mi></mrow></semantics></math> and <span class="m">\(f(0) = 1\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>.
+					</p>
+					<p>
+						Okay, what's the simplest function we can imagine that takes the value 1 at 0? The constant 1 function! Alright, that one doesn't work; being constant, its derivative is still 0, which this time isn't equal to the function itself. We need its derivative to be 1.
+					</p>
+					<p>
+						Let's not give up. We can fix the discrepancy by adding a linear term, <span class="m">\(ax\)</span><math><semantics><mrow><mi>a</mi><mi>x</mi></mrow></semantics></math> for some constant <span class="m">\(a\)</span><math><semantics><mrow><mi>a</mi></mrow></semantics></math>: this term would vanish at 0, so it wouldn't break <span class="m">\(f(0) = 1\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>; and it's non-constant, so it could help us set the derivative at 0 to be 1. Since <span class="m">\(ax\)</span><math><semantics><mrow><mi>a</mi><mi>x</mi></mrow></semantics></math> differentiates to <span class="m">\(a\)</span><math><semantics><mrow><mi>a</mi></mrow></semantics></math>, this means <span class="m">\(a\)</span><math><semantics><mrow><mi>a</mi></mrow></semantics></math> needs to be 1; so now <span class="m">\(f(x) = 1 + x\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mi>x</mi></mrow></semantics></math> and its derivative is 1.
+					</p>
+					<p>
+						But wait! While we worked on fixing the discrepancy, the goalposts themselves moved by one step! Now we need the derivative to be <span class="m">\(1 + x\)</span><math><semantics><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow></semantics></math>, not just 1. We can keep going and add a quadratic term whose derivative is <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math>; that's <span class="m">\(\frac{1}{2} x^2\)</span><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></semantics></math>, if you remember your calculus, so now <span class="m">\(f(x) = 1 + x + \frac{1}{2} x^2\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mi>x</mi><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></semantics></math> and its derivative is <span class="m">\(1 + x\)</span><math><semantics><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow></semantics></math>. Agh, but now <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> itself is again one step ahead, now we need the derivative to have that <span class="m">\(\frac{1}{2} x^2\)</span><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></semantics></math> term! And it'll keep doing that forever, because every time we want to add a term to fix <span class="m">\(f'\)</span><math><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></semantics></math>, that same term will move the goalposts away by one step.
+					</p>
+					<p>
+						But not all hope is lost. Maybe if we do this for <em>infinitely many</em> steps, then we will indeed get a function whose derivative is itself: when differentiating, the constant 1 term would vanish, and the <span class="m">\((n + 1)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></semantics></math>-th power term would turn into the <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th power term; ordinarily that would leave a gap at the end, but since with infinity there <em>is</em> no end, everything works out perfectly, Hilbert's Hotel<a id="hilberts-hotel" class="footnote" href="#footnote-hilberts-hotel" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> style.
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rrcrcrcrcrcrcl}
+								f(x) = & & & 1 & &
+								+\ x & &
+								+\ \frac{1}{2} x^2 & &
+								+\ \frac{1}{6} x^3 & &
+								+\ \frac{1}{24} x^4 & &
+								+\ \ldots \\
+								& &
+								\swarrow & &
+								\swarrow & &
+								\swarrow & &
+								\swarrow & &
+								\swarrow & &
+								\swarrow \\
+								f'(x) = & 0 & &
+								+\ 1 & &
+								+\ x & &
+								+\ \frac{1}{2} x^2 & &
+								+\ \frac{1}{6} x^3 & &
+								+\ \frac{1}{24} x^4 & &
+								+\ \ldots
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right right center right center right center right center right center right center left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>6</mn></mfrac><msup><mi>x</mi><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>24</mn></mfrac><msup><mi>x</mi><mn>4</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mo>…</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">↙</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>6</mn></mfrac><msup><mi>x</mi><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>24</mn></mfrac><msup><mi>x</mi><mn>4</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mo>…</mo></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<blockquote>
+						<p>
+							(Question: What is the sequence of denominators here? In other words, if the <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th power term of <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> is <span class="m">\(\frac{x^n}{a_n}\)</span><math><semantics><mrow><mfrac><msup><mi>x</mi><mi>n</mi></msup><msub><mi>a</mi><mi>n</mi></msub></mfrac></mrow></semantics></math>, what is <span class="m">\(a_n\)</span><math><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></semantics></math>?)
+						</p>
+					</blockquote>
+					<p>
+						Nice, so if we put aside the question of whether this sum converges,<a id="convergence" class="footnote" href="#footnote-convergence" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> we actually did find a function <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> which takes the value 1 at 0 and equals its own derivative! And clearly it's doing something funkier than just constant zero.
+					</p>
+					<h2 id="is-its-own-derivative">Is Its Own Derivative <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						So, we found a function equal to its own derivative which takes the value 1 at 0. Big deal, right? There's probably thousands of such functions.
+					</p>
+					<p>
+						Well, the interesting thing is, no, actually! The function we constructed, by constantly “moving the goalposts”, is the <em>only</em> one.
+					</p>
+					<p>
+						Let's think about it again. The constant term couldn't have been anything other than 1, since all the higher terms will vanish at zero, and we want <span class="m">\(f(0) = 1\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>. Now because <span class="m">\(f' = f\)</span><math><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>f</mi></mrow></semantics></math>, we also need <span class="m">\(f'(0) = 1\)</span><math><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>; but the constant term obviously has zero derivative, and the quadratic and all higher terms will differentiate to at least linear terms, which, again, will vanish at zero. So the <em>only</em> term capable of controlling the value of the derivative at zero is the linear term: so that one also <em>has</em> to be <span class="m">\(1x\)</span><math><semantics><mrow><mn>1</mn><mi>x</mi></mrow></semantics></math>.
+					</p>
+					<p>
+						The same argument can keep going: the value of the <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th derivative at 0 can be controlled <em>only</em> by the <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th power term, since all lower ones will have zero <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th derivative everywhere, and all higher ones will differentiate to at least something linear, and so will have zero <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>-th derivative at 0. And so, because we've specified the value of <em>every</em> order derivative at 0 (namely, all of them must be 1), we've uniquely determined the value of every power term.<a id="power-series" class="footnote" href="#footnote-power-series" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						This means our silly infinite polynomial is actually quite an important function indeed! Let's name it <span class="m">\(\text{IIOD}(x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>, for “Is Its Own Derivative (and, at 0, takes the value 1)”. Again, <strong>it's the <em>unique</em> function with those two properties</strong>.
+					</p>
+					<p>
+						Now the interesting thing is that we can generalize this a little. Since derivatives play along nicely with scalar multiplication, the derivative of <span class="m">\(C \cdot \text{IIOD}(x)\)</span><math><semantics><mrow><mi>C</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> is also <span class="m">\(C \cdot \text{IIOD}(x)\)</span><math><semantics><mrow><mi>C</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> for any real number <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math>; and clearly such a function would take the value <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math> at 0. Also, by the chain rule, the derivative of <span class="m">\(\text{IIOD}(\lambda \cdot x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>λ</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> is <span class="m">\(\lambda \cdot \text{IIOD}(\lambda \cdot x)\)</span><math><semantics><mrow><mi>λ</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>λ</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>; so such a function has the property that its derivative is <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself. And in the same fashion as before, it turns out that <span class="m">\(C \cdot \text{IIOD}(\lambda \cdot x)\)</span><math><semantics><mrow><mi>C</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>λ</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> is the <em>unique</em> function whose derivative is <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself and which takes the value <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math> at 0.<a id="scaling-and-stretching" class="footnote" href="#footnote-scaling-and-stretching" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						Keep this in mind. I'm gonna repeat it again for importance's sake:
+					</p>
+					<blockquote>
+						<p>
+							<strong>The <em>only</em> function whose derivative is <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself and which takes the value <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math> at 0 is <span class="m">\(f(x) = C \cdot \text{IIOD}(\lambda \cdot x)\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>λ</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math></strong>.
+						</p>
+					</blockquote>
+					<p>
+						With that in mind, we can try to figure out more about this mysterious function.
+					</p>
+					<h2 id="exponents-all-along">Exponents All Along? <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Let's see just how much more we can find out about <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> just from its characteristic property of being equal to its own derivative.
+					</p>
+					<p>
+						We know the product rule says that the derivative of <span class="m">\(f(x) \cdot g(x)\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> is <span class="m">\(f'(x) \cdot g(x) + f(x) \cdot g'(x)\)</span><math><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><msup><mi>g</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>. Let's see what happens when we apply the product rule to two differently scaled versions of <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math>:
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{cl}
+								& \big( \text{IIOD}(Ax) \cdot \text{IIOD}(Bx) \big)' \\[1ex]
+								= & \text{IIOD}(Ax)' \cdot \text{IIOD}(Bx) + \text{IIOD}(Ax) \cdot \text{IIOD}(Bx)' \\[1ex]
+								= & A \cdot \text{IIOD}(Ax) \cdot \text{IIOD}(Bx) + \text{IIOD}(Ax) \cdot B \cdot \text{IIOD}(Bx) \\[1ex]
+								= & (A + B) \cdot (\text{IIOD}(Ax) \cdot \text{IIOD}(Bx))
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="center left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo><msup><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>A</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>B</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						Huh! So <span class="m">\(\text{IIOD}(Ax) \cdot \text{IIOD}(Bx)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mi>x</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> has a derivative equal to <span class="m">\(A + B\)</span><math><semantics><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></semantics></math> times itself, and clearly its value at 0 is <span class="m">\(1 \cdot 1 = 1\)</span><math><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow></semantics></math>. But wait! We deduced earlier that the <em>only</em> such function is <span class="m">\(\text{IIOD}((A + B)x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>. So they must be equal! Specifically, setting <span class="m">\(x = 1\)</span><math><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></semantics></math>, we get:
+					</p>
+					<p>
+						<span class="m">\[\text{IIOD}(A + B) = \text{IIOD}(A) \cdot \text{IIOD}(B).\]</span><math display="block"><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						How peculiar! This <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> function has a property reminiscent of exponents.
+					</p>
+					<p>
+						What about the power rule? What if we try differentiating <span class="m">\(\text{IIOD}(x)^n\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></semantics></math>?
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{cl}
+								& \big( \text{IIOD}(x)^n \big)' \\[1ex]
+								= & n \cdot \text{IIOD}(x)^{n - 1} \cdot \text{IIOD}(x)' \\[1ex]
+								= & n \cdot \text{IIOD}(x)^{n - 1} \cdot \text{IIOD}(x) \\[1ex]
+								= & n \cdot \text{IIOD}(x)^n
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="center left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup><msup><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>n</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>n</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>n</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						So <span class="m">\(\text{IIOD}(x)^n\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></semantics></math> is a function whose derivative is <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math> times itself! And it also has the value <span class="m">\(1^n = 1\)</span><math><semantics><mrow><msup><mn>1</mn><mi>n</mi></msup><mo>=</mo><mn>1</mn></mrow></semantics></math> at 0, so once again, we know the <em>only</em> such function is <span class="m">\(\text{IIOD}(n \cdot x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>n</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>. Thus:
+					</p>
+					<p>
+						<span class="m">\[\text{IIOD}(x)^n = \text{IIOD}(n \cdot x).\]</span><math display="block"><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>n</mi><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						Again, just like exponents!
+					</p>
+					<p>
+						Perhaps you even know that the power rule works for all real exponents, not just natural-number ones. But if you don't, we can still extend that second property of <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> to at least all <em>rational</em> exponents.<a id="real-exponents" class="footnote" href="#footnote-real-exponents" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> The property <span class="m">\(\text{IIOD}(0) = 1\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math> plays along very nicely with all this; it implies the identity works for negative integers, since <span class="m">\(1 = \text{IIOD}(0)\)</span><math><semantics><mrow><mn>1</mn><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math>, which is <span class="m">\(\text{IIOD}(n - n) = \text{IIOD}(n) \cdot \text{IIOD}(-n)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></semantics></math>, so that <span class="m">\(\text{IIOD}(-n)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></semantics></math> must be the reciprocal of <span class="m">\(\text{IIOD}(n)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></semantics></math>. And <span class="m">\(\text{IIOD}(p/q)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>p</mi><mi mathvariant="normal">/</mi><mi>q</mi><mo stretchy="false">)</mo></mrow></semantics></math> must be the <span class="m">\(q\)</span><math><semantics><mrow><mi>q</mi></mrow></semantics></math>-th root of <span class="m">\(\text{IIOD}(p)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></semantics></math>, since <span class="m">\(\text{IIOD}(p) = \text{IIOD}(p/q \cdot q) = \text{IIOD}(p/q)^q\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>p</mi><mi mathvariant="normal">/</mi><mi>q</mi><mo>⋅</mo><mi>q</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>p</mi><mi mathvariant="normal">/</mi><mi>q</mi><msup><mo stretchy="false">)</mo><mi>q</mi></msup></mrow></semantics></math>.
+					</p>
+					<h2 id="always-has-been">Always Has Been <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Indeed, in this identity we can set <span class="m">\(x = 1\)</span><math><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></semantics></math> as well, and get the following:
+					</p>
+					<p>
+						<span class="m">\[\text{IIOD}(\alpha) = \text{IIOD}(1)^{\alpha}.\]</span><math display="block"><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>α</mi></msup><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						Aha! So it <em>was</em> exponents all along! Amazingly, starting from just the requirement of being its own derivative, we found that <span class="m">\(\text{IIOD}(\alpha)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></semantics></math> is secretly just the operation of raising <span class="m">\(\text{IIOD}(1)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></semantics></math> to the power of <span class="m">\(\alpha\)</span><math><semantics><mrow><mi>α</mi></mrow></semantics></math>.
+					</p>
+					<p>
+						So whatever this <span class="m">\(\text{IIOD}(1)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></semantics></math> is, it must be a really important number! Let's try to find out how big it is.
+					</p>
+					<p>
+						Since we know the infinite polynomial that defines <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math>, let's just plug in 1 and see what we get:
+					</p>
+					<p>
+						<span class="m">\[\text{IIOD}(1) = 1 + 1 + \frac{1}{2} + \frac{1}{6} + \frac{1}{24} + \ldots\]</span><math display="block"><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>24</mn></mfrac><mo>+</mo><mo>…</mo></mrow></semantics></math>
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rrrrrl}
+								1 & & & & & = 1 \\[1ex]
+								1 & +\ 1 & & & & = 2 \\[1ex]
+								1 & +\ 1 & +\ \frac{1}{2} & & & = 2.5 \\[1ex]
+								1 & +\ 1 & +\ \frac{1}{2} & +\ \frac{1}{6} & & = 2.666\ldots \\[1ex]
+								1 & +\ 1 & +\ \frac{1}{2} & +\ \frac{1}{6} & +\ \frac{1}{24} & = 2.708333\ldots
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right right right right right left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>2</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>2.5</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>6</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>2.666</mn><mo>…</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>6</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>24</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>2.708333</mn><mo>…</mo></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						So it's some number between 2 and 3, somewhere around 2.7.
+					</p>
+					<p>
+						By this point you're probably screaming at me. “Of course it's <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math>! We knew it all along! We knew <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math> was its own derivative! We knew <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> was just <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math> all along!”
+					</p>
+					<p>
+						Yes, I admit, I made it excessively cryptic on purpose. I did that to drive the point home: <em>This</em> is what the place of <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> in calculus is all about. <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> is not about compound interest, or the limit of <span class="m">\((1 + \frac{1}{n})^n\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></semantics></math>, or, heck, even a raw dry definition of <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> as that sum <span class="m">\(1 + 1 + \frac{1}{2} + \frac{1}{6} + \ldots\)</span><math><semantics><mrow><mn>1</mn><mo>+</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mo>…</mo></mrow></semantics></math> doesn't fully do it justice. <strong>The true meaning of <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> is that it is the value of <span class="m">\(\text{IIOD}(1)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></semantics></math>.</strong> We were able to find the function equal to its own derivative without knowing about <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> at all; <span class="m">\(e\)</span><math><semantics><mrow><mi>e</mi></mrow></semantics></math> derives from <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math>, not the other way around.
+					</p>
+					<h2 id="eulers-formula">Euler's Formula <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Remember that <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> is just a funky polynomial. An infinite one, true, but still just a function that involves only the four elementary operations.<a id="limits" class="footnote" href="#footnote-limits" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						And, hey, we know how to do the four elementary operations on complex numbers, too! There should be no harm in, say, plugging in <span class="m">\(i\)</span><math><semantics><mrow><mi>i</mi></mrow></semantics></math>:
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rrrrrrr}
+								\text{IIOD}(i) & = 1 &
+								+\ i &
+								+\ \frac{i^2}{2} &
+								+\ \frac{i^3}{6} &
+								+\ \frac{i^4}{24} &
+								+\ \ldots \\[1ex]
+								& = 1 &
+								+\ i &
+								-\ \frac{1}{2} &
+								-\ \frac{i}{6} &
+								+\ \frac{1}{24} &
+								+\ \ldots
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right right right right right right right" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mi>i</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><msup><mi>i</mi><mn>2</mn></msup><mn>2</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><msup><mi>i</mi><mn>3</mn></msup><mn>6</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><msup><mi>i</mi><mn>4</mn></msup><mn>24</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mo>…</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mi>i</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mtext> </mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mtext> </mtext><mfrac><mi>i</mi><mn>6</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mfrac><mn>1</mn><mn>24</mn></mfrac></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>+</mo><mtext> </mtext><mo>…</mo></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						So the end result would be something like:
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rl}
+								\text{IIOD}(i) & =
+								\left( 1 - \frac{1}{2} + \frac{1}{24} - \ldots \right) +
+								\left( 1 - \frac{1}{6} + \frac{1}{120} - \ldots \right) \cdot i \\[1ex]
+								& = 0.540302\ldots + 0.841471\ldots i
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>24</mn></mfrac><mo>−</mo><mo>…</mo><mo fence="true">)</mo></mrow><mo>+</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>120</mn></mfrac><mo>−</mo><mo>…</mo><mo fence="true">)</mo></mrow><mo>⋅</mo><mi>i</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mn>0.540302</mn><mo>…</mo><mo>+</mo><mn>0.841471</mn><mo>…</mo><mi>i</mi></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						The numbers are unusual, but the principle itself isn't strange: we're just plugging in complex numbers into a polynomial.
+					</p>
+					<p>
+						Here's something entirely different, for a change: what's the derivative of <span class="m">\(\cos x + i \sin x\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></semantics></math>?
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rl}
+								& \big( \cos x + i \sin x \big)' \\[1ex]
+								= & (\cos x)' + i (\sin x)' \\[1ex]
+								= & -\sin x + i \cos x \\[1ex]
+								= & i^2 \sin x + i \cos x \\[1ex]
+								= & i \cdot \big( \cos x + i \sin x \big)
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi><msup><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mi>i</mi><mo stretchy="false">(</mo><mi>sin</mi><mo>⁡</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>cos</mi><mo>⁡</mo><mi>x</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msup><mi>i</mi><mn>2</mn></msup><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>cos</mi><mo>⁡</mo><mi>x</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">=</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo>⋅</mo><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						Aha! It's <span class="m">\(i\)</span><math><semantics><mrow><mi>i</mi></mrow></semantics></math> times itself! But what do we know about such functions? They're secretly just scaled and stretched copies of <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math>, aren't they?<a id="complex-numbers" class="footnote" href="#footnote-complex-numbers" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> And because <span class="m">\(\cos x = 1\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mn>1</mn></mrow></semantics></math> and <span class="m">\(\sin x = 0\)</span><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mn>0</mn></mrow></semantics></math>, this function already has the value 1 at 0, so no scaling is necessary. So in conclusion:
+					</p>
+					<p>
+						<span class="m">\[\text{IIOD}(ix) = \cos x + i \sin x.\]</span><math display="block"><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						You've more than likely come across <em>this</em> formula at some point in your math-curiosity-filled life:
+					</p>
+					<p>
+						<span class="m">\[e^{ix} = \cos x + i \sin x.\]</span><math display="block"><semantics><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup><mo>=</mo><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						It's the same formula.
+					</p>
+					<h2 id="the-mirrors-of-eulers-formula">The Mirrors of Euler's Formula <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Perhaps you remember from physics that circular motion has the property that the acceleration vector is proportional to the displacement vector with a negative proportionality factor. That makes sense: in a circle, acceleration always points towards the center, whereas displacement is, well, away from the center. The cool thing is that this property also <em>characterizes</em> circular motion: as long as both the horizontal and vertical velocities are nonzero, such motion will <em>always</em> follow a circle.
+					</p>
+					<p>
+						And, hey, circles! Sine and cosine! Maybe there's a connection there!
+					</p>
+					<p>
+						The displacement in circular motion follows <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>, where <span class="m">\(t\)</span><math><semantics><mrow><mi>t</mi></mrow></semantics></math> is time. But what if we tried to find out what functions describe circular motion not through a geometric approach, but through a differential one? What if we tried to analyze circular motion through this idea of acceleration being negatively proportional to displacement?
+					</p>
+					<p>
+						So we have a new wishlist: we want functions <span class="m">\((x, y) = (C(t), S(t))\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>S</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></semantics></math> such that
+					</p>
+					<ul>
+						<li><span class="m">\(C(0) = 1\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>, <span class="m">\(C'(0) = 0\)</span><math><semantics><mrow><msup><mi>C</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></semantics></math>, and <span class="m">\(C''(x) = -C(x)\)</span><math><semantics><mrow><msup><mi>C</mi><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>;</li>
+						<li><span class="m">\(S(0) = 0\)</span><math><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></semantics></math>, <span class="m">\(S'(0) = 1\)</span><math><semantics><mrow><msup><mi>S</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>, and <span class="m">\(S''(x) = -S(x)\)</span><math><semantics><mrow><msup><mi>S</mi><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>.</li>
+					</ul>
+					<p>
+						In other words, we're specifying how we want our circular motion to start (namely, one unit to the right from the origin, and with a derivative pointing upwards), and having the characteristic property: their second derivative (acceleration) is equal to the displacement with a negative sign.
+					</p>
+					<p>
+						How can the <em>second</em> derivative of a function be equal to <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself? Well, one easy way is for its <em>first</em> derivative to be <span class="m">\(\sqrt{\lambda}\)</span><math><semantics><mrow><msqrt><mi>λ</mi></msqrt></mrow></semantics></math> times itself; then differentiating it twice will give us <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> back. Naturally, another way is <span class="m">\(-\sqrt{\lambda}\)</span><math><semantics><mrow><mo>−</mo><msqrt><mi>λ</mi></msqrt></mrow></semantics></math>, since every number has two square roots. Also, any sum of such functions will still have a second derivative equal to <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself, and any scalar multiple still will.
+					</p>
+					<p>
+						And in fact, the theory of differential equations tells us that <em>that's all of them</em>. <strong>The <em>only</em> functions whose second derivative is <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself are functions of the form <span class="m">\(A \cdot f(x) + B \cdot g(x)\)</span><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>B</mi><mo>⋅</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>, where <span class="m">\(A\)</span><math><semantics><mrow><mi>A</mi></mrow></semantics></math> and <span class="m">\(B\)</span><math><semantics><mrow><mi>B</mi></mrow></semantics></math> are constants, and <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> and <span class="m">\(g\)</span><math><semantics><mrow><mi>g</mi></mrow></semantics></math> are functions whose derivative is <span class="m">\(\sqrt{\lambda}\)</span><math><semantics><mrow><msqrt><mi>λ</mi></msqrt></mrow></semantics></math> and <span class="m">\(-\sqrt{\lambda}\)</span><math><semantics><mrow><mo>−</mo><msqrt><mi>λ</mi></msqrt></mrow></semantics></math> times itself, respectively.</strong><a id="second-derivative" class="footnote" href="#footnote-second-derivative" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						And we <em>already know</em> a function that differentiates to <span class="m">\(\pm \sqrt{\lambda}\)</span><math><semantics><mrow><mo>±</mo><msqrt><mi>λ</mi></msqrt></mrow></semantics></math> times itself: <span class="m">\(\text{IIOD}(\pm \sqrt{\lambda} \cdot x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>±</mo><msqrt><mi>λ</mi></msqrt><mo>⋅</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>! And in our case, <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> was <span class="m">\(-1\)</span><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow></semantics></math>, so <span class="m">\(\pm \sqrt{\lambda}\)</span><math><semantics><mrow><mo>±</mo><msqrt><mi>λ</mi></msqrt></mrow></semantics></math> is <span class="m">\(\pm i\)</span><math><semantics><mrow><mo>±</mo><mi>i</mi></mrow></semantics></math>. So both <span class="m">\(C(x)\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> and <span class="m">\(S(x)\)</span><math><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> are some combination of scalar multiples of <span class="m">\(\text{IIOD}(ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> and <span class="m">\(\text{IIOD}(-ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>.
+					</p>
+					<p>
+						If <span class="m">\(C(x) = A \cdot \text{IIOD}(ix) + B \cdot \text{IIOD}(-ix)\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>A</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>B</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>, all that's left is to solve for <span class="m">\(A\)</span><math><semantics><mrow><mi>A</mi></mrow></semantics></math> and <span class="m">\(B\)</span><math><semantics><mrow><mi>B</mi></mrow></semantics></math>. We want
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{rlll}
+								1 & = C(0) & =
+								A \cdot \text{IIOD}(i \cdot 0) + B \cdot \text{IIOD}(-i \cdot 0) & =
+								A + B; \\[1ex]
+								0 & = C'(0) & =
+								A \cdot i \cdot \text{IIOD}(i \cdot 0) - B \cdot i \cdot \text{IIOD}(-i \cdot 0) & =
+								(A - B) \cdot i.
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="right left left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mi>A</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mo>⋅</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>B</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mo>⋅</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo separator="true">;</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><msup><mi>C</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mi>A</mi><mo>⋅</mo><mi>i</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mo>⋅</mo><mn>0</mn><mo stretchy="false">)</mo><mo>−</mo><mi>B</mi><mo>⋅</mo><mi>i</mi><mo>⋅</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mo>⋅</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mo>−</mo><mi>B</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>i</mi><mi mathvariant="normal">.</mi></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						So <span class="m">\(A + B = 1\)</span><math><semantics><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>=</mo><mn>1</mn></mrow></semantics></math> and <span class="m">\(A - B = 0\)</span><math><semantics><mrow><mi>A</mi><mo>−</mo><mi>B</mi><mo>=</mo><mn>0</mn></mrow></semantics></math>, giving <span class="m">\(A = \frac{1}{2}\)</span><math><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></semantics></math> and <span class="m">\(B = \frac{1}{2}\)</span><math><semantics><mrow><mi>B</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></semantics></math>, so that:
+					</p>
+					<p>
+						<span class="m">\[C(x) = \frac{\text{IIOD}(ix) + \text{IIOD}(-ix)}{2}.\]</span><math display="block"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						Repeating this with <span class="m">\(S(x)\)</span><math><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>, we get <span class="m">\(A + B = 0\)</span><math><semantics><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>=</mo><mn>0</mn></mrow></semantics></math> and <span class="m">\((A - B) \cdot i = 1\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>−</mo><mi>B</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>i</mi><mo>=</mo><mn>1</mn></mrow></semantics></math>, so <span class="m">\(A = \frac{1}{2i}\)</span><math><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>i</mi></mrow></mfrac></mrow></semantics></math> and <span class="m">\(B = -\frac{1}{2i}\)</span><math><semantics><mrow><mi>B</mi><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>i</mi></mrow></mfrac></mrow></semantics></math>, and we get:
+					</p>
+					<p>
+						<span class="m">\[S(x) = \frac{\text{IIOD}(ix) - \text{IIOD}(-ix)}{2i}.\]</span><math display="block"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						And, of course, I cleverly picked the initial conditions so that the circular motion functions <span class="m">\(C(x)\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> and <span class="m">\(S(x)\)</span><math><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> are just <span class="m">\(\cos x\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi></mrow></semantics></math> and <span class="m">\(\sin x\)</span><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></semantics></math>: at time 0, a point tracing out <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> would be one unit to the right of the origin and its velocity would be upwards. Switching out <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> for that scary, scary <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math> notation gives us the “mirrors” of Euler's Formula:
+					</p>
+					<p>
+						<span class="m">\[\cos x = \frac{e^{ix} + e^{-ix}}{2}; \qquad \sin x = \frac{e^{ix} - e^{-ix}}{2i}.\]</span><math display="block"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>i</mi><mi>x</mi></mrow></msup></mrow><mn>2</mn></mfrac><mo separator="true">;</mo><mspace width="2em"/><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>i</mi><mi>x</mi></mrow></msup></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						This usual notation of <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> as <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math>, even when its argument is a complex number, can be crazy confusing if not outright intimidating: what's it even <em>mean</em> to raise a number to an imaginary power? The answer: this isn't <em>about</em> raising anything to a power at all! It's an <a href="https://en.wikipedia.org/wiki/Abuse_of_notation">abuse of notation</a>; what we <em>mean</em> by <span class="m">\(e^{ix}\)</span><math><semantics><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup></mrow></semantics></math> is <span class="m">\(\text{IIOD}(ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>.<a id="abuse-of-notation" class="footnote" href="#footnote-abuse-of-notation" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						Knowing this, we're not far from really <a href="https://en.wiktionary.org/wiki/grok">grokking</a> Euler's Formula. Most proofs I've heard from my high school teachers invoked Taylor series, and even the one I just gave in the previous section probably felt more like a magic trick than anything; but now we can demystify it. <span class="m">\(e^{ix}\)</span><math><semantics><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup></mrow></semantics></math> (that is, <span class="m">\(\text{IIOD}(ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>) has a derivative equal to <span class="m">\(i\)</span><math><semantics><mrow><mi>i</mi></mrow></semantics></math> times itself; so its <em>second</em> derivative is <span class="m">\(-1\)</span><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow></semantics></math> times itself &ndash; circular motion! &ndash; meaning that as <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math> ranges from <span class="m">\(0\)</span><math><semantics><mrow><mn>0</mn></mrow></semantics></math> across the positive real numbers, <span class="m">\(\text{IIOD}(ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> traces out a unit circle in the complex plane. The horizontal and vertical components of this circle &ndash; <span class="m">\(\cos\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sin\)</span><math><semantics><mrow><mi>sin</mi><mo>⁡</mo></mrow></semantics></math> &ndash; are exactly the real and imaginary components of <span class="m">\(\text{IIOD}(ix)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>i</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> respectively. Bam: Euler's Formula.<a id="unit-circle" class="footnote" href="#footnote-unit-circle" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						So sine and cosine can be characterized by their geometric meaning just as well as their property that their second derivatives are equal to their own negation, and the connection between the two approaches lies in how circular motion works. This means sine and cosine are not-so-distant cousins of exponentials! In fact, for a brief time before the discovery of logarithms, people used sines and cosines to turn multiplication into addition: <em>sines and cosines were makeshift logarithms</em>.<a id="prosthaphaeresis" class="footnote" href="#footnote-prosthaphaeresis" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a>
+					</p>
+					<p>
+						And, hey, bring up those formulae above one more time:
+					</p>
+					<p>
+						<span class="m">\[\cos x = \frac{e^{ix} + e^{-ix}}{2}; \qquad \sin x = \frac{e^{ix} - e^{-ix}}{2i}.\]</span><math display="block"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>i</mi><mi>x</mi></mrow></msup></mrow><mn>2</mn></mfrac><mo separator="true">;</mo><mspace width="2em"/><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>x</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>i</mi><mi>x</mi></mrow></msup></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						Doesn't this look a whole lot like the definition of <span class="m">\(\cosh\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math>?
+					</p>
+					<h2 id="iiods-slightly-less-outlandish-cousins">IIOD's Slightly Less Outlandish Cousins <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						What if we go back to the defining characteristic of circular motion, but get rid of that pesky negative sign this time? Instead of looking for functions whose second derivative equals <em>minus</em> themselves; let's look for some whose second derivative equals&hellip; themselves, period.
+					</p>
+					<p>
+						Obviously, <span class="m">\(\text{IIOD}(x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> is such a function. So is <span class="m">\(\text{IIOD}(-x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>, since differentiating it once negates it, and differentiating it a second time negates <em>that</em>, landing us back at the beginning. And since 1 and −1 are the only two square roots of 1, by the same reasoning as above, <strong><em>all</em> such functions are sums and scalar multiples of <span class="m">\(\text{IIOD}(x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math> and <span class="m">\(\text{IIOD}(-x)\)</span><math><semantics><mrow><mtext>IIOD</mtext><mo stretchy="false">(</mo><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></semantics></math>.</strong>
+					</p>
+					<p>
+						Just for fun, let's give them the same starting conditions as we did above: <span class="m">\(C(x) = 1, C'(x) = 0, S(x) = 0, S'(x) = 1\)</span><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo separator="true">,</mo><msup><mi>C</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mi>S</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo><msup><mi>S</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></semantics></math>; and give the resulting functions <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math> and <span class="m">\(S\)</span><math><semantics><mrow><mi>S</mi></mrow></semantics></math> the names <span class="m">\(\cosh\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math>. Just for fun.<a id="just-for-fun" class="footnote" href="#footnote-just-for-fun" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> Then we get slightly less outlandish counterparts of the mirrors of Euler's Formula:
+					</p>
+					<p>
+						<span class="m">\[\cosh x = \frac{e^x + e^{-x}}{2}; \qquad \sinh x = \frac{e^x - e^{-x}}{2}.\]</span><math display="block"><semantics><mrow><mi>cosh</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mn>2</mn></mfrac><mo separator="true">;</mo><mspace width="2em"/><mi>sinh</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						And, by adding them, a slightly less outlandish counterpart of Euler's Formula itself:
+					</p>
+					<p>
+						<span class="m">\[e^x = \cosh x + \sinh x.\]</span><math display="block"><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>=</mo><mi>cosh</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>sinh</mi><mo>⁡</mo><mi>x</mi><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						That's right, <span class="m">\(\cosh\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math> are the <a href="https://en.wikipedia.org/wiki/Even_and_odd_functions#Even%E2%80%93odd_decomposition">even part and odd part</a> of <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math>, respectively.
+					</p>
+					<p>
+						And by the way, with those definitions, it's easy to verify that <span class="m">\(\cosh^2 x - \sinh^2 x = 1\)</span><math><semantics><mrow><msup><mrow><mi>cosh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mo>−</mo><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mo>=</mo><mn>1</mn></mrow></semantics></math>; and because the unit hyperbola includes the point <span class="m">\((1, 0)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math> and is tangent to a vertical line at that point, that means <span class="m">\((\cosh t, \sinh t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cosh</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sinh</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> traces out (half of) the unit hyperbola, just like <span class="m">\((\cos t, \sin t)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mi>cos</mi><mo>⁡</mo><mi>t</mi><mo separator="true">,</mo><mi>sin</mi><mo>⁡</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math> traces out the unit circle.<a id="hyperbolic-motion" class="footnote" href="#footnote-hyperbolic-motion" title="jump to footnote"><span class="visua11y-hidden">jump to footnote</span></a> But this isn't what <span class="m">\(\cosh\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math> are <em>about</em>: that's just a consequence of the fact that they satisfy <span class="m">\(\cosh^2 x - \sinh^2 x = 1\)</span><math><semantics><mrow><msup><mrow><mi>cosh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mo>−</mo><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mo>=</mo><mn>1</mn></mrow></semantics></math>. Their real significance is in their differential properties. Ironically, their names are kind of a misnomer: they really aren't all that much about hyperbolae. Like, sure, the connection is there, but it sorta distracts from the more important stuff about them, you know?
+					</p>
+					<h2 id="not-really-about-hyperbolae">Not Really About Hyperbolae <a class="home" href="#" title="back to top" aria-label="back to top">↥</a></h2>
+					<p>
+						Let's go back all the way to the beginning, to how we characterized the hyperbolic functions through their connection to spanning areas in hyperbolae. Here's that diagram again, for reference:
+					</p>
+					<figure>
+						<img src="../assets/images/blog/hyperbola/areas.svg" alt="Hyperbola parameterized by the hyperbolic functions subtends a sector whose area is half of the parameter">
+						<figcaption>Now we can understand why this works! (<a href="https://www.desmos.com/calculator/8e8rdud6sb">view Desmos graph</a>)</figcaption>
+					</figure>
+					<p>
+						Now we have everything we need to actually show that this is true.
+					</p>
+					<p>
+						We want to find a parameterization of the unit hyperbola with a function <span class="m">\(f(t)\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>, which will serve as the vertical coordinate (so the horizontal coordinate will be <span class="m">\(\sqrt{f(t)^2 + 1}\)</span><math><semantics><mrow><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow></semantics></math>), such that when the vertical coordinate is <span class="m">\(f(t)\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>, the area of the subtended sector will be <span class="m">\(t/2\)</span><math><semantics><mrow><mi>t</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></semantics></math>. Our task is to determine what <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> is.
+					</p>
+					<p>
+						We can find the area of this sector using calculus, if we rotate this diagram by 90 degrees:
+					</p>
+					<figure>
+						<img src="../assets/images/blog/hyperbola/integral.svg" alt="Hyperbola rotated by 90 degrees, reinterpreted as a function of x">
+						<figcaption>Solving for the area of a hyperbolic sector (<a href="https://www.desmos.com/calculator/ydmgrha5e7">view Desmos graph</a>)</figcaption>
+					</figure>
+					<p>
+						It basically amounts to finding the integral <span class="m">\(\displaystyle \int \sqrt{x^2 + 1} \ dx\)</span><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mo>∫</mo><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mtext> </mtext><mi>d</mi><mi>x</mi></mstyle></mrow></semantics></math> &ndash; and then subtracting off a right triangle.
+					</p>
+					<p>
+						This integral isn't easy! Right off the bat, if we substituted <span class="m">\(u = x^2 + 1\)</span><math><semantics><mrow><mi>u</mi><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></semantics></math> or something, there'd be no good way to get <span class="m">\(dx\)</span><math><semantics><mrow><mi>d</mi><mi>x</mi></mrow></semantics></math> to turn into <span class="m">\(du\)</span><math><semantics><mrow><mi>d</mi><mi>u</mi></mrow></semantics></math>. The answer will probably not just be a simple polynomial.
+					</p>
+					<p>
+						Let's try to put our hyperbolic functions (the ones with the exponential definitions) to the rescue. Since <span class="m">\(\cosh^2 \theta - \sinh^2 \theta = 1\)</span><math><semantics><mrow><msup><mrow><mi>cosh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>θ</mi><mo>−</mo><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>θ</mi><mo>=</mo><mn>1</mn></mrow></semantics></math>, let's try to substitute <span class="m">\(x = \sinh \theta\)</span><math><semantics><mrow><mi>x</mi><mo>=</mo><mi>sinh</mi><mo>⁡</mo><mi>θ</mi></mrow></semantics></math>. Doing so will give us <span class="m">\(dx = \cosh \theta \ d\theta\)</span><math><semantics><mrow><mi>d</mi><mi>x</mi><mo>=</mo><mi>cosh</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mi>d</mi><mi>θ</mi></mrow></semantics></math> and <span class="m">\(\sqrt{x^2 + 1} = \cosh \theta\)</span><math><semantics><mrow><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mo>=</mo><mi>cosh</mi><mo>⁡</mo><mi>θ</mi></mrow></semantics></math>, so the integral becomes <span class="m">\(\displaystyle \int \cosh^2 \theta \ d\theta\)</span><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mo>∫</mo><msup><mrow><mi>cosh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>θ</mi><mtext> </mtext><mi>d</mi><mi>θ</mi></mstyle></mrow></semantics></math>.
+					</p>
+					<p>
+						To continue, we can rewrite <span class="m">\(\cosh^2 \theta\)</span><math><semantics><mrow><msup><mrow><mi>cosh</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>θ</mi></mrow></semantics></math> as <span class="m">\(\dfrac{\cosh(2\theta) + 1}{2}\)</span><math><semantics><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>cosh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><mn>2</mn></mfrac></mstyle></mrow></semantics></math> (which is pretty much just the first binomial formula, quite neatly). This gives us
+					</p>
+					<p>
+						<span class="m">\[\int \frac{\cosh(2\theta) + 1}{2} \ d\theta = \frac{\sinh(2\theta)}{4} + \frac{\theta}{2}.\]</span><math display="block"><semantics><mrow><mo>∫</mo><mfrac><mrow><mi>cosh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><mn>2</mn></mfrac><mtext> </mtext><mi>d</mi><mi>θ</mi><mo>=</mo><mfrac><mrow><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>θ</mi><mo stretchy="false">)</mo></mrow><mn>4</mn></mfrac><mo>+</mo><mfrac><mi>θ</mi><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						(Plus <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math>, but shush, we'll want a definite integral in the end.)
+					</p>
+					<p>
+						Okay, but we're not quite there yet; we can't convert back anymore. We started with <span class="m">\(x = \sinh(\theta)\)</span><math><semantics><mrow><mi>x</mi><mo>=</mo><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></semantics></math>, and now we have <span class="m">\(\sinh(2\theta)\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>θ</mi><mo stretchy="false">)</mo></mrow></semantics></math>. That's okay though; we can use a similar identity to go back: <span class="m">\(\sinh(2\theta) = 2 \cdot \sinh(\theta) \cdot \cosh(\theta)\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mo>⋅</mo><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>cosh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></semantics></math>. (Pretty much just the <em>third</em> binomial formula.) Then <span class="m">\(\sinh(\theta)\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></semantics></math> becomes <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math>, and <span class="m">\(\cosh(\theta)\)</span><math><semantics><mrow><mi>cosh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></semantics></math> becomes <span class="m">\(\sqrt{x^2 + 1}\)</span><math><semantics><mrow><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow></semantics></math>, and we get our final answer:
+					</p>
+					<p>
+						<span class="m">\[\int \sqrt{x^2 + 1} \ dx = \frac{x \cdot \sqrt{x^2 + 1}}{2} + \frac{\sinh^{-1}(x)}{2}.\]</span><math display="block"><semantics><mrow><mo>∫</mo><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mrow><mi>x</mi><mo>⋅</mo><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow><mn>2</mn></mfrac><mo>+</mo><mfrac><mrow><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mrow></semantics></math>
+					</p>
+					<p>
+						What a funky integral indeed! Who would've thought that the integral of <span class="m">\(\sqrt{x^2 + 1}\)</span><math><semantics><mrow><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow></semantics></math> would have <em>inverse hyperbolic sine</em> in it.
+					</p>
+					<p>
+						So that's the area between the unit hyperbola and the <span class="m">\(y\)</span><math><semantics><mrow><mi>y</mi></mrow></semantics></math>-axis. To get our desired sector, we need to subtract the bit subtended by a straight line directly from <span class="m">\((0, 0)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math> to a point on the hyperbola, namely <span class="m">\((\sqrt{f(t)^2 + 1}, f(t))\)</span><math><semantics><mrow><mo stretchy="false">(</mo><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></semantics></math>. That's just a right triangle, and the area of a triangle is half base times height, where the base is the <span class="m">\(y\)</span><math><semantics><mrow><mi>y</mi></mrow></semantics></math>-coordinate, <span class="m">\(f(t)\)</span><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></semantics></math>, and the height is the <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math>-coordinate, <span class="m">\(\sqrt{f(t)^2 + 1}\)</span><math><semantics><mrow><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow></semantics></math>. Putting it all together:
+					</p>
+					<p>
+						<span class="m">\[
+							\begin{array}{l}
+								\text{area of arc} \\[1ex]
+								= \text{area under hyperbola} - \text{area of triangle} \\[1ex]
+								= \displaystyle \int \sqrt{x^2 + 1} \ dx \Bigg|_0^{f(t)} \ -
+								\frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} \\[4ex]
+								= \displaystyle \frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} +
+								\frac{\sinh^{-1}(f(t))}{2} -
+								\frac{f(t) \cdot \sqrt{f(t)^2 + 1}}{2} \\[4ex]
+								= \displaystyle \frac{\sinh^{-1}(f(t))}{2}.
+							\end{array}
+						\]</span><span class="katex"><math display="block"><semantics><mtable rowspacing="0.16em" columnalign="left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>area of arc</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mtext>area under hyperbola</mtext><mo>−</mo><mtext>area of triangle</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mo>∫</mo><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt><mtext> </mtext><mi>d</mi><mi>x</mi><msubsup><mo fence="false" stretchy="true" minsize="3em" maxsize="3em">∣</mo><mn>0</mn><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msubsup><mtext> </mtext><mo>−</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>⋅</mo><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow><mn>2</mn></mfrac></mstyle></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>⋅</mo><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow><mn>2</mn></mfrac><mo>+</mo><mfrac><mrow><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mo>−</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>⋅</mo><msqrt><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></msqrt></mrow><mn>2</mn></mfrac></mstyle></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><msup><mrow><mi>sinh</mi><mo>⁡</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mstyle></mrow></mstyle></mtd></mtr></mtable></semantics></math></span>
+					</p>
+					<p>
+						And since we want it to be equal to <span class="m">\(t/2\)</span><math><semantics><mrow><mi>t</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></semantics></math>, that means our <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> must be <span class="m">\(\sinh\)</span><math><semantics><mrow><mi>sinh</mi><mo>⁡</mo></mrow></semantics></math>. That is, <span class="m">\(\displaystyle \frac{e^x - e^{-x}}{2}\)</span><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mn>2</mn></mfrac></mstyle></mrow></semantics></math>.
+					</p>
+					<p>
+						So, yes, the “hyperbolic” functions with those weird combinations of <span class="m">\(e^x\)</span><math><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup></mrow></semantics></math> and <span class="m">\(e^{-x}\)</span><math><semantics><mrow><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></semantics></math> do really characterize a hyperbola. But the fact that they do is little more than an exercise in calculus as a consequence of their real significance: that they're their own second derivatives.
+					</p>
+					<p>
+						Thank you for reading.
+					</p>
+				</section>
+				<hr id="end-of-body">
+				<section id="blog-post-footnotes">
+					<h2 id="footnotes">Footnotes</h2>
+					<ol>
+						<li id="footnote-hilberts-hotel">
+							Wikipedia: <a href="https://en.wikipedia.org/wiki/Hilbert%27s_paradox_of_the_Grand_Hotel">Hilbert's paradox of the Grand Hotel</a>.
+							<a class="back" href="#hilberts-hotel" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-convergence">
+							This sum does indeed converge for every <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math>, so this function is indeed well-defined for all real numbers. There's probably several ways to verify this: here's one I came up with. First, I gotta spoil that those denominators are factorials: the summands are <span class="m">\(\frac{x^n}{n!}\)</span><math><semantics><mrow><mfrac><msup><mi>x</mi><mi>n</mi></msup><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac></mrow></semantics></math> for <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math> from 0 to infinity. (The factorials come from repeatedly applying the power rule; you multiply by <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math> but lower the exponent to <span class="m">\(n - 1\)</span><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></semantics></math>, so next time you'll multiply by <span class="m">\(n - 1\)</span><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></semantics></math>, and so on.) Note that <span class="m">\(n!\)</span><math><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></semantics></math>, being <span class="m">\(1 \cdot 2 \cdot 3 \cdot \ldots \cdot n\)</span><math><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>2</mn><mo>⋅</mo><mn>3</mn><mo>⋅</mo><mo>…</mo><mo>⋅</mo><mi>n</mi></mrow></semantics></math>, is the same as the geometric mean of all the numbers from 1 to <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>, raised to the power <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math>. As <span class="m">\(n\)</span><math><semantics><mrow><mi>n</mi></mrow></semantics></math> increases, that geometric mean increases without bound; in particular, it always eventually exceeds any fixed <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math>. In fact, it even eventually exceeds <span class="m">\(2x\)</span><math><semantics><mrow><mn>2</mn><mi>x</mi></mrow></semantics></math>; from that point onwards, <span class="m">\(\frac{x^n}{n!}\)</span><math><semantics><mrow><mfrac><msup><mi>x</mi><mi>n</mi></msup><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac></mrow></semantics></math> is always less than <span class="m">\(\frac{x^n}{(2x)^n} = \left( \frac{1}{2} \right)^n\)</span><math><semantics><mrow><mfrac><msup><mi>x</mi><mi>n</mi></msup><mrow><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></mfrac><mo>=</mo><msup><mrow><mo fence="true">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo fence="true">)</mo></mrow><mi>n</mi></msup></mrow></semantics></math>, so the rest of the terms from that point onwards are bounded from above by a geometric series with common ratio <span class="m">\(\frac{1}{2}\)</span><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></semantics></math>. And we know that that series converges, so our original series also does. For large <span class="m">\(x\)</span><math><semantics><mrow><mi>x</mi></mrow></semantics></math> it can converge to something very big; after all, all we know is that <em>eventually</em> it'll turn to something smaller than a geometric series, and that “eventually” could take a very long time. But it will always be finite: the part before the Eventually will always have finitely many terms, and the part after the Eventually is always bounded by a geometric series.
+							<a class="back" href="#convergence" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-power-series">
+							I still did a little handwaving for the sake of simplicity; technically, we've only proven that our function is the only <em>power series</em> function which is its own derivative and takes the value 1 at 0 &ndash; we haven't excluded the possibility that there exist other such functions which can't be represented by an infinite polynomial. But resolving this gap is beyond the scope of this post.
+							<a class="back" href="#power-series" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-scaling-and-stretching">
+							You could prove this by either repeating the argument from above with these generalizations, or with a neat succinct indirect proof: suppose there existed another function <span class="m">\(f\)</span><math><semantics><mrow><mi>f</mi></mrow></semantics></math> whose derivative was <span class="m">\(\lambda\)</span><math><semantics><mrow><mi>λ</mi></mrow></semantics></math> times itself and which took the value <span class="m">\(C\)</span><math><semantics><mrow><mi>C</mi></mrow></semantics></math> at 0; then <span class="m">\(\frac{1}{C} f(x/\lambda)\)</span><math><semantics><mrow><mfrac><mn>1</mn><mi>C</mi></mfrac><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">/</mi><mi>λ</mi><mo stretchy="false">)</mo></mrow></semantics></math> would be a function other than <span class="m">\(\text{IIOD}\)</span><math><semantics><mrow><mtext>IIOD</mtext></mrow></semantics></math> equal to its own derivative and taking the value 1 at 0, a contradiction.
+							<a class="back" href="#scaling-and-stretching" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-real-exponents">
+							Exponentiation with a rational number can be defined relatively simply as <span class="m">\(x^{p/q} = \sqrt[q]{x^p}\)</span><math><semantics><mrow><msup><mi>x</mi><mrow><mi>p</mi><mi mathvariant="normal">/</mi><mi>q</mi></mrow></msup><mo>=</mo><mroot><msup><mi>x</mi><mi>p</mi></msup><mi>q</mi></mroot></mrow></semantics></math>. Exponentiation with arbitrary <em>real</em> numbers, on the other hand, is a lot trickier to define. It basically requires proving that exponentiation is a continuous function (at every point except <span class="m">\((0, 0)\)</span><math><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></semantics></math>), and then “filling in the gaps”. Illustratively, if for, say, <span class="m">\(\sqrt{2}\)</span><math><semantics><mrow><msqrt><mn>2</mn></msqrt></mrow></semantics></math>, we pick some sequence <span class="m">\(q_n\)</span><math><semantics><mrow><msub><mi>q</mi><mi>n</mi></msub></mrow></semantics></math> of rational numbers that converges to it (say, 1, 1.4, 1.41, 1.414, &hellip;), then the sequence <span class="m">\(2^{q_n}\)</span><math><semantics><mrow><msup><mn>2</mn><msub><mi>q</mi><mi>n</mi></msub></msup></mrow></semantics></math> will always converge to the same value <span class="m">\(r\)</span><math><semantics><mrow><mi>r</mi></mrow></semantics></math> no matter which sequence <span class="m">\(q_n\)</span><math><semantics><mrow><msub><mi>q</mi><mi>n</mi></msub></mrow></semantics></math> we picked: we define <span class="m">\(2^{\sqrt{2}}\)</span><math><semantics><mrow><msup><mn>2</mn><msqrt><mn>2</mn></msqrt></msup></mrow></semantics></math> to be this <span class="m">\(r\)</span><math><semantics><mrow><mi>r</mi></mrow></semantics></math>.
+							<a class="back" href="#real-exponents" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-limits">
+							Plus the operation of taking a limit, technically.
+							<a class="back" href="#limits" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-complex-numbers">
+							I'm omitting some details here again; we'd need to prove that all our arguments so far are also valid when extending from the real numbers into the complex numbers. In particular, the notion of derivative is kinda tricky in the complex world, so this is by no means trivial.
+							<a class="back" href="#complex-numbers" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-second-derivative">
+							I don't have a handy, easy-to-understand proof for this, sadly; you'll have to take my word for it or look it up yourself if you feel up to it.
+							<a class="back" href="#second-derivative" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-abuse-of-notation">
+							Heck, this only gets worse: the same abuse of notation is used to take <a href="https://en.wikipedia.org/wiki/Matrix_exponential">matrix exponents</a> and even <a href="https://youtu.be/VI6ZlnkuxuA">exponential derivatives</a>.
+							<a class="back" href="#abuse-of-notation" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-unit-circle">
+							Once again, I swept some details under the rug. Technically, acceleration negatively proportional to displacement isn't <em>always</em> circular motion; after all, a spring oscillating under Hooke's law doesn't move in a circle. But it's still <em>almost</em> circular motion; the circle is just “squashed” into one dimension. As long as the motion really is two-dimensional, it's circular. More interestingly, even if it follows a circle, it's not necessarily the <em>unit</em> circle, and nobody said it moves around the circle with the same speed as <span class="m">\(\cos\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sin\)</span><math><semantics><mrow><mi>sin</mi><mo>⁡</mo></mrow></semantics></math> &ndash; that is, with period <span class="m">\(2\pi\)</span><math><semantics><mrow><mn>2</mn><mi>π</mi></mrow></semantics></math>. These are all fascinating details, and ones I sadly won't go into. I'll just leave the interested readers with a hint that <span class="m">\(2\pi\)</span><math><semantics><mrow><mn>2</mn><mi>π</mi></mrow></semantics></math> is the “natural” period of <span class="m">\(\cos\)</span><math><semantics><mrow><mi>cos</mi><mo>⁡</mo></mrow></semantics></math> and <span class="m">\(\sin\)</span><math><semantics><mrow><mi>sin</mi><mo>⁡</mo></mrow></semantics></math> at which their slopes achieve a maximum inclination of exactly <span class="m">\(\pm 1\)</span><math><semantics><mrow><mo>±</mo><mn>1</mn></mrow></semantics></math>.
+							<a class="back" href="#unit-circle" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-prosthaphaeresis">
+							Wikipedia: <a href="https://en.wikipedia.org/wiki/Prosthaphaeresis">Prosthaphaeresis</a>.
+							<a class="back" href="#prosthaphaeresis" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-just-for-fun">
+							I like calling them “coshine” and “shine”. Just for fun.
+							<a class="back" href="#just-for-fun" title="back to text" aria-label="back to text">↩</a>
+						</li>
+						<li id="footnote-hyperbolic-motion">
+							So maybe motion in which acceleration is proportional to displacement with a <em>positive</em> proportionality factor should be called “hyperbolic motion”.
+							<a class="back" href="#hyperbolic-motion" title="back to text" aria-label="back to text">↩</a>
+						</li>
+					</ol>
+				</section>
+				<hr>
+				<p class="back-to-top">(<a href="#">back to top</a>)</p>
+			</div>
+		</main>
+		<footer>
+			<iframe id="footer-i" title="Footer" src="../__footer.html"></iframe>
+		</footer>
+	</body>
+</html>

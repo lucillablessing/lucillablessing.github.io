@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"allowArbitraryExtensions": true,
+		"allowImportingTsExtensions": true,
+		"lib": ["es2021", "dom"],
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"resolveJsonModule": true,
+		"strict": true,
+		"typeRoots": ["src/node/node_modules/@types"],
+		"types": ["node"]
+	}
+}

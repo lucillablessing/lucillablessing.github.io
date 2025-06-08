@@ -1,6 +1,8 @@
 {
 	"include": ["ts/**/*"],
 	"compilerOptions": {
+		"allowArbitraryExtensions": true,
+		"allowSyntheticDefaultImports": true,
 		"module": "esnext",
 		"moduleResolution": "node",
 		"newLine": "crlf",

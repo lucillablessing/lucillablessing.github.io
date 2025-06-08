@@ -74,6 +74,11 @@
 	text-decoration: underline;
 }
 
+.writing-gallery article {
+	/* to hide whitespace nodes between h2 and small */
+	font-size: 0;
+}
+
 .writing-gallery h2 {
 	display: inline-block;
 	font-size: 22px;
@@ -87,11 +92,15 @@
 }
 
 .writing-gallery p, .writing-gallery ul {
+	margin-bottom: 0;
+	padding-top: var(--writing-gallery-p-padding-top);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.writing-gallery p, .writing-gallery li {
 	font-size: 16px;
 	line-height: 22px;
-	margin-bottom: 0;
-	padding-left: 0;
-	padding-top: var(--writing-gallery-p-padding-top);
 }
 
 .writing-gallery small {

@@ -15,7 +15,7 @@
  * instead of throwing errors when it runs or even silently misbehaving.
  * JavaScript is particularly bad with "making the best out of" wrong types:
  * in an expression like `2 + true`, which shouldn't make sense, `true` gets
- * automatically converted to `1` and the expression evaluates to `3`. this
+ * automatically converted to `1` and the expression evaluates to `3`. This
  * might sound good on paper, but in practice it harms more than it helps, by
  * making it harder to spot bugs later down the line, because its quirky
  * behaviors are rarely what programmers intend. TypeScript prevents this sort
@@ -48,18 +48,23 @@
 // ## Imports
 
 import {
+	type Null,
+	type UrlString,
+	type Calendar,
 	imgPath,
 	svgPath,
 	svgNS,
 	navHeight,
 	transitionLength,
-	Null,
-	Maybe,
-	just,
+	calendars,
+	isCalendar,
 	executeOnLoad,
 	getSessionBool,
-	setSessionBool,
+	getSessionCalendar,
+	just,
 	randomIntInRange,
+	setSessionBool,
+	setSessionCalendar,
 	toggleElement,
 } from "./utils.ts";
 
@@ -69,12 +74,13 @@ import {
 
 /**
  * This section just has two simple enum types: `ColorScheme` and `Direction`.
- * They're both pretty self-explanatory. Each consists of just two constant
- * string values.
+ * They're both pretty self-explanatory.
  */
 
-type ColorScheme = "dark" | "light";
-type Direction   = "left" | "right";
+type ColorScheme       = "dark"    | "light";
+type Direction         = "left"    | "right";
+// type Dimension      = "width"   | "height";
+// type LuciSuperpower = "zashing" | "flight";
 
 
 
@@ -84,8 +90,7 @@ type Direction   = "left" | "right";
  * To begin with, there's a gigantic number of global variables for HTML
  * elements, all of which we'll attempt to get from the document by their IDs.
  * Not all will exist on every page; the ones that might not are marked with a
- * `Null<...>` type (or sometimes a `Maybe<...>` type, which also includes
- * `undefined`, for convenience with the nullish coalescing operator).
+ * `Null<...>` type.
  * 
  * Next, we have five boolean variables that control global toggles for the
  * site: `isBubbled` whether bubbles are visible, `isDark` whether the site is
@@ -94,57 +99,90 @@ type Direction   = "left" | "right";
  * the dropdown menu on mobile is open. Only `isTopnavOpen` gets initialized;
  * the remaining variables will first attempt to get their values from session
  * storage, so they can carry over from the previous page.
+ * 
+ * Finally, we have a variable for the active calendar. It, tooz, doesn't get
+ * initialized, because we get its value from session storage.
+ * 
+ * Many of the functions here read and write these global variables directly,
+ * rather than taking them as arguments or returning them. It makes their
+ * signatures quite a bit simpler, even if the clarity of the code suffers a
+ * tiny bit as a result.
  */
 
-let html:            HTMLElement;
-let body:            HTMLElement;
-let banner:          Null<HTMLImageElement>;
-let pigeon:          Null<HTMLImageElement>;
-let header:          Null<HTMLIFrameElement>;
-let footer:          Null<HTMLIFrameElement>;
-let bubbleSpace:     Null<HTMLElement>;
-let headerRoot:      Maybe<Document>;
-let footerRoot:      Maybe<Document>;
-let headerHtml:      Maybe<HTMLElement>;
-let footerHtml:      Maybe<HTMLElement>;
-let topnavLinks:     Maybe<HTMLElement>;
-let animationButton: Maybe<HTMLElement>;
-let bubbleButton:    Maybe<HTMLElement>;
-let lightDarkButton: Maybe<HTMLElement>;
-let topnavBarButton: Maybe<HTMLElement>;
-let verbalButton:    Maybe<HTMLElement>;
+let html:             HTMLElement;
+let body:             HTMLElement;
+let banner:           Null<HTMLImageElement>;
+let pigeon:           Null<HTMLImageElement>;
+let header:           Null<HTMLIFrameElement>;
+let footer:           Null<HTMLIFrameElement>;
+let bubbleSpace:      Null<HTMLElement>;
+let calendarFieldset: Null<HTMLFieldSetElement>;
+let headerRoot:       Null<Document>;
+let footerRoot:       Null<Document>;
+let headerHtml:       Null<HTMLElement>;
+let footerHtml:       Null<HTMLElement>;
+let topnavLinks:      Null<HTMLElement>;
+let animationButton:  Null<HTMLElement>;
+let bubbleButton:     Null<HTMLElement>;
+let lightDarkButton:  Null<HTMLElement>;
+let topnavBarButton:  Null<HTMLElement>;
+let verbalButton:     Null<HTMLElement>;
 
-let isBubbled:  boolean;
-let isDark:     boolean;
-let isAnimated: boolean;
-let isVerbal:   boolean;
-let isTopnavOpen = false;
+let isBubbled:    boolean;
+let isDark:       boolean;
+let isAnimated:   boolean;
+let isVerbal:     boolean;
+let isTopnavOpen: boolean = false;
+
+let activeCalendar: Calendar;
 
 
 
 // ## Functions
 
+
 /**
- * `getOptions`
+ * Fetch a Calendar from session storage and also update the calendar selection
+ * widget, if one is present on the page, to have that one preselected.
+ */
+function getCalendar(): void {
+	// If no Calendar is saved in session storage, default to Gregorian.
+	// We wouldn't want to confuse anyone with the Blessing calendar.
+	// It's meant to be just for fun.
+	activeCalendar = getSessionCalendar("calendar") ?? "gregorian";
+	// If this page has a calendar selection widget, make it visible. That's
+	// because they should be *in*visible by default, since they don't do
+	// anything without JavaScript; they should only become visible once we
+	// know for sure that JavaScript is active, and wouldn't you know it, we
+	// know that by the fact that we're executing this code.
+	if (calendarFieldset) {
+		toggleElement(calendarFieldset, true);
+		// Make the widget preselect the calendar we just got from session
+		// storage.
+		for (const control of calendarFieldset.children) {
+			if (control instanceof HTMLInputElement) {
+				const calendar = control.getAttribute("data-luci-calendar");
+				control.checked = calendar === activeCalendar;
+			}
+		}
+	}
+}
+
+
+/**
  * Initialize the four global toggles (all but `isTopnavOpen`), by first trying
  * to fetch them from session storage, and if they're not found there, giving
  * them sensible default values.
  */
-function getOptions() {
+function getOptions(): void {
 	// If `isDark` isn't found in session storage, set it to whether the
-	// browser prefers dark color schemes. (`??` is the "nullish coalescing
-	// operator"; `a ?? b` means "`a`, if it's not `undefined` or `null`;
-	// otherwise, `b`". This is one of the operators that gets rewritten to its
-	// literal meaning in the JavaScript code, because it's relatively new to
-	// JavaScript (added in 2020), so the TypeScript transpiler converts it for
-	// compatibility.)
+	// browser prefers dark color schemes.
 	isDark = (
 		getSessionBool("isDark") ??
 		window.matchMedia("(prefers-color-scheme: dark)").matches
 	);
 	// If `isAnimated` isn't found in session storage, set it to whether the
-	// browser DOESN'T prefer reduced motion. (If it does, make it `false`;
-	// otherwise, make it `true`.)
+	// browser DOESN'T prefer reduced motion. (It makes sense.)
 	isAnimated = (
 		getSessionBool("isAnimated") ??
 		!window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -157,61 +195,53 @@ function getOptions() {
 
 
 /**
- * `makeBubble`
+ * @param bubbleSpace     - HTML element housing the bubbles.
+ * @param bubbleSpaceSize - Approximate percentage of the viewport width.
+ * @param direction       - Screen half to make the bubble in.
+ * 
  * Makes a bubble on the side of the screen, anywhere within the specified
  * `bubbleSpaceSize` (roughly speaking, a percentage of the viewport width; see
  * the function `makeBubbles` below for specifics) and in the specified
  * `direction` (either "left" or "right").
  */
-function makeBubble(bubbleSpaceSize: number, direction: Direction) {
-	// If the page has a `bubbleSpace` element, where the bubbles live, then do
-	// stuff. (Didn't I already check for that in `makeBubbles`, below? I
-	// sadly have to check a second time, because TypeScript won't propagate
-	// type inference through function calls like that. Why won't I just use a
-	// non-null assertion? I try not to have any type assertions, because
-	// they're unsafe. Better test twice than bug once, in this case.)
-	if (bubbleSpace) {
-		// Choose a random size for the bubble between 32px and 192px.
-		const bubbleSize = randomIntInRange(32, 192);
-		// Create an SVG for the bubble, and within it, a `<circle>` element.
-		const svg    = document.createElementNS(svgNS, "svg");
-		const circle = document.createElementNS(svgNS, "circle");
-		svg.appendChild(circle);
-		// For CSS styling and transition purposes, give it the "bubble" class.
-		svg.classList.add("bubble");
-		// Set its width and height both to `bubbleSize` (converted to a
-		// string, because SVG is weird like that).
-		svg.setAttribute("width", bubbleSize.toString());
-		svg.setAttribute("height", bubbleSize.toString());
-		// Make it pop itself when clicked.
-		svg.onclick = () => { popBubble(svg); };
-		// Make it hidden to assistive tech.
-		svg.ariaHidden = "true";
-		// If bubbles are toggled off, make it hidden altogether.
-		if (!isBubbled) svg.style.display = "none";
-		// Choose a random position on the screen: x anywhere from 2% to
-		// bubbleSpaceSize%, and y anywhere from 10% to 80%.
-		const xPos = `${randomIntInRange(2, bubbleSpaceSize)}%`;
-		const yPos = `${randomIntInRange(10, 80)}%`;
-		// Set the bubble's position.
-		svg.style.top = yPos;
-		if (direction === "right") {
-			svg.style.right = xPos;
-		} else {
-			svg.style.left  = xPos;
-		}
-		// Add the bubble to the bubble space.
-		bubbleSpace.appendChild(svg);
+function makeBubble(
+	bubbleSpace:     HTMLElement,
+	bubbleSpaceSize: number,
+	direction:       Direction
+): void {
+	// Make a bubble!
+	const svg    = document.createElementNS(svgNS, "svg");
+	const circle = document.createElementNS(svgNS, "circle");
+	svg.appendChild(circle);
+	svg.classList.add("bubble");
+	// Give it a random diameter between 32px and 192px.
+	const bubbleSize = randomIntInRange(32, 192);
+	svg.setAttribute("width", bubbleSize.toString());
+	svg.setAttribute("height", bubbleSize.toString());
+	// Make it pop itself when clicked.
+	svg.onclick = () => { popBubble(svg); };
+	// If bubbles are toggled off, make it hidden altogether.
+	if (!isBubbled) svg.style.display = "none";
+	// Choose a random position on the screen: x anywhere from 2% to
+	// bubbleSpaceSize%, and y anywhere from 10% to 80%.
+	const xPos = `${randomIntInRange(2, bubbleSpaceSize)}%`;
+	const yPos = `${randomIntInRange(10, 80)}%`;
+	// Set the bubble's position.
+	svg.style.top = yPos;
+	if (direction === "right") {
+		svg.style.right = xPos;
+	} else {
+		svg.style.left  = xPos;
 	}
+	// Add the bubble to the bubble space.
+	bubbleSpace.appendChild(svg);
 }
 
 
 /**
- * `makeBubbles`
- * Populates the "bubble space" with bubbles, if it exists.
+ * Populates the "bubble space" with bubbles.
  */
-function makeBubbles() {
-	// If the page has a `bubbleSpace` element, where the bubbles live:
+function makeBubbles(): void {
 	if (bubbleSpace) {
 		// Choose how many left and right bubbles to generate: 1, 2, 3, or 4.
 		const numberOfLeftBubbles  = randomIntInRange(1, 5);
@@ -220,13 +250,7 @@ function makeBubbles() {
 		// attribute. ("data" is a prefix for custom attributes; "luci" is
 		// another prefix I use for those that I defined.) It's stored as a
 		// string, so I need to convert it to a number. If it wasn't found,
-		// choose 10 as a default. (Converting the number 10 to a number does
-		// nothing, but it's not an error either. (Shouldn't the nullish
-		// coalescing be outside the `Number` function? Sadly no, because
-		// `Number` converts `null` to 0, and 0 isn't nullish. I could replace
-		// `??` with `||`, a logical "or", but that'd just obfuscate the
-		// code.))
-
+		// choose 10 as a default.
 		// The "size" is a percentage of the viewport width, and specifies how
 		// far from the left or right border a bubble can spawn. For instance,
 		// a size of 10 means bubbles can only spawn in the leftmost 10% or the
@@ -236,22 +260,25 @@ function makeBubbles() {
 		);
 		// Make the left and right bubbles by calling `makeBubble` n times,
 		// where n = `numberOfLeftBubbles` or `numberOfRightBubbles`.
+		// (Why am I passing the bubble space itself as an argument to
+		// `makeBubble`, when it's a global variable? This is a neat trick to
+		// help TypeScript renember that `bubbleSpace` isn't null even "within"
+		// a nested function.)
 		for (let i = 0; i < numberOfLeftBubbles; i++) {
-			makeBubble(bubbleSpaceSize, "left");
+			makeBubble(bubbleSpace, bubbleSpaceSize, "left");
 		}
 		for (let i = 0; i < numberOfRightBubbles; i++) {
-			makeBubble(bubbleSpaceSize, "right");
+			makeBubble(bubbleSpace, bubbleSpaceSize, "right");
 		}
 	}
 }
 
 
 /**
- * `makeButtonListeners`
  * Gives the toggle buttons "event listeners", that is, makes them responsive
  * to click events by calling functions when they're clicked.
  */
-function makeButtonListeners() {
+function makeButtonListeners(): void {
 	// Loop over all five buttons paired with corresponding functions.
 	// (The "as const" is just for TypeScript to infer types correctly.
 	// Otherwise, it fails to recognize this as an array of 2-tuples and thinks
@@ -268,7 +295,8 @@ function makeButtonListeners() {
 		// a click event, and when it happens, call its corresponding function.
 		if (button) button.addEventListener(
 			// (Wrap the function in an arrow expression to "force" its arity
-			// to 0.)
+			// to 0, since some of these functions have optional arguments, and
+			// JavaScript would try to force the ClickEvent into there.)
 			"click", () => { onClick(); }
 		);
 	}
@@ -276,10 +304,9 @@ function makeButtonListeners() {
 
 
 /**
- * `makeButtonsVisible`
- * Makes the buttons visible. See below to understand why.
+ * Makes the buttons visible.
  */
-function makeButtonsVisible() {
+function makeButtonsVisible(): void {
 	// We're toggling all the buttons to be visible, because by default, in the
 	// source HTML files, they're made invisible. This is so that they stay
 	// invisible if the page doesn't load JavaScript. In that case, they don't
@@ -301,22 +328,42 @@ function makeButtonsVisible() {
 
 
 /**
- * `makeVerbal`
+ * Gives the calendar widget, if any, "event listeners".
+ */
+function makeCalendarWidgetListeners(): void {
+	if (calendarFieldset) {
+		for (const control of calendarFieldset.children) {
+			if (control instanceof HTMLInputElement) {
+				control.addEventListener("change", setCalendar);
+			}
+		}
+	}
+}
+
+
+/**
+ * @param button - Button to make verbal.
+ * @param text   - Text the button should display when verbal.
+ * 
  * Makes the `button` verbal (so it displays `text` rather than an SVG icon).
  */
-function makeVerbal(button: HTMLElement, text: string) {
-	// Remove the ARIA label, since it's not necessary when there's text.
+function makeVerbal(button: HTMLElement, text: string): void {
 	button.ariaLabel   = null;
 	button.textContent = text;
 }
 
 
 /**
- * `makeNonverbal`
+ * @param button - Button to make nonverbal.
+ * @param src    - Source of SVG icon to display in the button.
+ * @param alt    - Alt text for the SVG icon.
+ * 
  * Makes the `button` nonverbal (so it displays an SVG icon at path `src` with
  * label `alt`, rather than text).
  */
-function makeNonverbal(button: HTMLElement, src: string, alt: string) {
+function makeNonverbal(
+	button: HTMLElement, src: UrlString, alt: string
+): void {
 	// `.replaceChildren();` is a quick and dirty way to clear all child
 	// elements (https://stackoverflow.com/a/65413839). In this case, we're
 	// just removing the button's only child element, a text node.
@@ -336,36 +383,37 @@ function makeNonverbal(button: HTMLElement, src: string, alt: string) {
 
 
 /**
- * `popBubble`
- * Pops `bubble`. (This is just one statement, but in case I was going to add
- * more, I put it in its own function.)
+ * @param bubble - Bubble to pop.
+ * 
+ * Pops `bubble`.
  */
-function popBubble(bubble: SVGSVGElement) {
+function popBubble(bubble: SVGSVGElement): void {
 	// Add "popped" to the classes of `bubble`. CSS transitions do the rest.
+	// (This is just one statement, but in case I was going to add
+	// more, I put it in its own function.)
 	bubble.classList.add("popped");
 }
 
 
 /**
- * `setActiveLink`
- * Changes the "active" link in the topnav to be the current page. (I *could*
- * do this manually on a per-page basis, but that would require me to repeat
- * the topnav code in every html file except for the active link being
- * different each time. I embed the topnav through an `<iframe>` instead,
- * specifically so I can avoid this repetition, which means I need to adjust it
- * dynamically using this function.)
+ * Changes the "active" link in the topnav to be the current page.
  */
-function setActiveLink() {
-	// If the topnav links exist:
+function setActiveLink(): void {
+	// (I *could* do this manually on a per-page basis, but that would require
+	// me to repeat the topnav code in every html file except for the active
+	// link being different each time. I embed the topnav through an `<iframe>`
+	// instead, specifically so I can avoid this repetition, which means I need
+	// to adjust it dynamically using this function. (This behavior might
+	// change in the future, since I already set up some pages to use a kind of
+	// custom-coded static site generation.))
 	if (topnavLinks) {
-		// Firstly, make them all inactive.
+		// Firstly, make the topnav links all inactive.
 		for (const link of topnavLinks.querySelectorAll("a")) {
 			link.classList.remove("active");
 		}
 		// Figure out what page we're on, by getting it from the
 		// "data-luci-page" attribute of the `<body>` element.
 		const currentPage = body.getAttribute("data-luci-page");
-		// If that attribute exists:
 		if (currentPage) {
 			// Copy it to the header and footer. This is necessary for some CSS
 			// to work correctly.
@@ -381,8 +429,8 @@ function setActiveLink() {
 				if (link.getAttribute("data-luci-link") === currentPage) {
 					link.classList.add("active");
 					// There's at most one such link, so once we found one, we
-					// can break out of the loop.
-					break;
+					// can quit the function.
+					return;
 				}
 			}
 		}
@@ -391,21 +439,19 @@ function setActiveLink() {
 
 
 /**
- * `setBannerAndPigeon`
  * Updates the banner and pigeon image sources dynamically, when the toggles
  * for dark mode and animations change.
- * 
- * The website banner appears on the homepage (`index.html`), and an image of a
- * pigeon appears on the "not found" page (`404.html`). They're both static in
- * light mode, but can have animations in dark mode, which can be turned off.
  */
-function setBannerAndPigeon() {
-	// If we're in dark mode:
+function setBannerAndPigeon(): void {
+	// The website banner appears on the homepage (`index.html`), and an image
+	// of a pigeon appears on the "not found" page (`404.html`). They're both
+	// static in light mode, but can have animations in dark mode, which can be
+	// turned off.
 	if (isDark) {
-		// Then the images have a static version and an animated one. Choose
-		// which one to apply. The file names are identical, except that the
-		// static one is a png and the animated one is a gif. (`a ? b : c`
-		// means "if `a` is true, pick `b`; otherwise, pick `c`".)
+		// If we're in dark mode, then the images have a static version and an
+		// animated one. Choose which one to apply. The file names are
+		// identical, except that the static one is a png and the animated one
+		// is a gif.
 		const ext = isAnimated ? "gif" : "png";
 		// If the banner and pigeon exist, respectively, update their sources
 		// to the file with the right extension.
@@ -420,10 +466,46 @@ function setBannerAndPigeon() {
 
 
 /**
- * `setLightBackground`
- * Sets a "fancy" light background. See below to understand why.
+ * Updates the `activeCalendar` global variable to match a calendar selection
+ * widget, whenever its state changes. Also update any dates in the text to
+ * display their dates in the correct format (which is the whole point of the
+ * calendar selection widget).
  */
-function setLightBackground() {
+function setCalendar(): void {
+	if (calendarFieldset) {
+		for (const control of calendarFieldset.children) {
+			if (control instanceof HTMLInputElement && control.checked) {
+				const calendar = control.getAttribute("data-luci-calendar");
+				if (calendar && isCalendar(calendar)) {
+					// If an `<input>` for configuring a calendar is checked,
+					// then after some sanity checks, assign the activeCalendar
+					// global variable to it and save it to session storage.
+					// There can be at most one such `<input>`, so break out of
+					// the loop.
+					activeCalendar = calendar;
+					setSessionCalendar("calendar", activeCalendar);
+					break;
+				}
+			}
+		}
+	}
+	for (const calendar of calendars) {
+		// Look for elements with a class named "date-<calendar name>" and make
+		// sure that they're visible iff <calendar name> equals the currently
+		// active calendar.
+		for (const date of body.querySelectorAll(`.date-${calendar}`)) {
+			if (date instanceof HTMLElement) {
+				toggleElement(date, calendar === activeCalendar);
+			}
+		}
+	}
+}
+
+
+/**
+ * Sets a "fancy" light background.
+ */
+function setLightBackground(): void {
 	// Set the "--body-background-light" CSS property. This is "none" by
 	// default in the CSS file. Why? So it works better when JavaScript is
 	// disabled. Let me explain. Changing the background requires JavaScript,
@@ -446,22 +528,20 @@ function setLightBackground() {
 
 
 /**
- * `setNavHeights`
  * Sets the height of the expanded topnav on mobile by calculating it
  * dynamically as the number of links multiplied by its ordinary height.
- * (This wouldn't really be necessary if the topnav was directly included on
- * the page, since then it would just overlap elements below it. But since I'm
- * including it from an `<iframe>` -- so I can avoid repeating the code for it
- * on every new page -- making it taller would just make it create a scrollbar,
- * which is definitely not what I want. (By the way, the default "safe" value
- * for when the page doesn't load JavaScript is "50vh", half of the viewport
- * height. It's not guaranteed to work, but it's good enough.))
  */
-function setNavHeights() {
-	// If the topnav links exist:
+function setNavHeights(): void {
+	// (This wouldn't really be necessary if the topnav was directly included
+	// on the page, since then it would just overlap with elements below it.
+	// But since I'm including it from an `<iframe>` -- so I can avoid
+	// repeating the code for it on every new page -- making it taller would
+	// just make it create a scrollbar, which is definitely not what I want.
+	// (By the way, the default "safe" value for when the page doesn't load
+	// JavaScript is "50vh", half of the viewport height. It's not guaranteed
+	// to work, but it's good enough.))
 	if (topnavLinks) {
-		// Calculate `navHeightM` ("m" stands for "mobile") as the normal nav
-		// height times the number of links.
+		// Calculate `navHeightM` ("m" stands for "mobile").
 		const navHeightM = navHeight * (topnavLinks.childElementCount);
 		// Set the nav heights as global CSS properties, to allow the CSS file
 		// to refer to them.
@@ -472,12 +552,13 @@ function setNavHeights() {
 
 
 /**
- * `toggleAnimations`
+ * @param on - State to toggle animations to.
+ * 
  * Toggles animations on or off, depending on the value of the boolean `on`.
  * If `on` is omitted, the default is to truly "toggle", i.e. flip, by setting
  * it to the opposite of its previous value.
  */
-function toggleAnimations(on: boolean = !isAnimated) {
+function toggleAnimations(on: boolean = !isAnimated): void {
 	// Update the `isAnimated` variable and save it to session storage.
 	isAnimated = on;
 	setSessionBool("isAnimated", isAnimated);
@@ -501,18 +582,17 @@ function toggleAnimations(on: boolean = !isAnimated) {
 
 
 /**
- * `toggleBubbles`
+ * @param on - State to toggle bubbles to.
+ * 
  * Toggles bubbles on or off, depending on the value of the boolean `on`.
  * If `on` is omitted, the default is to truly "toggle", i.e. flip, by setting
  * it to the opposite of its previous value.
  */
-function toggleBubbles(on: boolean = !isBubbled) {
+function toggleBubbles(on: boolean = !isBubbled): void {
 	// Update the `isBubbled` variable and save it to session storage.
 	isBubbled = on;
 	setSessionBool("isBubbled", isBubbled);
 	// Update the visibility of all the bubbles.
-	// For every SVG element with the "bubble" class...
-	// (don't ask me why the type is called "SVGSVGElement")
 	for (const bubble of document.querySelectorAll(".bubble")) {
 		if (bubble instanceof SVGSVGElement) {
 			// Toggle its visibility according to the value of `isBubbled`.
@@ -526,12 +606,13 @@ function toggleBubbles(on: boolean = !isBubbled) {
 
 
 /**
- * `toggleTheme`
+ * @param theme - Theme to toggle to.
+ * 
  * Toggles the theme between light or dark, depending on the value of `theme`.
  * If `theme` is omitted, the default is to truly "toggle", i.e. flip, by
  * setting it to the opposite of its previous value.
  */
-function toggleTheme(theme?: ColorScheme) {
+function toggleTheme(theme?: ColorScheme): void {
 	// Update the `isDark` variable and save it to session storage.
 	switch (theme) {
 		case "dark":  isDark = true;  break;
@@ -547,7 +628,7 @@ function toggleTheme(theme?: ColorScheme) {
 	if (headerHtml) headerHtml.style.colorScheme = colorScheme;
 	if (footerHtml) footerHtml.style.colorScheme = colorScheme;
 	// If we're in dark mode, add the "dark-mode" class to the global element
-	// (and the header and footer, for the same reason.)
+	// (and the header and footer, for the same reason).
 	if (isDark) {
 		html.classList.add("dark-mode");
 		if (headerHtml) headerHtml.classList.add("dark-mode");
@@ -565,13 +646,14 @@ function toggleTheme(theme?: ColorScheme) {
 
 
 /**
- * `toggleTopnav`
+ * @param on - State to toggle the topnav to.
+ * 
  * Toggles the topnav to be expanded or contracted, depending on the value of
  * the boolean `on`.
  * If `on` is omitted, the default is to truly "toggle", i.e. flip, by setting
  * it to the opposite of its previous value.
  */
-function toggleTopnav(on: boolean = !isTopnavOpen) {
+function toggleTopnav(on: boolean = !isTopnavOpen): void {
 	isTopnavOpen = on;
 	// If the topnav is now open, add the "nav-open" class to the global
 	// element (and the header, for reasons explained above).
@@ -587,20 +669,20 @@ function toggleTopnav(on: boolean = !isTopnavOpen) {
 
 
 /**
- * `toggleVerbal`
+ * @param on - State to toggle verbal buttons to.
+ * 
  * Toggles verbal buttons on or off, depending on the value of the boolean
  * `on`.
  * If `on` is omitted, the default is to truly "toggle", i.e. flip, by setting
  * it to the opposite of its previous value.
  */
-function toggleVerbal(on: boolean = !isVerbal) {
+function toggleVerbal(on: boolean = !isVerbal): void {
 	// Update the `isVerbal` variable and save it to session storage.
 	isVerbal = on;
 	setSessionBool("isVerbal", isVerbal);
-	// If the header is loaded:
 	if (headerHtml) {
-		// If we've just gone verbal:
 		if (isVerbal) {
+			// If we've just gone verbal:
 			// Loop over all buttons other than the verbal button itself (which
 			// always has a text label) and make them verbal.
 			for (const [button, text] of [
@@ -648,79 +730,79 @@ function toggleVerbal(on: boolean = !isVerbal) {
 
 
 /**
- * `watchAnimations`
  * Adds an "event listener" to track when your preference for reduced motion
  * changes, and toggles animations when it does.
  */
-function watchAnimations() {
+function watchAnimations(): void {
 	window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener(
-		// Pass the negation of whether "prefers-reduced-motion: reduce"
-		// matches. In plainspeak: if you DO prefer reduced motion, DON'T do
-		// animations; if you DON'T, DO do them.
 		"change", e => { toggleAnimations(!e.matches); }
 	);
 }
 
 
 /**
- * `watchTheme`
  * Adds an "event listener" to track when your preference for dark mode
  * changes, and toggles the theme when it does.
  */
-function watchTheme() {
+function watchTheme(): void {
 	window.matchMedia("(prefers-color-scheme: dark)").addEventListener(
-		// If you prefer dark mode, pass "dark"; otherwise, pass "light".
 		"change", e => { toggleTheme(e.matches ? "dark" : "light"); }
 	);
 }
 
 
 /**
- * `main`
  * Do this once the page fully loads.
  */
-function main() {
+function main(): void {
 	// Get the fixed HTML elements on their page by their IDs.
 	// Feed `html` and `body` through `just(...)` so that TypeScript knows for
 	// sure that they exist (and aren't `null`).
 	html   = just(document.querySelector("html"));
 	body   = just(document.querySelector("body"));
 	// Next, get the banner (on the homepage), pigeon (on the 404 page),
-	// header, and footer. The type assertions here are a bit odd: basically,
-	// `getElementById` always returns a `Null<HTMLElement>`, but I need a more
-	// specific type than `HTMLElement` to do things later with these variables
-	// without TypeScript complaining. But the result could still be `null`,
-	// e.g. there is no banner on any page other than the homepage. That's
-	// where these weird types on the right-hand side come from.
-	banner = document.getElementById("banner")   as Null<HTMLImageElement>;
-	pigeon = document.getElementById("pigeon")   as Null<HTMLImageElement>;
-	header = document.getElementById("header-i") as Null<HTMLIFrameElement>;
-	footer = document.getElementById("footer-i") as Null<HTMLIFrameElement>;
-	// Get the bubble space, if it exists.
+	// header, footer, calendar fieldset (on the blog page), and bubble space.
+	// I can't quite just use `getElementById`, I need more specific types than
+	// just `HTMLElement` in some cases.
+	let _: Null<HTMLElement>;
 	bubbleSpace = document.getElementById("bubble-space");
-	// Get the header and footer root, if they exist. (The `?.` operator means
-	// (almost) the same as `.`, but protects against `null` values: `a?.b`
-	// means `undefined` if `a` is `null` or `undefined`, otherwise, it just
-	// means `a.b`. The fact that it produces `undefined`, rather than `null`,
-	// is why I needed the types of all this stuff to include `undefined`.)
-	headerRoot = header?.contentWindow?.document;
-	footerRoot = footer?.contentWindow?.document;
+	banner = (
+		_ = document.getElementById("banner")
+	) instanceof HTMLImageElement    ? _ : null;
+	pigeon = (
+		_ = document.getElementById("pigeon")
+	) instanceof HTMLImageElement    ? _ : null;
+	header = (
+		_ = document.getElementById("header-i")
+	) instanceof HTMLIFrameElement   ? _ : null;
+	footer = (
+		_ = document.getElementById("footer-i")
+	) instanceof HTMLIFrameElement   ? _ : null;
+	calendarFieldset = (
+		_ = document.getElementById("calendar-selection")
+	) instanceof HTMLFieldSetElement ? _ : null;
+	// Get the header and footer root, if they exist.
+	headerRoot = header?.contentWindow?.document ?? null;
+	footerRoot = footer?.contentWindow?.document ?? null;
 	// Get elements from the header...
-	headerHtml      = headerRoot?.querySelector("html");
-	topnavLinks     = headerRoot?.getElementById("topnav-links");
-	animationButton = headerRoot?.getElementById("animation-button");
-	bubbleButton    = headerRoot?.getElementById("bubble-button");
-	lightDarkButton = headerRoot?.getElementById("light-dark-button");
-	topnavBarButton = headerRoot?.getElementById("topnav-bar-button");
+	headerHtml      = headerRoot?.querySelector("html")               ?? null;
+	topnavLinks     = headerRoot?.getElementById("topnav-links")      ?? null;
+	animationButton = headerRoot?.getElementById("animation-button")  ?? null;
+	bubbleButton    = headerRoot?.getElementById("bubble-button")     ?? null;
+	lightDarkButton = headerRoot?.getElementById("light-dark-button") ?? null;
+	topnavBarButton = headerRoot?.getElementById("topnav-bar-button") ?? null;
 	// ...and the footer.
-	footerHtml   = footerRoot?.querySelector("html");
-	verbalButton = footerRoot?.getElementById("verbal-button");
+	footerHtml   = footerRoot?.querySelector("html")                  ?? null;
+	verbalButton = footerRoot?.getElementById("verbal-button")        ?? null;
 	// Finally, do all the initialization stuff.
+	getCalendar();
 	getOptions();
 	makeBubbles();
 	makeButtonListeners();
 	makeButtonsVisible();
+	makeCalendarWidgetListeners();
 	setActiveLink();
+	setCalendar();
 	setLightBackground();
 	setNavHeights();
 	toggleAnimations(isAnimated);
@@ -732,8 +814,6 @@ function main() {
 
 
 
-/**
- * Once the page loads, run `main`.
- */
+// ## Top level code
 
 executeOnLoad(main);

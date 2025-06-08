@@ -1,0 +1,164 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--blog-intro-padding-bottom: 32px;
+	--blog-box-min-height: 80vh;
+	--blog-controls-margin-bottom: 40px;
+}
+
+
+
+/* Blog page intro //
+// =============== */
+
+#blog-intro {
+	padding-bottom: var(--blog-intro-padding-bottom);
+}
+
+#blog-intro p {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+#blog-box {
+	min-height: var(--blog-box-min-height);
+}
+
+
+
+/* Blog controls //
+// ============= */
+
+#blog-controls {
+	text-align: center;
+}
+
+#calendar-selection {
+	display: inline-block;
+	margin-bottom: var(--blog-controls-margin-bottom);
+}
+
+#calendar-selection legend, #calendar-selection label {
+	float: left;
+	padding: 8px;
+}
+
+@media (max-width: 360px) {
+	#calendar-selection legend {
+		float: none;
+		font-weight: 600;
+		margin: auto;
+	}
+}
+
+#calendar-selection input {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+
+#calendar-selection label {
+	background-color: var(--very-bright-positive);
+	border: 1px solid var(--negative);
+}
+
+#calendar-selection .blog-radio-first + label {
+	border-radius: 12px 0 0 12px;
+}
+
+#calendar-selection .blog-radio-last + label {
+	border-radius: 0 12px 12px 0;
+}
+
+#calendar-selection button:hover,
+#calendar-selection input + label:hover {
+	background-color: var(--bright-positive);
+	text-shadow: 0 0 1px var(--bright-negative);
+}
+
+#calendar-selection button:focus,
+#calendar-selection input:focus + label {
+	outline: 2px dashed var(--super-negative);
+}
+
+#calendar-selection input:checked + label {
+	background-color: var(--super-negative);
+	color: var(--ultra-positive);
+	text-decoration: underline;
+}
+
+#calendar-selection input:checked + label:hover {
+	background-color: var(--negative);
+	text-shadow: 0 0 1px var(--very-bright-positive);
+}
+
+#calendar-selection input:checked + label::selection {
+	background-color: var(--super-positive);
+	color: var(--super-negative);
+}
+
+
+
+/* Blog history //
+// ============ */
+
+#blog-history time {
+	font-size: 12px;
+	line-height: 16px;
+}
+
+#blog-history time sup {
+	font-size: 10px;
+	vertical-align: super;
+}
+
+#blog-history small {
+	display: inline-block;
+	margin: 0;
+	padding: 4px 4px 0 0;
+	text-align: right;
+	vertical-align: top;
+	width: 33%;
+}
+
+@media (max-width: 600px) {
+	#blog-history small {
+		display: block;
+		margin-left: 5%;
+		margin-right: 5%;
+		padding-right: 0;
+		text-align: left;
+		width: 90%;
+	}
+}
+
+#blog-history h2 {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 28px;
+	margin: 0 5%;
+	padding: 0 0 0 8px;
+	text-align: left;
+	width: calc(90% - 8px);
+}
+
+@media (min-width: 601px) {
+	#blog-history h2 {
+		border-left: 1px solid var(--negative);
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 4px;
+		width: calc(65% - 9px);
+	}
+}
+
+#blog-history h2 a {
+	text-decoration: none;
+}
+
+#blog-history h2 a:hover {
+	text-shadow: none;
+	text-decoration: underline;
+}

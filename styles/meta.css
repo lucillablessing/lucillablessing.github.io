@@ -1,0 +1,72 @@
+/* Global variables //
+// ================ */
+
+:root {
+	--meta-height-diff: 192px;
+	--meta-h2-padding-top: 16px;
+	--meta-p-margin-bottom: 16px;
+	--meta-p-margin-bottom-less: 8px;
+}
+
+
+
+/* Meta //
+// ==== */
+
+#meta-box {
+	background-image: none;
+}
+
+#the-meta {
+	background-color: transparent;
+	height: calc(
+		100vh -
+		var(--nav-height) -
+		var(--footer-height) -
+		var(--main-padding-top) -
+		var(--main-padding-bottom) -
+		var(--meta-height-diff)
+	);
+	min-height: 25vh;
+	overflow-y: scroll;
+}
+
+#the-meta h2 {
+	font-size: var(--18px-16px);
+	font-weight: 600;
+	line-height: var(--28px-22px);
+	padding-top: var(--meta-h2-padding-top);
+}
+
+#the-meta p, #the-meta ul {
+	margin-bottom: var(--meta-p-margin-bottom);
+	margin-left: 4%;
+	margin-right: 4%;
+}
+
+#the-meta p, #the-meta li {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#the-meta code {
+	font-size: 14px;
+	line-height: 24px;
+}
+
+#the-meta li {
+	list-style-type: disc;
+}
+
+#the-meta p {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#the-meta p.next, #the-meta ul.next {
+	margin-bottom: var(--meta-p-margin-bottom-less);
+}
+
+#the-meta ul.nested {
+	margin-left: 0;
+}

@@ -257,7 +257,7 @@
 	{
 		"date": [ 2024, 7, 5 ],
 		"title": "Fibonacci Sort",
-		"blurb": "a paper about a novel merge-based sorting algorithm surprisingly connected to the Fibonacci sequence.",
+		"blurb": "a paper about a novel merge-based sorting algorithm surprisingly connected to the Fibonacci sequence.<br><b>update</b>: in May 2025, I was able to get the <i>fairy sequence</i> (mentioned in section 4) into the OEIS! it's sequence&nbsp;<a href=\"https://oeis.org/A383977\">A383977</a>&nbsp;:)",
 		"links": [
 			{ "a": "pdf", "href": "writing/pdf/fibonacci_sort.pdf" },
 			{ "a": "source", "href": "writing/tex/fibonacci_sort.zip" }
@@ -495,15 +495,5 @@
 		],
 		"thumbnail": "familiar.jpg",
 		"tags": [ "code", "ancient" ]
-	},
-	{
-		"date": [ 0, 0, 0 ],
-		"title": "Test",
-		"blurb": "Test, test, this is a test!",
-		"links": [
-			{ "a": "test", "href": "#" }
-		],
-		"thumbnail": null,
-		"tags": [ "other", "ancient", "hidden" ]
 	}
 ]

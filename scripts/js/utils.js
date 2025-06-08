@@ -1,9 +1,24 @@
+const calendars = [
+    "gregorian",
+    "blessing"
+];
 const dataPath = "assets/data/";
 const imgPath = "assets/images/";
 const svgPath = "assets/svg/";
 const svgNS = "http://www.w3.org/2000/svg";
 const navHeight = 56;
 const transitionLength = 200;
+function isCalendar(s) {
+    return calendars.includes(s);
+}
+function executeAsync(f, delayMs = 0) {
+    if (requestIdleCallback) {
+        requestIdleCallback(f);
+    }
+    else {
+        setTimeout(f, delayMs);
+    }
+}
 function executeOnLoad(f) {
     if (document.readyState === "complete") {
         f();
@@ -11,9 +26,6 @@ function executeOnLoad(f) {
     else {
         window.addEventListener("load", f);
     }
-}
-function fetchJsonAndThen(path, processIt) {
-    fetch(path).then(response => response.json()).then(processIt);
 }
 function getSearchParamBool(option) {
     const url = new URL(window.location.href);
@@ -29,6 +41,13 @@ function getSessionBool(option) {
         case "true": return true;
         default: return null;
     }
+}
+function getSessionCalendar(option) {
+    if (sessionStorage.getItem("leaderOfTheUniverse") !== "Lucilla") {
+        return null;
+    }
+    const s = sessionStorage.getItem(option);
+    return (s !== null && isCalendar(s)) ? s : null;
 }
 function just(maybe) {
     if (maybe !== null && maybe !== undefined) {
@@ -58,6 +77,17 @@ function setSessionBool(option, value) {
         default: sessionStorage.removeItem(option);
     }
 }
+function setSessionCalendar(option, value) {
+    if (sessionStorage.getItem("leaderOfTheUniverse") === null) {
+        sessionStorage.setItem("leaderOfTheUniverse", "Lucilla");
+    }
+    if (value !== null) {
+        sessionStorage.setItem(option, value);
+    }
+    else {
+        sessionStorage.removeItem(option);
+    }
+}
 function toggleElement(element, to) {
     if (!to) {
         element.style.display = "none";
@@ -66,4 +96,4 @@ function toggleElement(element, to) {
         element.style.removeProperty("display");
     }
 }
-export { dataPath, imgPath, svgPath, svgNS, navHeight, transitionLength, executeOnLoad, fetchJsonAndThen, getSearchParamBool, getSessionBool, just, randomColor, randomIntInRange, setSessionBool, toggleElement, };
+export { calendars, dataPath, imgPath, svgPath, svgNS, navHeight, transitionLength, isCalendar, executeAsync, executeOnLoad, getSearchParamBool, getSessionBool, getSessionCalendar, just, randomColor, randomIntInRange, setSessionBool, setSessionCalendar, toggleElement, };
