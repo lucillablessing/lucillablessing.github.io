@@ -127,6 +127,9 @@ const blogBodyHtml = (json: BlogJson) => /*html*/`
 			<p class="center">
 				Read the musings of an internet stranger. Perhaps you'll find some of them insightful.
 			</p>
+			<p class="center">
+				&mdash; on hold until further notice &mdash;
+			</p>
 		${I(2, T(blogControlsHtml()))}
 		${I(2, T(blogHistoryHtml(json)))}
 	</div>
