@@ -6,6 +6,7 @@
 	--blog-post-margin-horizontal: 4px;
 	--blog-post-padding-horizontal: 32px;
 	--blog-post-padding-vertical: 8px;
+	--blog-post-ul-margin-vertical: 16px;
 	--blog-post-ul-margin-left: 32px;
 	--blog-post-intro-padding-bottom: 32px;
 	--blog-post-note-padding-top: 16px;
@@ -83,7 +84,11 @@
 }
 
 .blog-post ul {
-	margin-left: var(--blog-post-ul-margin-left);
+	margin:
+	var(--blog-post-ul-margin-vertical)
+	0
+	var(--blog-post-ul-margin-vertical)
+	var(--blog-post-ul-margin-left);
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -182,6 +187,7 @@
 }
 
 #blog-post-contents ul {
+	margin-top: 0;
 	margin-bottom: var(--blog-post-contents-margin);
 	margin-left: 0;
 	padding: var(--blog-post-contents-padding);
@@ -242,7 +248,10 @@ a.home {
 a.footnote {
 	counter-increment: footnote;
 	font-size: 75%;
-	vertical-align: super;
+	/* https://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/ */
+	position: relative;
+	top: -0.5em;
+	vertical-align: baseline;
 }
 
 a.footnote::after {
@@ -346,7 +355,7 @@ a.back {
 
 .blog-post math {
 	/* for prerendered MathML */
-	font-family: "New Computer Modern";
+	font-family: "New Computer Modern", serif;
 }
 
 .blog-post .katex {
@@ -358,4 +367,15 @@ a.back {
 	overflow-y: hidden;
 	padding-top: 4px;
 	padding-bottom: 4px;
+}
+
+
+
+/* Musical notes //
+// ============= */
+
+.blog-post .music {
+	font-family: "Edwin", serif;
+	font-size: 90%;
+	font-weight: 400;
 }

@@ -375,6 +375,10 @@ em, i {
 	font-style: italic;
 }
 
+em em, em i, i em, i i {
+	font-style: normal;
+}
+
 code {
 	background-color: light-dark(
 		rgb(from var(--light-gray) r g b / 50%),
@@ -1259,4 +1263,32 @@ footer {
 	font-family: "New Computer Modern";
 	src: url("../fonts/New Computer Modern/math.woff2") format("woff2");
 	font-style: normal;
+}
+
+@font-face {
+	font-family: "Edwin";
+	src: url("../fonts/Edwin/400.otf") format("opentype");
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Edwin";
+	src: url("../fonts/Edwin/400i.otf") format("opentype");
+	font-style: italic;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Edwin";
+	src: url("../fonts/Edwin/700.otf") format("opentype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Edwin";
+	src: url("../fonts/Edwin/700i.otf") format("opentype");
+	font-style: italic;
+	font-weight: 700;
 }

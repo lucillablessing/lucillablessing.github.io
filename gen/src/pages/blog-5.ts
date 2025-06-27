@@ -107,13 +107,13 @@ const blogHistoryEntryHtml = (metadata: BlogPostMetadata) => /*html*/`
 
 const blogHistoryHtml = (json: BlogJson) => /*html*/`
 <section id="blog-history">
-${
-	I(1,
-		json.map(
-			metadata => T(blogHistoryEntryHtml(metadata))
-		).join("\n")
-	)
-}
+	${
+		I(1,
+			json.map(
+				metadata => T(blogHistoryEntryHtml(metadata))
+			).join("\n")
+		)
+	}
 </section>
 `;
 
