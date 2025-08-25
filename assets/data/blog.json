@@ -1,5 +1,11 @@
 [
 	{
+		"date": [ 2025, 8, 25 ],
+		"id": "lucigenres",
+		"title": "Top Five Luciëst Game Genres",
+		"useMath": false
+	},
+	{
 		"date": [ 2025, 6, 28 ],
 		"id": "flairs",
 		"title": "Flairs",
