@@ -125,7 +125,7 @@
 	{
 		"title": "Close Your Eyen",
 		"blurb": "solve puzzles on an enigmatic island riddled with magical books.",
-		"tags": [ "other", "wishlist" ]	
+		"tags": [ "other", "wishlist" ]
 	},
 	{
 		"title": "Izzi and the Rainbow Cube",
@@ -161,6 +161,25 @@
 		"title": "Fairies Only Live One Day",
 		"blurb": "if I could write a novel, this would be it.",
 		"tags": [ "other", "wishlist", "hidden" ]
+	},
+	{
+		"date": [ 2025, 10, 19 ],
+		"title": "ReAnimate",
+		"blurb": "a full-fledged Talon setup for playing <i>Crypt of the NecroDancer</i> with voice commands. complete with a Cadence Voice% speedrun.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=KZOip8Fd7gY" },
+			{ "a": "github", "href": "https://github.com/lucillablessing/reanimate-talon" }
+		],
+		"tags": [ "code", "major" ]
+	},
+	{
+		"date": [ 2025, 10, 19 ],
+		"title": "BetterInput",
+		"blurb": "a Talon library for handling inputs better, made with video games in mind.",
+		"links": [
+			{ "a": "github", "href": "https://github.com/lucillablessing/betterinput" }
+		],
+		"tags": [ "code", "minor" ]
 	},
 	{
 		"date": [ 2025, 5, 11 ],
