@@ -163,6 +163,17 @@
 		"tags": [ "other", "wishlist", "hidden" ]
 	},
 	{
+		"date": [ 2026, 3, 31 ],
+		"title": "Tonic Rainboom",
+		"blurb": "eight songs made using only the power of an imaginary microtonal Nokia Composer.",
+		"links": [
+			{ "a": "youtube", "href": "https://www.youtube.com/watch?v=mVhf8zYi7jI" },
+			{ "a": "bandcamp", "href": "https://lucilla.bandcamp.com/album/tonic-rainboom" }
+		],
+		"thumbnail": "tonic_rainboom.jpg",
+		"tags": [ "music", "major" ]
+	},
+	{
 		"date": [ 2025, 10, 19 ],
 		"title": "ReAnimate",
 		"blurb": "a full-fledged Talon setup for playing <i>Crypt of the NecroDancer</i> with voice commands. complete with a Cadence Voice% speedrun.",
